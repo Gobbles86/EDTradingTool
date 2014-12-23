@@ -30,7 +30,7 @@ namespace EDTradingTool.Data
             typeof(Entity.Federation),
             typeof(Entity.CommodityGroup),
             typeof(Entity.CommodityType),
-            typeof(Entity.CommodityMarketEntry)
+            typeof(Entity.MarketEntry)
         };
 
         /// <summary>

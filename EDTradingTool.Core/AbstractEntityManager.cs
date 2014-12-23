@@ -58,6 +58,8 @@ namespace EDTradingTool.Core
 
         /// <summary>
         /// Deletes the given object from the database.
+        /// By convention, entity managers should always remove the object directly from its parent object and use entity managers of the child classes for removing the 
+        /// child object from the object.
         /// </summary>
         /// <param name="obj">The object to remove.</param>
         public virtual void RemoveObject(T obj)

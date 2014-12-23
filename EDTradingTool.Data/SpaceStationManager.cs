@@ -20,17 +20,19 @@ namespace EDTradingTool.Data
             typeof(Entity.SolarSystem)
         };
 
-        public SpaceStationManager(Core.IEntityAccess entityAccess)
+        private Core.AbstractEntityManager<Entity.MarketEntry> _marketEntryManager;
+
+        public SpaceStationManager(Core.IEntityAccess entityAccess, Core.AbstractEntityManager<Entity.MarketEntry> marketEntryManager)
             : base(entityAccess)
         {
+            _marketEntryManager = marketEntryManager;
         }
 
         /// <summary>
-        /// Adds the space station to the database and links it with the given solar system.
+        /// Adds the space station to the database and links it with the given Federation and Solar System.
         /// </summary>
         /// <param name="spaceStation">The space station to add.</param>
-        /// <param name="solarSystem">The solar system to link to.</param>
-        /// <param name="federation">The federation to link to.</param>
+        /// <param name="relatedObjects">The related Federation and Solar System to link to (in that order).</param>
         public override void AddObject(Entity.SpaceStation spaceStation, params object[] relatedObjects)
         {
             ValidateRelatedObjects(relatedObjects, RelatedTypes);
@@ -38,16 +40,25 @@ namespace EDTradingTool.Data
             var federation = (Entity.Federation)relatedObjects[0];
             var solarSystem = (Entity.SolarSystem)relatedObjects[1];
 
-            spaceStation.SolarSystemId = solarSystem.Id;
             spaceStation.FederationId = federation.Id;
-            
-            base.AddObject(spaceStation, null);
+            spaceStation.SolarSystemId = solarSystem.Id;
 
-            // in case of success, link the space station with the solar system
-            spaceStation.SolarSystem = solarSystem;
+            try
+            {
+                base.AddObject(spaceStation, null);
+            }
+            catch
+            {
+                spaceStation.Federation = null;
+                spaceStation.SolarSystemId = null;
+                throw;
+            }
+
+            // In case of success, link the space station with the federation and solar system.
             spaceStation.Federation = federation;
-            solarSystem.SpaceStations.Add(spaceStation);
+            spaceStation.SolarSystem = solarSystem;
             federation.SpaceStations.Add(spaceStation);
+            solarSystem.SpaceStations.Add(spaceStation);
         }
 
         /// <summary>
@@ -56,6 +67,7 @@ namespace EDTradingTool.Data
         /// <param name="spaceStation">The space station to remove.</param>
         public override void RemoveObject(Entity.SpaceStation spaceStation)
         {
+            // Unlink the class from its parent entities.
             if (spaceStation.SolarSystem != null)
             {
                 spaceStation.SolarSystem.SpaceStations.Remove(spaceStation);
@@ -67,6 +79,12 @@ namespace EDTradingTool.Data
                 spaceStation.Federation.SpaceStations.Remove(spaceStation);
                 spaceStation.Federation = null;
                 spaceStation.FederationId = null;
+            }
+
+            // Let the child handler delete all child data sets.
+            foreach (var marketEntry in spaceStation.MarketEntries)
+            {
+                _marketEntryManager.RemoveObject(marketEntry);
             }
 
             base.RemoveObject(spaceStation);

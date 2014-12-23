@@ -26,5 +26,13 @@ namespace EDTradingTool.Entity
 
         [Reference]
         public CommodityGroup CommodityGroup { get; set; }
+
+        [Reference]
+        public List<MarketEntry> MarketEntries { get; set; }
+
+        public CommodityType()
+        {
+            MarketEntries = new List<MarketEntry>();
+        }
     }
 }

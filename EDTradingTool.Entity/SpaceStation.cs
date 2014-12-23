@@ -25,7 +25,7 @@ namespace EDTradingTool.Entity
         public String Name { get; set; }
         
         [Reference]
-        public List<CommodityMarketEntry> MarketEntries { get; set; }
+        public List<MarketEntry> MarketEntries { get; set; }
 
         [Reference]
         public SolarSystem SolarSystem { get; set; }
@@ -35,7 +35,7 @@ namespace EDTradingTool.Entity
 
         public SpaceStation()
         {
-            MarketEntries = new List<CommodityMarketEntry>();
+            MarketEntries = new List<MarketEntry>();
         }
     }
 }

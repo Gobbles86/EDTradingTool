@@ -59,8 +59,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommodityGroupManager.cs" />
+    <Compile Include="CommodityTypeManager.cs" />
     <Compile Include="EntityAccess.cs" />
+    <Compile Include="EntityManagerStore.cs" />
+    <Compile Include="EntityManagerFactory.cs" />
     <Compile Include="FederationManager.cs" />
+    <Compile Include="MarketEntryManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SolarSystemManager.cs" />
     <Compile Include="SpaceStationManager.cs" />

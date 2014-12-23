@@ -59,7 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommodityGroup.cs" />
-    <Compile Include="CommodityMarketEntry.cs" />
+    <Compile Include="MarketEntry.cs" />
     <Compile Include="CommodityType.cs" />
     <Compile Include="Federation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

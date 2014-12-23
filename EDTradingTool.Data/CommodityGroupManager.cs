@@ -9,15 +9,27 @@ namespace EDTradingTool.Data
     /// <summary>
     /// This class is responsible for keeping data integrity clean when accessing the CommodityGroup table.
     /// </summary>
-    public class CommodityGroupManager
+    public class CommodityGroupManager : Core.AbstractEntityManager<Entity.CommodityGroup>
     {
-        private EntityAccess _entityAccess;
+        private Core.AbstractEntityManager<Entity.CommodityType> _commodityTypeManager;
 
-        public CommodityGroupManager(EntityAccess entityAccess)
+        public CommodityGroupManager(Core.IEntityAccess entityAccess, Core.AbstractEntityManager<Entity.CommodityType> commodityTypeManager)
+            : base(entityAccess)
         {
-            _entityAccess = entityAccess;
+            _commodityTypeManager = commodityTypeManager;
         }
 
-        
+        /// <summary>
+        /// Removes the CommodityGroup, all related CommodityTypes and all CommodityMarketEntries which were stored below that group.
+        /// </summary>
+        /// <param name="commodityGroup">The commodity to remove.</param>
+        public override void RemoveObject(Entity.CommodityGroup commodityGroup)
+        {
+            foreach (var commodityType in commodityGroup.CommodityTypes)
+            {
+                _commodityTypeManager.RemoveObject(commodityType);
+            }
+            base.RemoveObject(commodityGroup);
+        }
     }
 }

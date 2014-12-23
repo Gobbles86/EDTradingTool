@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace EDTradingTool.Entity
 {
     /// <summary>
-    /// This class represents a market entry for a specific commodity type in Elite: Dangerous.
+    /// This class represents a market entry for a specific commodity in Elite: Dangerous.
     /// </summary>
-    public class CommodityMarketEntry : Core.IHasId
+    public class MarketEntry : Core.IHasId
     {
         [AutoIncrement]
         public long Id { get; set; }
@@ -21,10 +21,10 @@ namespace EDTradingTool.Entity
         [ForeignKey(typeof(SpaceStation), OnDelete = "SET NULL")]
         public long? SpaceStationId { get; set; }
 
-        public int SellToStationPrice { get; set; }
-        public int BuyFromStationPrice { get; set; }
-        public int Demand { get; set; }
-        public int Supply { get; set; }
+        public int? SellToStationPrice { get; set; }
+        public int? BuyFromStationPrice { get; set; }
+        public int? Demand { get; set; }
+        public int? Supply { get; set; }
 
         public DateTime LastUpdate { get; set; }
 
