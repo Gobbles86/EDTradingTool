@@ -1,0 +1,13 @@
+D:\Daten\Projects\EDTradingTool\EDTradingTool.Entity\bin\Debug\EDTradingTool.Entity.dll
+D:\Daten\Projects\EDTradingTool\EDTradingTool.Entity\bin\Debug\EDTradingTool.Entity.pdb
+D:\Daten\Projects\EDTradingTool\EDTradingTool.Entity\bin\Debug\ServiceStack.Common.dll
+D:\Daten\Projects\EDTradingTool\EDTradingTool.Entity\bin\Debug\ServiceStack.Interfaces.dll
+D:\Daten\Projects\EDTradingTool\EDTradingTool.Entity\bin\Debug\ServiceStack.OrmLite.dll
+D:\Daten\Projects\EDTradingTool\EDTradingTool.Entity\bin\Debug\ServiceStack.OrmLite.Sqlite.Windows.dll
+D:\Daten\Projects\EDTradingTool\EDTradingTool.Entity\bin\Debug\ServiceStack.Text.dll
+D:\Daten\Projects\EDTradingTool\EDTradingTool.Entity\bin\Debug\System.Data.SQLite.dll
+D:\Daten\Projects\EDTradingTool\EDTradingTool.Entity\bin\Debug\ServiceStack.Common.xml
+D:\Daten\Projects\EDTradingTool\EDTradingTool.Entity\bin\Debug\ServiceStack.Text.xml
+D:\Daten\Projects\EDTradingTool\EDTradingTool.Entity\bin\Debug\System.Data.SQLite.xml
+D:\Daten\Projects\EDTradingTool\EDTradingTool.Entity\obj\Debug\EDTradingTool.Entity.dll
+D:\Daten\Projects\EDTradingTool\EDTradingTool.Entity\obj\Debug\EDTradingTool.Entity.pdb
