@@ -12,17 +12,16 @@ namespace EDTradingTool.Entity
     /// </summary>
     public class SpaceStation : IHasId, IHasName
     {
-        [AutoIncrement]
+        [AutoIncrement, PrimaryKey]
         public long Id { get; set; }
 
-        [Required]
-        public long SolarSystemId { get; set; }
+        [ForeignKey(typeof(SolarSystem), OnDelete = "SET NULL")]
+        public long? SolarSystemId { get; set; }
 
-        [Required]
-        public long FederationId { get; set; }
+        [ForeignKey(typeof(Federation), OnDelete = "SET NULL")]
+        public long? FederationId { get; set; }
 
-        [Required]
-        [Index(Unique = true)]
+        [Required, Index(Unique = true), StringLength(50)]
         public String Name { get; set; }
         
         [Reference]

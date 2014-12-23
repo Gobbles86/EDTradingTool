@@ -42,5 +42,32 @@ namespace EDTradingTool.Data
         {
             _entityAccess.UpdateObject(spaceStation);
         }
+
+        public void RemoveSpaceStation(Entity.SpaceStation spaceStation)
+        {
+            if (spaceStation.SolarSystem != null)
+            {
+                spaceStation.SolarSystem.SpaceStations.Remove(spaceStation);
+                spaceStation.SolarSystem = null;
+                spaceStation.SolarSystemId = null;
+            }
+            if (spaceStation.Federation != null)
+            {
+                spaceStation.Federation.SpaceStations.Remove(spaceStation);
+                spaceStation.Federation = null;
+                spaceStation.FederationId = null;
+            }
+            _entityAccess.RemoveObject(spaceStation);
+        }
+
+        public Entity.SpaceStation GetSpaceStation(long primaryKey)
+        {
+            return _entityAccess.GetObject<Entity.SpaceStation>(primaryKey);
+        }
+
+        public Entity.SpaceStation GetSpaceStation(String name)
+        {
+            return _entityAccess.GetObject<Entity.SpaceStation>(name);
+        }
     }
 }

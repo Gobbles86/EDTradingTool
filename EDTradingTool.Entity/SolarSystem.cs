@@ -12,11 +12,10 @@ namespace EDTradingTool.Entity
     /// </summary>
     public class SolarSystem : IHasId, IHasName
     {
-        [AutoIncrement]
+        [AutoIncrement, PrimaryKey]
         public long Id { get; set; }
 
-        [Required]
-        [Index(Unique = true)]
+        [Required, Index(Unique = true), StringLength(50)]
         public String Name { get; set; }
 
         [Reference]

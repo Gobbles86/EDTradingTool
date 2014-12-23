@@ -13,10 +13,12 @@ namespace EDTradingTool.Data
     public class SolarSystemManager
     {
         private EntityAccess _entityAccess;
+        private SpaceStationManager _spaceStationManager;
 
-        public SolarSystemManager(EntityAccess entityAccess)
+        public SolarSystemManager(EntityAccess entityAccess, SpaceStationManager spaceStationManager)
         {
             _entityAccess = entityAccess;
+            _spaceStationManager = spaceStationManager;
         }
 
         public void AddSolarSystem(Entity.SolarSystem solarSystem)
@@ -24,8 +26,17 @@ namespace EDTradingTool.Data
             _entityAccess.AddObject(solarSystem);
         }
 
+        /// <summary>
+        /// Removes the solar system and all space stations in it.
+        /// </summary>
+        /// <param name="solarSystem">The solar system to remove.</param>
         public void RemoveSolarSystem(Entity.SolarSystem solarSystem)
         {
+            foreach (var spaceStation in solarSystem.SpaceStations)
+            {
+                _spaceStationManager.RemoveSpaceStation(spaceStation);
+            }
+
             _entityAccess.RemoveObject(solarSystem);
         }
 

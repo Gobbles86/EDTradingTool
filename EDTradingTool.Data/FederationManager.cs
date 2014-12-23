@@ -23,8 +23,20 @@ namespace EDTradingTool.Data
             _entityAccess.AddObject(federation);
         }
 
+        /// <summary>
+        /// Removes the federation. This will only work if it does not reference any space stations.
+        /// </summary>
+        /// <param name="federation">The federation to remove.</param>
         public void RemoveFederation(Entity.Federation federation)
         {
+            if( federation.SpaceStations.Count > 0 )
+            {
+                var spaceStationString = "\n - " + String.Join("\n - ", federation.SpaceStations.ConvertAll<String>(x => x.Name));
+
+                throw new ArgumentException(
+                    String.Format("Cannot remove Federation \"{0}\" as it is still referenced by the following space station(s): {1}", federation.Name, spaceStationString)
+                    );
+            }
             _entityAccess.RemoveObject(federation);
         }
 

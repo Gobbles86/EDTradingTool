@@ -26,9 +26,9 @@ namespace EDTradingTool
                 );
 
             var entityAccess = new Data.EntityAccess(dbFactory);
-            var solarSystemManager = new Data.SolarSystemManager(entityAccess);
             var spaceStationManager = new Data.SpaceStationManager(entityAccess);
             var federationManager = new Data.FederationManager(entityAccess);
+            var solarSystemManager = new Data.SolarSystemManager(entityAccess, spaceStationManager);
             
             entityAccess.DeleteAll();
             entityAccess.LoadAll();

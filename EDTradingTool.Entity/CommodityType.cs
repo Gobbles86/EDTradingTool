@@ -14,12 +14,13 @@ namespace EDTradingTool.Entity
     {
         [AutoIncrement]
         public long Id { get; set; }
-        [Required]
-        public long CommodityGroupId { get; set; }
 
-        [Required]
-        [Index(Unique = true)]
+        [ForeignKey(typeof(CommodityGroup), OnDelete = "SET NULL")]
+        public long? CommodityGroupId { get; set; }
+
+        [Required, Index(Unique = true), StringLength(50)]
         public String Name { get; set; }
+
         [Required]
         public int GalacticAverage { get; set; }
 

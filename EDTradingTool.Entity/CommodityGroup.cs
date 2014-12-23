@@ -15,8 +15,7 @@ namespace EDTradingTool.Entity
         [AutoIncrement]
         public long Id { get; set; }
 
-        [Required]
-        [Index(Unique = true)]
+        [Required, Index(Unique = true), StringLength(50)]
         public String Name { get; set; }
 
         [Reference]

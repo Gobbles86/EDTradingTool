@@ -14,10 +14,12 @@ namespace EDTradingTool.Entity
     {
         [AutoIncrement]
         public long Id { get; set; }
-        [Required]
-        public long CommodityTypeId { get; set; }
-        [Required]
-        public long SpaceStationId { get; set; }
+
+        [ForeignKey(typeof(CommodityType), OnDelete = "SET NULL")]
+        public long? CommodityTypeId { get; set; }
+
+        [ForeignKey(typeof(SpaceStation), OnDelete = "SET NULL")]
+        public long? SpaceStationId { get; set; }
 
         public int SellToStationPrice { get; set; }
         public int BuyFromStationPrice { get; set; }
