@@ -10,7 +10,7 @@ namespace EDTradingTool.Entity
     /// <summary>
     /// This class represents a federation in Elite: Dangerous.
     /// </summary>
-    public class Federation : IHasId, IHasName
+    public class Federation : Core.IHasId, Core.IHasName
     {
         [AutoIncrement, PrimaryKey]
         public long Id { get; set; }

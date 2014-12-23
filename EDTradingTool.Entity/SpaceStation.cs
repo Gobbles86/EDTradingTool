@@ -10,7 +10,7 @@ namespace EDTradingTool.Entity
     /// <summary>
     /// This class represents a space station (or similar) in Elite: Dangerous
     /// </summary>
-    public class SpaceStation : IHasId, IHasName
+    public class SpaceStation : Core.IHasId, Core.IHasName
     {
         [AutoIncrement, PrimaryKey]
         public long Id { get; set; }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EDTradingTool.Entity
+namespace EDTradingTool.Core
 {
     /// <summary>
     /// This interface can be used for data classes which have a Name property.

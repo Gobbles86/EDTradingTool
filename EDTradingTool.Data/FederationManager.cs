@@ -7,29 +7,22 @@ using System.Threading.Tasks;
 namespace EDTradingTool.Data
 {
     /// <summary>
-    /// This class is responsible for managing Entity.Federation objects.
+    /// This class is responsible for keeping data integrity clean when accessing the Federation table.
     /// </summary>
-    public class FederationManager
+    public class FederationManager : Core.AbstractEntityManager<Entity.Federation>
     {
-        private EntityAccess _entityAccess;
-
-        public FederationManager(EntityAccess entityAccess)
+        public FederationManager(Core.IEntityAccess entityAccess)
+            : base(entityAccess)
         {
-            _entityAccess = entityAccess;
-        }
-
-        public void AddFederation(Entity.Federation federation)
-        {
-            _entityAccess.AddObject(federation);
         }
 
         /// <summary>
         /// Removes the federation. This will only work if it does not reference any space stations.
         /// </summary>
         /// <param name="federation">The federation to remove.</param>
-        public void RemoveFederation(Entity.Federation federation)
+        public override void RemoveObject(Entity.Federation federation)
         {
-            if( federation.SpaceStations.Count > 0 )
+            if (federation.SpaceStations.Count > 0)
             {
                 var spaceStationString = "\n - " + String.Join("\n - ", federation.SpaceStations.ConvertAll<String>(x => x.Name));
 
@@ -37,22 +30,7 @@ namespace EDTradingTool.Data
                     String.Format("Cannot remove Federation \"{0}\" as it is still referenced by the following space station(s): {1}", federation.Name, spaceStationString)
                     );
             }
-            _entityAccess.RemoveObject(federation);
-        }
-
-        public void UpdateFederation(Entity.Federation federation)
-        {
-            _entityAccess.UpdateObject(federation);
-        }
-
-        public Entity.Federation GetFederation(long primaryKey)
-        {
-            return _entityAccess.GetObject<Entity.Federation>(primaryKey);
-        }
-
-        public Entity.Federation GetFederation(String name)
-        {
-            return _entityAccess.GetObject<Entity.Federation>(name);
+            base.RemoveObject(federation);
         }
     }
 }

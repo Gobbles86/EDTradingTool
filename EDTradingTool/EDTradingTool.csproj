@@ -91,6 +91,10 @@
     <Content Include="sqlite3.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EDTradingTool.Core\EDTradingTool.Core.csproj">
+      <Project>{f927af5d-08db-4a9b-a2b2-aada1d5ea723}</Project>
+      <Name>EDTradingTool.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EDTradingTool.Data\EDTradingTool.Data.csproj">
       <Project>{dce84444-2d00-473b-a3ad-29443339021e}</Project>
       <Name>EDTradingTool.Data</Name>

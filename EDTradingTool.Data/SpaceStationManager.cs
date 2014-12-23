@@ -7,15 +7,22 @@ using System.Threading.Tasks;
 namespace EDTradingTool.Data
 {
     /// <summary>
-    /// This class is used for managing Entity.SpaceStation objects.
+    /// This class is responsible for keeping data integrity clean when accessing the SpaceStation table.
     /// </summary>
-    public class SpaceStationManager
+    public class SpaceStationManager : Core.AbstractEntityManager<Entity.SpaceStation>
     {
-        private EntityAccess _entityAccess;
-
-        public SpaceStationManager(EntityAccess entityAccess)
+        /// <summary>
+        /// Defines the types of related objects which are required for adding a space station.
+        /// </summary>
+        private static readonly Type[] RelatedTypes = new Type[]
         {
-            _entityAccess = entityAccess;
+            typeof(Entity.Federation),
+            typeof(Entity.SolarSystem)
+        };
+
+        public SpaceStationManager(Core.IEntityAccess entityAccess)
+            : base(entityAccess)
+        {
         }
 
         /// <summary>
@@ -24,12 +31,17 @@ namespace EDTradingTool.Data
         /// <param name="spaceStation">The space station to add.</param>
         /// <param name="solarSystem">The solar system to link to.</param>
         /// <param name="federation">The federation to link to.</param>
-        public void AddSpaceStation(Entity.SpaceStation spaceStation, Entity.SolarSystem solarSystem, Entity.Federation federation)
+        public override void AddObject(Entity.SpaceStation spaceStation, params object[] relatedObjects)
         {
+            ValidateRelatedObjects(relatedObjects, RelatedTypes);
+
+            var federation = (Entity.Federation)relatedObjects[0];
+            var solarSystem = (Entity.SolarSystem)relatedObjects[1];
+
             spaceStation.SolarSystemId = solarSystem.Id;
             spaceStation.FederationId = federation.Id;
-
-            _entityAccess.AddObject(spaceStation);
+            
+            base.AddObject(spaceStation, null);
 
             // in case of success, link the space station with the solar system
             spaceStation.SolarSystem = solarSystem;
@@ -38,12 +50,11 @@ namespace EDTradingTool.Data
             federation.SpaceStations.Add(spaceStation);
         }
 
-        public void UpdateSpaceStation(Entity.SpaceStation spaceStation)
-        {
-            _entityAccess.UpdateObject(spaceStation);
-        }
-
-        public void RemoveSpaceStation(Entity.SpaceStation spaceStation)
+        /// <summary>
+        /// Removes the given space station and also removes it from its solar system and federation.
+        /// </summary>
+        /// <param name="spaceStation">The space station to remove.</param>
+        public override void RemoveObject(Entity.SpaceStation spaceStation)
         {
             if (spaceStation.SolarSystem != null)
             {
@@ -57,17 +68,8 @@ namespace EDTradingTool.Data
                 spaceStation.Federation = null;
                 spaceStation.FederationId = null;
             }
-            _entityAccess.RemoveObject(spaceStation);
-        }
 
-        public Entity.SpaceStation GetSpaceStation(long primaryKey)
-        {
-            return _entityAccess.GetObject<Entity.SpaceStation>(primaryKey);
-        }
-
-        public Entity.SpaceStation GetSpaceStation(String name)
-        {
-            return _entityAccess.GetObject<Entity.SpaceStation>(name);
+            base.RemoveObject(spaceStation);
         }
     }
 }

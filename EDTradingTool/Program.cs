@@ -11,11 +11,29 @@ namespace EDTradingTool
 {
     static class Program
     {
-        /// <summary>
-        /// Der Haupteinstiegspunkt für die Anwendung.
-        /// </summary>
         [STAThread]
         static void Main()
+        {
+            try
+            {
+                RunMain();
+            }
+            catch (Exception ex)
+            {
+                var message = ex.Message;
+#if DEBUG
+                message += "\n\nStack Trace:\n" + ex.StackTrace;
+#endif
+                MessageBox.Show(
+                    message,
+                    Application.ProductName,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Stop
+                    );
+            }
+        }
+
+        private static void RunMain()
         {
             // TEMP TEST
             OrmLiteConfig.DialectProvider = SqliteDialect.Provider;
@@ -25,10 +43,10 @@ namespace EDTradingTool
                 "./db.sqlite", SqliteDialect.Provider, false
                 );
 
-            var entityAccess = new Data.EntityAccess(dbFactory);
-            var spaceStationManager = new Data.SpaceStationManager(entityAccess);
-            var federationManager = new Data.FederationManager(entityAccess);
-            var solarSystemManager = new Data.SolarSystemManager(entityAccess, spaceStationManager);
+            Core.IEntityAccess entityAccess = new Data.EntityAccess(dbFactory);
+            Core.AbstractEntityManager<Entity.SpaceStation> spaceStationManager = new Data.SpaceStationManager(entityAccess);
+            Core.AbstractEntityManager<Entity.Federation> federationManager = new Data.FederationManager(entityAccess);
+            Core.AbstractEntityManager<Entity.SolarSystem> solarSystemManager = new Data.SolarSystemManager(entityAccess, spaceStationManager);
             
             entityAccess.DeleteAll();
             entityAccess.LoadAll();
@@ -37,9 +55,9 @@ namespace EDTradingTool
             var federation = new Entity.Federation() { Name = "Test Federation" };
             var spaceStation = new Entity.SpaceStation() { Name = "Test Station" };
 
-            solarSystemManager.AddSolarSystem(solarSystem);
-            federationManager.AddFederation(federation);
-            spaceStationManager.AddSpaceStation(spaceStation, solarSystem, federation);
+            solarSystemManager.AddObject(solarSystem);
+            federationManager.AddObject(federation);
+            spaceStationManager.AddObject(spaceStation, solarSystem, federation);
 
             Console.WriteLine(spaceStation.Name + " / " + spaceStation.Federation.Name + " / " + spaceStation.SolarSystem.Name);
         }

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EDTradingTool.Entity", "EDT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EDTradingTool.Data", "EDTradingTool.Data\EDTradingTool.Data.csproj", "{DCE84444-2D00-473B-A3AD-29443339021E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EDTradingTool.Core", "EDTradingTool.Core\EDTradingTool.Core.csproj", "{F927AF5D-08DB-4A9B-A2B2-AADA1D5EA723}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{DCE84444-2D00-473B-A3AD-29443339021E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCE84444-2D00-473B-A3AD-29443339021E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCE84444-2D00-473B-A3AD-29443339021E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F927AF5D-08DB-4A9B-A2B2-AADA1D5EA723}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F927AF5D-08DB-4A9B-A2B2-AADA1D5EA723}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F927AF5D-08DB-4A9B-A2B2-AADA1D5EA723}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F927AF5D-08DB-4A9B-A2B2-AADA1D5EA723}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -15,7 +15,7 @@ namespace EDTradingTool.Data
     /// <summary>
     /// This class is a wrapper for the database operations required for managing database entities.
     /// </summary>
-    public class EntityAccess
+    public class EntityAccess : Core.IEntityAccess
     {
         private IDbConnectionFactory _dbConnectionFactory;
 
@@ -36,12 +36,12 @@ namespace EDTradingTool.Data
         /// <summary>
         /// Stores one dictionary for each type, where each inner dictionary maps the primary key to the associated object.
         /// </summary>
-        private Dictionary<Type, IDictionary<long, Entity.IHasId>> _typeToIdToObjectMap = new Dictionary<Type, IDictionary<long, Entity.IHasId>>();
+        private Dictionary<Type, IDictionary<long, Core.IHasId>> _typeToIdToObjectMap = new Dictionary<Type, IDictionary<long, Core.IHasId>>();
 
         /// <summary>
         /// Stores one dictionary for each type, where each inner dictionary maps the object name to the associated object. This is only 
         /// </summary>
-        private Dictionary<Type, IDictionary<String, Entity.IHasName>> _typeToNameToObjectMap = new Dictionary<Type, IDictionary<String, Entity.IHasName>>();
+        private Dictionary<Type, IDictionary<String, Core.IHasName>> _typeToNameToObjectMap = new Dictionary<Type, IDictionary<String, Core.IHasName>>();
 
         public EntityAccess(IDbConnectionFactory dbConnectionFactory)
         {
@@ -50,11 +50,11 @@ namespace EDTradingTool.Data
             // Create one Id To Object Dictionary and one String to Object Dictionary for each handled type.
             foreach(var handledType in HandledTypes)
             {
-                _typeToIdToObjectMap.Add(handledType, new Dictionary<long, Entity.IHasId>());
+                _typeToIdToObjectMap.Add(handledType, new Dictionary<long, Core.IHasId>());
 
                 if (TypeHasName(handledType))
                 {
-                    _typeToNameToObjectMap.Add(handledType, new Dictionary<String, Entity.IHasName>());
+                    _typeToNameToObjectMap.Add(handledType, new Dictionary<String, Core.IHasName>());
                 }
             }
         }
@@ -66,7 +66,7 @@ namespace EDTradingTool.Data
         /// <returns>True if the type implements the IHasName interface.</returns>
         private bool TypeHasName(Type type)
         {
-            return typeof(Entity.IHasName).IsAssignableFrom(type);
+            return typeof(Core.IHasName).IsAssignableFrom(type);
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace EDTradingTool.Data
         /// </summary>
         /// <typeparam name="T">The type to load.</typeparam>
         /// <param name="connection">The connection to load from.</param>
-        private void LoadEntity<T>(IDbConnection connection) where T : class, Entity.IHasId
+        private void LoadEntity<T>(IDbConnection connection) where T : class, Core.IHasId
         {
             if (!HandledTypes.Contains(typeof(T)))
             {
@@ -103,7 +103,7 @@ namespace EDTradingTool.Data
             connection.CreateTableIfNotExists<T>();
 
             var idToObjectDictionary = _typeToIdToObjectMap[typeof(T)];
-            IDictionary<String, Entity.IHasName> nameToObjectDictionary = null;
+            IDictionary<String, Core.IHasName> nameToObjectDictionary = null;
             if( TypeHasName(typeof(T)) )
             {
                 nameToObjectDictionary = _typeToNameToObjectMap[typeof(T)];
@@ -115,13 +115,13 @@ namespace EDTradingTool.Data
                 idToObjectDictionary.Add(entity.Id, entity);
                 if(nameToObjectDictionary != null)
                 {
-                    var castedEntity = (Entity.IHasName)entity;
+                    var castedEntity = (Core.IHasName)entity;
                     nameToObjectDictionary.Add(castedEntity.Name, castedEntity);
                 }
             }
         }
 
-        public long AddObject<T>(T obj) where T : class, Entity.IHasId
+        public long AddObject<T>(T obj) where T : class, Core.IHasId
         {
             using (var dbConnection = _dbConnectionFactory.OpenDbConnection())
             {
@@ -129,14 +129,14 @@ namespace EDTradingTool.Data
             }
         }
 
-        public long AddObject<T>(T obj, IDbConnection dbConnection) where T : class, Entity.IHasId
+        public long AddObject<T>(T obj, IDbConnection dbConnection) where T : class, Core.IHasId
         {
-            Entity.IHasName objWithName = null;
+            Core.IHasName objWithName = null;
             var entityType = typeof(T);
 
             if( TypeHasName(entityType))
             {
-                objWithName = (Entity.IHasName)obj;
+                objWithName = (Core.IHasName)obj;
                 if (String.IsNullOrEmpty(objWithName.Name))
                 {
                     throw new ArgumentException("You did not specify a name for the " + entityType.ToString() + " you wanted to add.");
@@ -162,7 +162,7 @@ namespace EDTradingTool.Data
             return obj.Id;
         }
 
-        public void RemoveObject<T>(T obj) where T : class, Entity.IHasId
+        public void RemoveObject<T>(T obj) where T : class, Core.IHasId
         {
             using (var dbConnection = _dbConnectionFactory.OpenDbConnection())
             {
@@ -170,7 +170,7 @@ namespace EDTradingTool.Data
             }
         }
 
-        public void RemoveObject<T>(T obj, IDbConnection dbConnection) where T : class, Entity.IHasId
+        public void RemoveObject<T>(T obj, IDbConnection dbConnection) where T : class, Core.IHasId
         {
             dbConnection.Delete<T>(obj);
             var entityType = typeof(T);
@@ -178,12 +178,12 @@ namespace EDTradingTool.Data
             _typeToIdToObjectMap[entityType].Remove(obj.Id);
             if (TypeHasName(entityType))
             {
-                var castedObj = (Entity.IHasName)obj;
+                var castedObj = (Core.IHasName)obj;
                 _typeToNameToObjectMap[entityType].Remove(castedObj.Name);
             }
         }
 
-        public void UpdateObject<T>(T obj) where T : class, Entity.IHasId
+        public void UpdateObject<T>(T obj) where T : class, Core.IHasId
         {
             using (var dbConnection = _dbConnectionFactory.OpenDbConnection())
             {
@@ -191,7 +191,7 @@ namespace EDTradingTool.Data
             }
         }
 
-        public void UpdateObject<T>(T obj, IDbConnection dbConnection) where T : class, Entity.IHasId
+        public void UpdateObject<T>(T obj, IDbConnection dbConnection) where T : class, Core.IHasId
         {
             if (!HasObject<T>(obj.Id))
             {
@@ -205,8 +205,8 @@ namespace EDTradingTool.Data
             if (TypeHasName(type))
             {
                 // Check if the name is still the same. If not, remove the old entry from the dictionary.
-                var currentObjInDatabase = (Entity.IHasName)dbConnection.Select<T>(q => q.Id == obj.Id).First();
-                var castedObj = (Entity.IHasName)obj;
+                var currentObjInDatabase = (Core.IHasName)dbConnection.Select<T>(q => q.Id == obj.Id).First();
+                var castedObj = (Core.IHasName)obj;
 
                 if (currentObjInDatabase.Name != castedObj.Name)
                 {
@@ -220,28 +220,28 @@ namespace EDTradingTool.Data
             // Make sure the type name dictionary is up to date.
             if (TypeHasName(type) && !String.IsNullOrEmpty(previousName))
             {
-                var castedObj = (Entity.IHasName)obj;
+                var castedObj = (Core.IHasName)obj;
                 _typeToNameToObjectMap[type].Remove(previousName);
                 _typeToNameToObjectMap[type].Add(castedObj.Name, castedObj);
             }
         }
 
-        public T GetObject<T>(long id) where T : class, Entity.IHasId
+        public T GetObject<T>(long id) where T : class, Core.IHasId
         {
             return (T)_typeToIdToObjectMap[typeof(T)][id];
         }
 
-        public T GetObject<T>(String name) where T : class, Entity.IHasName
+        public T GetObject<T>(String name) where T : class, Core.IHasName
         {
             return (T)_typeToNameToObjectMap[typeof(T)][name];
         }
 
-        public bool HasObject<T>(long id) where T : class, Entity.IHasId
+        public bool HasObject<T>(long id) where T : class, Core.IHasId
         {
             return _typeToIdToObjectMap[typeof(T)].ContainsKey(id);
         }
 
-        public bool HasObject<T>(String name) where T : class, Entity.IHasName
+        public bool HasObject<T>(String name) where T : class, Core.IHasName
         {
             return _typeToNameToObjectMap[typeof(T)].ContainsKey(name);
         }

@@ -8,51 +8,30 @@ using System.Threading.Tasks;
 namespace EDTradingTool.Data
 {
     /// <summary>
-    /// This class is used for managing SolarSystem objects.
+    /// This class is responsible for keeping data integrity clean when accessing the SolarSystem table.
     /// </summary>
-    public class SolarSystemManager
+    public class SolarSystemManager : Core.AbstractEntityManager<Entity.SolarSystem>
     {
-        private EntityAccess _entityAccess;
-        private SpaceStationManager _spaceStationManager;
+        private Core.AbstractEntityManager<Entity.SpaceStation> _spaceStationManager;
 
-        public SolarSystemManager(EntityAccess entityAccess, SpaceStationManager spaceStationManager)
+        public SolarSystemManager(Core.IEntityAccess entityAccess, Core.AbstractEntityManager<Entity.SpaceStation> spaceStationManager)
+            : base(entityAccess)
         {
-            _entityAccess = entityAccess;
             _spaceStationManager = spaceStationManager;
-        }
-
-        public void AddSolarSystem(Entity.SolarSystem solarSystem)
-        {
-            _entityAccess.AddObject(solarSystem);
         }
 
         /// <summary>
         /// Removes the solar system and all space stations in it.
         /// </summary>
         /// <param name="solarSystem">The solar system to remove.</param>
-        public void RemoveSolarSystem(Entity.SolarSystem solarSystem)
+        public override void RemoveObject(Entity.SolarSystem solarSystem)
         {
             foreach (var spaceStation in solarSystem.SpaceStations)
             {
-                _spaceStationManager.RemoveSpaceStation(spaceStation);
+                _spaceStationManager.RemoveObject(spaceStation);
             }
 
-            _entityAccess.RemoveObject(solarSystem);
-        }
-
-        public void UpdateSolarSystem(Entity.SolarSystem solarSystem)
-        {
-            _entityAccess.UpdateObject(solarSystem);
-        }
-
-        public Entity.SolarSystem GetSolarSystem(long primaryKey)
-        {
-            return _entityAccess.GetObject<Entity.SolarSystem>(primaryKey);
-        }
-
-        public Entity.SolarSystem GetSolarSystem(String name)
-        {
-            return _entityAccess.GetObject<Entity.SolarSystem>(name);
+            base.RemoveObject(solarSystem);
         }
     }
 }

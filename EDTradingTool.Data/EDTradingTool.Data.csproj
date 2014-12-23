@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommodityGroupManager.cs" />
     <Compile Include="EntityAccess.cs" />
     <Compile Include="FederationManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,6 +66,10 @@
     <Compile Include="SpaceStationManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EDTradingTool.Core\EDTradingTool.Core.csproj">
+      <Project>{f927af5d-08db-4a9b-a2b2-aada1d5ea723}</Project>
+      <Name>EDTradingTool.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EDTradingTool.Entity\EDTradingTool.Entity.csproj">
       <Project>{92d812ed-3efd-478c-836a-166ef2869fef}</Project>
       <Name>EDTradingTool.Entity</Name>

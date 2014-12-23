@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EDTradingTool.Entity
+namespace EDTradingTool.Core
 {
     /// <summary>
     /// This interface allows accessing the ID of a POCO class without knowing the concrete type.

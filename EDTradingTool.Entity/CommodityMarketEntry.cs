@@ -10,7 +10,7 @@ namespace EDTradingTool.Entity
     /// <summary>
     /// This class represents a market entry for a specific commodity type in Elite: Dangerous.
     /// </summary>
-    public class CommodityMarketEntry : IHasId
+    public class CommodityMarketEntry : Core.IHasId
     {
         [AutoIncrement]
         public long Id { get; set; }
