@@ -10,14 +10,8 @@ namespace EDTradingTool.Entity
     /// <summary>
     /// This class represents a group of commodities in Elite: Dangerous.
     /// </summary>
-    public class CommodityGroup : Core.IHasId, Core.IHasName
+    public class CommodityGroup : EntityWithIdAndName
     {
-        [AutoIncrement]
-        public long Id { get; set; }
-
-        [Required, Index(Unique = true), StringLength(50)]
-        public String Name { get; set; }
-
         [Reference]
         public List<CommodityType> CommodityTypes { get; set; }
 

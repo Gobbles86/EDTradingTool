@@ -13,12 +13,12 @@ namespace EDTradingTool.Data
     {
         private Dictionary<Type, object> _internalDictionary = new Dictionary<Type, object>();
 
-        public void Add<TEntity>(Core.AbstractEntityManager<TEntity> entityManager) where TEntity : class, Core.IHasId
+        public void Add<TEntity>(Core.AbstractEntityManager<TEntity> entityManager) where TEntity : Core.IEntity
         {
             _internalDictionary.Add(typeof(TEntity), entityManager);
         }
 
-        public Core.AbstractEntityManager<TEntity> Get<TEntity>() where TEntity : class, Core.IHasId
+        public Core.AbstractEntityManager<TEntity> Get<TEntity>() where TEntity : Core.IEntity
         {
             return _internalDictionary[typeof(TEntity)] as Core.AbstractEntityManager<TEntity>;
         }

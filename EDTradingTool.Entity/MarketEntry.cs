@@ -10,11 +10,8 @@ namespace EDTradingTool.Entity
     /// <summary>
     /// This class represents a market entry for a specific commodity in Elite: Dangerous.
     /// </summary>
-    public class MarketEntry : Core.IHasId
+    public class MarketEntry : EntityWithIdButNoName
     {
-        [AutoIncrement]
-        public long Id { get; set; }
-
         [ForeignKey(typeof(CommodityType), OnDelete = "SET NULL")]
         public long? CommodityTypeId { get; set; }
 

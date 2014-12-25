@@ -37,7 +37,7 @@ namespace EDTradingTool.Data
         /// </summary>
         /// <typeparam name="TEntity">The type of the entities which the entity manager is intended for.</typeparam>
         /// <returns>The desired entity manager.</returns>
-        public Core.AbstractEntityManager<TEntity> GetManagerFor<TEntity>() where TEntity : class, Core.IHasId
+        public Core.AbstractEntityManager<TEntity> GetManagerFor<TEntity>() where TEntity : Core.IEntity
         {
             return _entityManagerStore.Get<TEntity>();
         }

@@ -11,13 +11,13 @@ namespace EDTradingTool.Core
     /// </summary>
     public interface IEntityAccess
     {
-        long AddObject<T>(T obj) where T : class, Core.IHasId;
-        void UpdateObject<T>(T obj) where T : class, Core.IHasId;
-        void RemoveObject<T>(T obj) where T : class, Core.IHasId;
-        T GetObject<T>(long primaryKey) where T : class, Core.IHasId;
-        T GetObject<T>(String name) where T : class, Core.IHasName;
-        bool HasObject<T>(long primaryKey) where T : class, Core.IHasId;
-        bool HasObject<T>(String name) where T : class, Core.IHasName;
+        long AddObject<T>(T obj) where T : IEntity;
+        void UpdateObject<T>(T obj) where T : IEntity;
+        void RemoveObject<T>(T obj) where T : IEntity;
+        T GetObject<T>(long primaryKey) where T : IEntity;
+        T GetObject<T>(String name) where T : IEntity;
+        bool HasObject<T>(long primaryKey) where T : IEntity;
+        bool HasObject<T>(String name) where T : IEntity;
         void LoadAll();
         void DeleteAll();
     }

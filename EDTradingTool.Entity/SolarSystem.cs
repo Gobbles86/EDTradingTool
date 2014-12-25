@@ -10,14 +10,8 @@ namespace EDTradingTool.Entity
     /// <summary>
     /// This class represents a solar system in Elite: Dangerous
     /// </summary>
-    public class SolarSystem : Core.IHasId, Core.IHasName
+    public class SolarSystem : EntityWithIdAndName
     {
-        [AutoIncrement, PrimaryKey]
-        public long Id { get; set; }
-
-        [Required, Index(Unique = true), StringLength(50)]
-        public String Name { get; set; }
-
         [Reference]
         public List<SpaceStation> SpaceStations { get; set; }
 

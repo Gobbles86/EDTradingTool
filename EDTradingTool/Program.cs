@@ -64,7 +64,7 @@ namespace EDTradingTool
             entityAccess.LoadAll();
 
 
-            
+
             // Create a couple of dummy entries
             var solarSystem = new Entity.SolarSystem() { Name = "Test System" };
             var federation = new Entity.Federation() { Name = "Test Federation" };

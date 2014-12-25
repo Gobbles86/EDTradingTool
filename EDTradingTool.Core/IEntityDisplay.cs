@@ -10,7 +10,7 @@ namespace EDTradingTool.Core
     /// This interface is intended for classes which display entities.
     /// </summary>
     /// <typeparam name="T">The type to display.</typeparam>
-    interface IEntityDisplay<T> where T : class, IHasId
+    interface IEntityDisplay<T> where T : IEntity
     {
         /// <summary>
         /// Sets the entity manager for the handled type. This can be used by displays which allow modification of data.

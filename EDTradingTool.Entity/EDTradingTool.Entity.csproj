@@ -59,6 +59,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommodityGroup.cs" />
+    <Compile Include="EntityWithIdAndName.cs" />
+    <Compile Include="EntityWithIdButNoName.cs" />
     <Compile Include="MarketEntry.cs" />
     <Compile Include="CommodityType.cs" />
     <Compile Include="Federation.cs" />

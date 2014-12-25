@@ -40,10 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractEntityManager.cs" />
+    <Compile Include="IEntity.cs" />
     <Compile Include="IEntityAccess.cs" />
     <Compile Include="IEntityDisplay.cs" />
-    <Compile Include="IHasId.cs" />
-    <Compile Include="IHasName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

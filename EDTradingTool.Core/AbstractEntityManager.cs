@@ -12,7 +12,7 @@ namespace EDTradingTool.Core
     /// At a first glance, this class might seem like it simply forwards the IEntityAccess method calls; however subclasses will usually override at least the addition or deletion
     /// method, unless the entity does not have any foreign key relations at all.
     /// </summary>
-    public abstract class AbstractEntityManager<T> where T : class, IHasId
+    public abstract class AbstractEntityManager<T> where T :  IEntity
     {
         /// <summary>
         /// The data member which can be used for accessing entities.
@@ -83,9 +83,9 @@ namespace EDTradingTool.Core
         /// <typeparam name="TEntityWithName">The type which implements IHasName. This is usually detected automatically.</typeparam>
         /// <param name="name">The name of the object to retrieve.</param>
         /// <returns>The desired object.</returns>
-        public virtual T GetObject<TEntityWithName>(String name) where TEntityWithName : class, IHasName
+        public virtual T GetObject(String name)
         {
-            return EntityAccess.GetObject<TEntityWithName>(name) as T;
+            return EntityAccess.GetObject<T>(name);
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace EDTradingTool.Core
         /// <typeparam name="TEntityWithName">The type which implements IHasName. This is usually detected automatically.</typeparam>
         /// <param name="name">The name of the object.</param>
         /// <returns>True if the object exists.</returns>
-        public virtual bool HasObject<TEntityWithName>(String name) where TEntityWithName : class, IHasName
+        public virtual bool HasObject<TEntityWithName>(String name) where TEntityWithName : IEntity
         {
             return EntityAccess.HasObject<TEntityWithName>(name);
         }
