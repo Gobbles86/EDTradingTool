@@ -9,10 +9,8 @@ namespace EDTradingTool.Core
     /// <summary>
     /// This class is a template base class for Entity Manager classes, i.e. classes which are responsible for keeping data integrity clean when accessing a specific entity table.
     /// This class also separates business logic from data access by using the IEntityAccess interface.
-    /// At a first glance, this class might seem like it simply forwards the IEntityAccess method calls; however subclasses will usually override at least the addition or deletion
-    /// method, unless the entity does not have any foreign key relations at all.
     /// </summary>
-    public abstract class AbstractEntityManager<T> where T :  IEntity
+    public abstract class AbstractEntityManager<T> where T : IEntity
     {
         /// <summary>
         /// The data member which can be used for accessing entities.
@@ -29,19 +27,11 @@ namespace EDTradingTool.Core
         }
 
         /// <summary>
-        /// Stores the given object in the database.
-        /// </summary>
-        /// <param name="obj">The object to add.</param>
-        public void AddObject(T obj)
-        {
-            AddObject(obj, null);
-        }
-
-        /// <summary>
         /// Stores the given object in the database and relates it to the given other classes.
         /// </summary>
         /// <param name="obj">The object to add.</param>
-        /// <param name="relatedObjects">The objects to add. By convention, the objects should be supplied in the alphabetical order of their Entity Names.</param>
+        /// <param name="relatedObjects">The objects to the object to add is related to. By convention, the objects should be supplied in the alphabetical 
+        /// order of their Entity Names.</param>
         public virtual void AddObject(T obj, params object[] relatedObjects)
         {
             EntityAccess.AddObject(obj);

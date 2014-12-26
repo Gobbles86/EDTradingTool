@@ -50,21 +50,10 @@ namespace EDTradingTool
             // Create a factory for entity managers which help keeping data integrity clean
             var entityManagerFactory = new Data.EntityManagerFactory(entityAccess);
 
-            // Retrieve the required entity managers
-            var solarSystemManager = entityManagerFactory.GetManagerFor<Entity.SolarSystem>();
-            var federationManager = entityManagerFactory.GetManagerFor<Entity.Federation>();
-            var spaceStationManager = entityManagerFactory.GetManagerFor<Entity.SpaceStation>();
-            var commodityGroupManager = entityManagerFactory.GetManagerFor<Entity.CommodityGroup>();
-            var commodityTypeManager = entityManagerFactory.GetManagerFor<Entity.CommodityType>();
-            var marketEntryManager = entityManagerFactory.GetManagerFor<Entity.MarketEntry>();
-
-            // Reset database (will obviously be removed as soon as data can be entered by the user)
-            // If this gets removed, existing links must be re-established as they are not stored in the database (apart from the foreign key)
-            entityAccess.DeleteAll();
-            entityAccess.LoadAll();
-
-
-
+            // Create a controller
+            var controller = new Controller(entityManagerFactory);
+            controller.Initialize(entityAccess);
+            
             // Create a couple of dummy entries
             var solarSystem = new Entity.SolarSystem() { Name = "Test System" };
             var federation = new Entity.Federation() { Name = "Test Federation" };
@@ -80,14 +69,14 @@ namespace EDTradingTool
                 LastUpdate = DateTime.Now
             };
 
-            solarSystemManager.AddObject(solarSystem);
-            federationManager.AddObject(federation);
-            spaceStationManager.AddObject(spaceStation, federation, solarSystem);
+            controller.AddObject(solarSystem);
+            controller.AddObject(federation);
+            controller.AddObject(spaceStation, federation, solarSystem);
 
-            commodityGroupManager.AddObject(commodityGroup);
-            commodityTypeManager.AddObject(commodityType, commodityGroup);
+            controller.AddObject(commodityGroup);
+            controller.AddObject(commodityType, commodityGroup);
 
-            marketEntryManager.AddObject(marketEntry, commodityType, spaceStation);
+            controller.AddObject(marketEntry, commodityType, spaceStation);
 
 
             // Example: Print all output from market entry only
