@@ -19,5 +19,10 @@ namespace EDTradingTool.Entity
         {
             SpaceStations = new List<SpaceStation>();
         }
+
+        public override IEnumerable<Core.IEntity> Children()
+        {
+            return SpaceStations.Cast<Core.IEntity>();
+        }
     }
 }

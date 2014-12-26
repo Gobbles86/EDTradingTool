@@ -29,9 +29,30 @@ namespace EDTradingTool.GUI
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.TreeView = new System.Windows.Forms.TreeView();
+            this.SuspendLayout();
+            // 
+            // TreeView
+            // 
+            this.TreeView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TreeView.Location = new System.Drawing.Point(0, 0);
+            this.TreeView.Name = "TreeView";
+            this.TreeView.Size = new System.Drawing.Size(395, 407);
+            this.TreeView.TabIndex = 0;
+            // 
+            // EntityTreeView
+            // 
+            this.Controls.Add(this.TreeView);
+            this.Name = "EntityTreeView";
+            this.Size = new System.Drawing.Size(395, 407);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private TreeView TreeView;
+
+
     }
 }

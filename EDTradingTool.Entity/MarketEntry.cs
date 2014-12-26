@@ -30,5 +30,10 @@ namespace EDTradingTool.Entity
 
         [Reference]
         public SpaceStation SpaceStation { get; set; }
+
+        public override IEnumerable<Core.IEntity> Children()
+        {
+            return new List<Core.IEntity>();
+        }
     }
 }

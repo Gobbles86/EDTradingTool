@@ -54,10 +54,8 @@ namespace EDTradingTool
             var controller = new Controller(entityManagerFactory);
             
             // Create a GUI
-            var entityTreeView = new GUI.EntityTreeView();
-
-            controller.RegisterEntityWatcher<Entity.SolarSystem>(entityTreeView);
-            controller.RegisterEntityWatcher<Entity.Federation>(entityTreeView);
+            var mainForm = new GUI.MainForm();
+            mainForm.Initialize(controller);
                         
             controller.Initialize(entityAccess);
 
@@ -95,6 +93,8 @@ namespace EDTradingTool
                 "Commodity Type = \"" + marketEntry.CommodityType.Name + "\"\n" +
                 "Commodity Group = \"" + marketEntry.CommodityType.CommodityGroup.Name + "\""
                 );
+
+            Application.Run(mainForm);
         }
     }
 }

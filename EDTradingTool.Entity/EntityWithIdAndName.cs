@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EDTradingTool.Entity
 {
-    public class EntityWithIdAndName : Core.IEntity
+    public abstract class EntityWithIdAndName : Core.IEntity
     {
         [AutoIncrement]
         public long Id { get; set; }
@@ -17,5 +17,7 @@ namespace EDTradingTool.Entity
 
         [Ignore]
         public bool HasNameColumn { get { return true; } }
+
+        public abstract IEnumerable<Core.IEntity> Children();
     }
 }

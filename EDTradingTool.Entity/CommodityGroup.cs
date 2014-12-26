@@ -19,5 +19,10 @@ namespace EDTradingTool.Entity
         {
             CommodityTypes = new List<CommodityType>();
         }
+
+        public override IEnumerable<Core.IEntity> Children()
+        {
+            return CommodityTypes.Cast<Core.IEntity>();
+        }
     }
 }

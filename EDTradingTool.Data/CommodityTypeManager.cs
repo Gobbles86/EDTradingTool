@@ -17,6 +17,7 @@ namespace EDTradingTool.Data
         private static readonly Type[] RelatedTypes = new Type[] { typeof(Entity.CommodityGroup) };
 
         private Core.AbstractEntityManager<Entity.MarketEntry> _marketEntryManager;
+        public Core.AbstractEntityManager<Entity.CommodityGroup> CommodityGroupManager { set; private get; }
 
         public CommodityTypeManager(Core.IEntityAccess entityAccess, Core.AbstractEntityManager<Entity.MarketEntry> marketEntryManager)
             : base(entityAccess)
@@ -50,6 +51,9 @@ namespace EDTradingTool.Data
             // In case of success, link the Commodity Type to its Commodity Group
             commodityType.CommodityGroup = commodityGroup;
             commodityGroup.CommodityTypes.Add(commodityType);
+
+            // Now update the parent object
+
         }
 
         /// <summary>

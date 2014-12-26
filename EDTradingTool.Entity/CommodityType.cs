@@ -28,5 +28,10 @@ namespace EDTradingTool.Entity
         {
             MarketEntries = new List<MarketEntry>();
         }
+
+        public override IEnumerable<Core.IEntity> Children()
+        {
+            return MarketEntries.Cast<Core.IEntity>();
+        }
     }
 }

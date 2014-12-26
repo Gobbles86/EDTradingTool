@@ -22,6 +22,10 @@ namespace EDTradingTool
         /// </summary>
         private Core.EntityWatcherStore _entityWatcherStore = new Core.EntityWatcherStore();
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="entityManagerFactory">The factory for entity managers.</param>
         public Controller(Data.EntityManagerFactory entityManagerFactory)
         {
             _entityManagerFactory = entityManagerFactory;
@@ -89,9 +93,18 @@ namespace EDTradingTool
 
             var entityWatchers = _entityWatcherStore.GetList<T>();
 
-            foreach( var entityWatcher in entityWatchers)
+            foreach (var entityWatcher in entityWatchers)
             {
                 entityWatcher.OnObjectAdded(obj, relatedObjects);
+            }
+
+            Action<Core.IEntity> UpdateObjectMethodSample = UpdateObject<Core.IEntity>;
+            MethodInfo InfoOfUpdateObjectMethod = UpdateObjectMethodSample.Method.GetGenericMethodDefinition();
+
+            foreach( var relatedObject in relatedObjects)
+            {
+                var UpdateObjectMethodForCurrentType = InfoOfUpdateObjectMethod.MakeGenericMethod(relatedObject.GetType());
+                UpdateObjectMethodForCurrentType.Invoke(this,new object[] { relatedObject });
             }
         }
 

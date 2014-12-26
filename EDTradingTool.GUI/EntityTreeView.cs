@@ -10,51 +10,34 @@ using System.Windows.Forms;
 
 namespace EDTradingTool.GUI
 {
-    public partial class EntityTreeView : TreeView, Core.IEntityWatcher<Entity.SolarSystem>, Core.IEntityWatcher<Entity.Federation>
+    public partial class EntityTreeView : UserControl
     {
+        public EntityTreeNode<Entity.SolarSystem> SolarSystemNode { get; set; }
+        public EntityTreeNode<Entity.Federation> FederationNode { get; set; }
+        public EntityTreeNode<Entity.CommodityGroup> CommodityGroupNode { get; set; }
+
+        private Core.IEntityHandler _entityHandler;
+
         public EntityTreeView()
         {
             InitializeComponent();
+
+            SolarSystemNode = new EntityTreeNode<Entity.SolarSystem>() { Text = "Solar Systems" };
+            FederationNode = new EntityTreeNode<Entity.Federation>() { Text = "Federations" };
+            CommodityGroupNode = new EntityTreeNode<Entity.CommodityGroup>() { Text = "Commodity Groups" };
+
+            this.TreeView.Nodes.AddRange(new TreeNode[] {
+                SolarSystemNode, FederationNode, CommodityGroupNode
+            });
         }
 
-        public void OnInitialEntitiesLoaded(List<Entity.SolarSystem> entities)
+        public void Initialize(Core.IEntityHandler entityHandler)
         {
-            Console.WriteLine(">>> Loading initial Solar Systems");
-        }
+            _entityHandler = entityHandler;
 
-        public void OnInitialEntitiesLoaded(List<Entity.Federation> entities)
-        {
-            Console.WriteLine(">>> Loading initial Federations");
-        }
-
-        public void OnObjectAdded(Entity.SolarSystem obj, params object[] relatedObjects)
-        {
-            Console.WriteLine(">>> Adding solar system " + obj.Name);
-        }
-
-        public void OnObjectAdded(Entity.Federation obj, params object[] relatedObjects)
-        {
-            Console.WriteLine(">>> Adding federation " + obj.Name);
-        }
-
-        public void OnObjectUpdated(Entity.SolarSystem obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void OnObjectUpdated(Entity.Federation obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void OnObjectRemoved(Entity.SolarSystem obj)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void OnObjectRemoved(Entity.Federation obj)
-        {
-            throw new NotImplementedException();
+            entityHandler.RegisterEntityWatcher(SolarSystemNode);
+            entityHandler.RegisterEntityWatcher(FederationNode);
+            entityHandler.RegisterEntityWatcher(CommodityGroupNode);
         }
     }
 }

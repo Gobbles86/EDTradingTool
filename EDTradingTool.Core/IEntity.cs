@@ -14,5 +14,7 @@ namespace EDTradingTool.Core
         long Id { get; set; }
         String Name { get; }
         bool HasNameColumn { get; }
+
+        IEnumerable<IEntity> Children();
     }
 }
