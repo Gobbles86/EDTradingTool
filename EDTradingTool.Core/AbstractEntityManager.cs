@@ -100,6 +100,15 @@ namespace EDTradingTool.Core
         }
 
         /// <summary>
+        /// Retrieves all entities of the handled type.
+        /// </summary>
+        /// <returns>All entities for the given type.</returns>
+        public virtual List<T> GetAll()
+        {
+            return EntityAccess.GetAll<T>();
+        }
+
+        /// <summary>
         /// Makes sure the given list of related objects matches the list of expected types. This is intended for AddObject overrides.
         /// </summary>
         /// <param name="relatedObjects">The related objects which were supplied to the AddObject method.</param>

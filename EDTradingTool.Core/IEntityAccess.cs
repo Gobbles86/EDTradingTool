@@ -16,6 +16,7 @@ namespace EDTradingTool.Core
         void RemoveObject<T>(T obj) where T : IEntity;
         T GetObject<T>(long primaryKey) where T : IEntity;
         T GetObject<T>(String name) where T : IEntity;
+        List<T> GetAll<T>() where T : IEntity;
         bool HasObject<T>(long primaryKey) where T : IEntity;
         bool HasObject<T>(String name) where T : IEntity;
         void LoadAll();

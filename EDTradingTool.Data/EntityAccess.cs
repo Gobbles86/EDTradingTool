@@ -210,6 +210,11 @@ namespace EDTradingTool.Data
             return (T)_typeToNameToObjectMap[typeof(T)][name];
         }
 
+        public List<T> GetAll<T>() where T : Core.IEntity
+        {
+            return (List<T>)_typeToIdToObjectMap[typeof(T)].Values;
+        }
+
         public bool HasObject<T>(long id) where T : Core.IEntity
         {
             return _typeToIdToObjectMap[typeof(T)].ContainsKey(id);
