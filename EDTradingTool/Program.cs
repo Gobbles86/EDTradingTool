@@ -65,8 +65,7 @@ namespace EDTradingTool
                 BuyFromStationPrice = 1234,
                 SellToStationPrice = null,
                 Supply = 12345,
-                Demand = null,
-                LastUpdate = DateTime.Now
+                Demand = null
             };
 
             controller.AddObject(solarSystem);

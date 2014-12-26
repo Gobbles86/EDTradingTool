@@ -42,6 +42,7 @@ namespace EDTradingTool.Data
 
             try
             {
+                marketEntry.LastUpdate = DateTime.Now;
                 base.AddObject(marketEntry, null);
             }
             catch
@@ -57,7 +58,13 @@ namespace EDTradingTool.Data
             commodityType.MarketEntries.Add(marketEntry);
             spaceStation.MarketEntries.Add(marketEntry);
         }
-        
+
+        public override void UpdateObject(Entity.MarketEntry obj)
+        {
+            obj.LastUpdate = DateTime.Now;
+            base.UpdateObject(obj);
+        }
+
         /// <summary>
         /// Removes the market entry and additionally unlinks it from its parent Commodity Type and Space Station.
         /// </summary>
