@@ -18,14 +18,13 @@ namespace EDTradingTool
         private Data.EntityManagerFactory _entityManagerFactory;
         
         /// <summary>
-        /// Stores the list of entity watchers which shall be used.
+        /// Stores the list of entity watchers which shall be used for each type.
         /// </summary>
-        private Dictionary<Type, List<Core.IEntityWatcher>> _entityWatchers;
+        private Core.EntityWatcherStore _entityWatcherStore = new Core.EntityWatcherStore();
 
         public Controller(Data.EntityManagerFactory entityManagerFactory)
         {
             _entityManagerFactory = entityManagerFactory;
-            _entityWatchers = new Dictionary<Type, List<Core.IEntityWatcher>>();
         }
 
         /// <summary>
@@ -44,7 +43,7 @@ namespace EDTradingTool
             Action OnInitialEntriesLoadedFunctionSample = OnInitialEntriesLoaded<Core.IEntity>;
             MethodInfo InfoOfInitialEntriesLoadedFunction = OnInitialEntriesLoadedFunctionSample.Method.GetGenericMethodDefinition();
 
-            foreach(var entityType in _entityWatchers.Keys)
+            foreach (var entityType in _entityWatcherStore.Types())
             {
                 var MethodInfoForCurrentType = InfoOfInitialEntriesLoadedFunction.MakeGenericMethod(entityType);
                 MethodInfoForCurrentType.Invoke(this, null);
@@ -54,7 +53,7 @@ namespace EDTradingTool
 
         private void OnInitialEntriesLoaded<T>() where T : Core.IEntity
         {
-            var entityWatcherList = _entityWatchers[typeof(T)];
+            var entityWatcherList = _entityWatcherStore.GetList<T>();
             var entityManager = _entityManagerFactory.GetManagerFor<T>();
 
             foreach(Core.IEntityWatcher<T> entityWatcher in entityWatcherList)
@@ -68,41 +67,29 @@ namespace EDTradingTool
         /// If you call this method after Initialize() you need to manually populate the current data to the entity watcher.
         /// </summary>
         /// <param name="entityWatcher">The entity watcher to add.</param>
-        public void RegisterEntityWatcher(Core.IEntityWatcher entityWatcher)
+        /// <typeparam name="T">The type of the entity watcher.</typeparam>
+        public void RegisterEntityWatcher<T>(Core.IEntityWatcher<T> entityWatcher) where T : Core.IEntity
         {
-            if( !_entityWatchers.ContainsKey(entityWatcher.GetType()))
-            {
-                _entityWatchers.Add(entityWatcher.GetType(), new List<Core.IEntityWatcher>());
-            }
-            _entityWatchers[entityWatcher.GetType()].Add(entityWatcher);
+            _entityWatcherStore.Add<T>(entityWatcher);
         }
 
         /// <summary>
         /// Unregisters an entity watcher so that it no longer receives entity notifications.
         /// </summary>
         /// <param name="entityWatcher">The entity watcher to add.</param>
-        public void UnregisterEntityWatcher(Core.IEntityWatcher entityWatcher)
+        /// <typeparam name="T">The type of the entity watcher.</typeparam>
+        public void UnregisterEntityWatcher<T>(Core.IEntityWatcher<T> entityWatcher) where T : Core.IEntity
         {
-            var type = entityWatcher.GetType();
-
-            if (!_entityWatchers.ContainsKey(type)) return;
-            if (!_entityWatchers[type].Contains(entityWatcher)) return;
-
-            _entityWatchers[type].Remove(entityWatcher);
-
-            if (_entityWatchers[type].Count == 0)
-            {
-                _entityWatchers.Remove(type);
-            }
+            _entityWatcherStore.Remove<T>(entityWatcher);
         }
 
         public void AddObject<T>(T obj, params object[] relatedObjects) where T : Core.IEntity
         {
             _entityManagerFactory.GetManagerFor<T>().AddObject(obj, relatedObjects);
 
-            if (!_entityWatchers.ContainsKey(typeof(T))) return;
+            var entityWatchers = _entityWatcherStore.GetList<T>();
 
-            foreach(Core.IEntityWatcher<T> entityWatcher in _entityWatchers[typeof(T)])
+            foreach( var entityWatcher in entityWatchers)
             {
                 entityWatcher.OnObjectAdded(obj, relatedObjects);
             }
@@ -112,9 +99,9 @@ namespace EDTradingTool
         {
             _entityManagerFactory.GetManagerFor<T>().UpdateObject(obj);
 
-            if (!_entityWatchers.ContainsKey(typeof(T))) return;
+            var entityWatchers = _entityWatcherStore.GetList<T>();
 
-            foreach (Core.IEntityWatcher<T> entityWatcher in _entityWatchers[typeof(T)])
+            foreach (var entityWatcher in entityWatchers)
             {
                 entityWatcher.OnObjectUpdated(obj);
             }
@@ -124,9 +111,9 @@ namespace EDTradingTool
         {
             _entityManagerFactory.GetManagerFor<T>().RemoveObject(obj);
 
-            if (!_entityWatchers.ContainsKey(typeof(T))) return;
+            var entityWatchers = _entityWatcherStore.GetList<T>();
 
-            foreach (Core.IEntityWatcher<T> entityWatcher in _entityWatchers[typeof(T)])
+            foreach (var entityWatcher in entityWatchers)
             {
                 entityWatcher.OnObjectRemoved(obj);
             }

@@ -52,8 +52,15 @@ namespace EDTradingTool
 
             // Create a controller
             var controller = new Controller(entityManagerFactory);
-            controller.Initialize(entityAccess);
             
+            // Create a GUI
+            var entityTreeView = new GUI.EntityTreeView();
+
+            controller.RegisterEntityWatcher<Entity.SolarSystem>(entityTreeView);
+            controller.RegisterEntityWatcher<Entity.Federation>(entityTreeView);
+                        
+            controller.Initialize(entityAccess);
+
             // Create a couple of dummy entries
             var solarSystem = new Entity.SolarSystem() { Name = "Test System" };
             var federation = new Entity.Federation() { Name = "Test Federation" };
