@@ -51,7 +51,8 @@ namespace EDTradingTool.GUI
 
         #endregion
 
-        private TreeView TreeView;
+        public TreeView TreeView;
+
 
 
     }

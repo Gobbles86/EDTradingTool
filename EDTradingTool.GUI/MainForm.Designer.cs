@@ -28,19 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.TabControl = new System.Windows.Forms.TabControl();
             this.SolarSystemPage = new System.Windows.Forms.TabPage();
             this.SolarSystemLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.AddSolarSystemMask = new EDTradingTool.GUI.InputMask.AddSolarSystemMask();
             this.FederationPage = new System.Windows.Forms.TabPage();
             this.SpaceStationPage = new System.Windows.Forms.TabPage();
             this.CommodityGroupPage = new System.Windows.Forms.TabPage();
             this.CommodityTypePage = new System.Windows.Forms.TabPage();
             this.MarketEntryPage = new System.Windows.Forms.TabPage();
-            this.AddSolarSystemMask = new EDTradingTool.GUI.InputMask.AddSolarSystemMask();
             this.EntityTreeView = new EDTradingTool.GUI.EntityTreeView();
+            this.TreeContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.AddToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TabControl.SuspendLayout();
             this.SolarSystemPage.SuspendLayout();
             this.SolarSystemLayout.SuspendLayout();
+            this.TreeContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabControl
@@ -85,12 +90,22 @@
             this.SolarSystemLayout.Size = new System.Drawing.Size(540, 346);
             this.SolarSystemLayout.TabIndex = 0;
             // 
+            // AddSolarSystemMask
+            // 
+            this.AddSolarSystemMask.AutoSize = true;
+            this.AddSolarSystemMask.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AddSolarSystemMask.Location = new System.Drawing.Point(3, 3);
+            this.AddSolarSystemMask.MinimumSize = new System.Drawing.Size(200, 52);
+            this.AddSolarSystemMask.Name = "AddSolarSystemMask";
+            this.AddSolarSystemMask.Size = new System.Drawing.Size(534, 52);
+            this.AddSolarSystemMask.TabIndex = 0;
+            // 
             // FederationPage
             // 
             this.FederationPage.Location = new System.Drawing.Point(4, 22);
             this.FederationPage.Name = "FederationPage";
             this.FederationPage.Padding = new System.Windows.Forms.Padding(3);
-            this.FederationPage.Size = new System.Drawing.Size(558, 364);
+            this.FederationPage.Size = new System.Drawing.Size(546, 352);
             this.FederationPage.TabIndex = 1;
             this.FederationPage.Text = "Federations";
             this.FederationPage.UseVisualStyleBackColor = true;
@@ -100,7 +115,7 @@
             this.SpaceStationPage.Location = new System.Drawing.Point(4, 22);
             this.SpaceStationPage.Name = "SpaceStationPage";
             this.SpaceStationPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SpaceStationPage.Size = new System.Drawing.Size(558, 364);
+            this.SpaceStationPage.Size = new System.Drawing.Size(546, 352);
             this.SpaceStationPage.TabIndex = 3;
             this.SpaceStationPage.Text = "Space Stations";
             this.SpaceStationPage.UseVisualStyleBackColor = true;
@@ -110,7 +125,7 @@
             this.CommodityGroupPage.Location = new System.Drawing.Point(4, 22);
             this.CommodityGroupPage.Name = "CommodityGroupPage";
             this.CommodityGroupPage.Padding = new System.Windows.Forms.Padding(3);
-            this.CommodityGroupPage.Size = new System.Drawing.Size(558, 364);
+            this.CommodityGroupPage.Size = new System.Drawing.Size(546, 352);
             this.CommodityGroupPage.TabIndex = 2;
             this.CommodityGroupPage.Text = "Commodity Groups";
             this.CommodityGroupPage.UseVisualStyleBackColor = true;
@@ -120,7 +135,7 @@
             this.CommodityTypePage.Location = new System.Drawing.Point(4, 22);
             this.CommodityTypePage.Name = "CommodityTypePage";
             this.CommodityTypePage.Padding = new System.Windows.Forms.Padding(3);
-            this.CommodityTypePage.Size = new System.Drawing.Size(558, 364);
+            this.CommodityTypePage.Size = new System.Drawing.Size(546, 352);
             this.CommodityTypePage.TabIndex = 4;
             this.CommodityTypePage.Text = "Commodity Types";
             this.CommodityTypePage.UseVisualStyleBackColor = true;
@@ -130,30 +145,44 @@
             this.MarketEntryPage.Location = new System.Drawing.Point(4, 22);
             this.MarketEntryPage.Name = "MarketEntryPage";
             this.MarketEntryPage.Padding = new System.Windows.Forms.Padding(3);
-            this.MarketEntryPage.Size = new System.Drawing.Size(558, 364);
+            this.MarketEntryPage.Size = new System.Drawing.Size(546, 352);
             this.MarketEntryPage.TabIndex = 5;
             this.MarketEntryPage.Text = "Market Entries";
             this.MarketEntryPage.UseVisualStyleBackColor = true;
-            // 
-            // AddSolarSystemMask
-            // 
-            this.AddSolarSystemMask.AutoSize = true;
-            this.AddSolarSystemMask.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AddSolarSystemMask.Location = new System.Drawing.Point(3, 3);
-            this.AddSolarSystemMask.MinimumSize = new System.Drawing.Size(200, 52);
-            this.AddSolarSystemMask.Name = "AddSolarSystemMask";
-            this.AddSolarSystemMask.Size = new System.Drawing.Size(546, 52);
-            this.AddSolarSystemMask.TabIndex = 0;
             // 
             // EntityTreeView
             // 
             this.EntityTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.EntityTreeView.ContextMenuStrip = this.TreeContextMenu;
             this.EntityTreeView.Location = new System.Drawing.Point(12, 12);
             this.EntityTreeView.MinimumSize = new System.Drawing.Size(200, 0);
             this.EntityTreeView.Name = "EntityTreeView";
             this.EntityTreeView.Size = new System.Drawing.Size(200, 378);
             this.EntityTreeView.TabIndex = 0;
+            // 
+            // TreeContextMenu
+            // 
+            this.TreeContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AddToolStripMenuItem,
+            this.DeleteToolStripMenuItem});
+            this.TreeContextMenu.Name = "TreeContextMenu";
+            this.TreeContextMenu.Size = new System.Drawing.Size(153, 70);
+            this.TreeContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.TreeContextMenu_Opening);
+            // 
+            // AddToolStripMenuItem
+            // 
+            this.AddToolStripMenuItem.Enabled = false;
+            this.AddToolStripMenuItem.Name = "AddToolStripMenuItem";
+            this.AddToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.AddToolStripMenuItem.Text = "Add";
+            // 
+            // DeleteToolStripMenuItem
+            // 
+            this.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem";
+            this.DeleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DeleteToolStripMenuItem.Text = "Delete";
+            this.DeleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -168,6 +197,7 @@
             this.SolarSystemPage.ResumeLayout(false);
             this.SolarSystemLayout.ResumeLayout(false);
             this.SolarSystemLayout.PerformLayout();
+            this.TreeContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -184,6 +214,9 @@
         private System.Windows.Forms.TabPage MarketEntryPage;
         private System.Windows.Forms.TableLayoutPanel SolarSystemLayout;
         private InputMask.AddSolarSystemMask AddSolarSystemMask;
+        private System.Windows.Forms.ContextMenuStrip TreeContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem AddToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DeleteToolStripMenuItem;
 
     }
 }
