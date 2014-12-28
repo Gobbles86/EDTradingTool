@@ -16,6 +16,11 @@ namespace EDTradingTool
         /// The factory for entity managers.
         /// </summary>
         private Data.EntityManagerFactory _entityManagerFactory;
+
+        /// <summary>
+        /// The linker for entity relations.
+        /// </summary>
+        private EntityLinker _entityLinker;
         
         /// <summary>
         /// Stores the list of entity watchers which shall be used for each type.
@@ -26,9 +31,11 @@ namespace EDTradingTool
         /// Constructor.
         /// </summary>
         /// <param name="entityManagerFactory">The factory for entity managers.</param>
-        public Controller(Data.EntityManagerFactory entityManagerFactory)
+        /// <param name="entityLinker">The linker for entities.</param>
+        public Controller(Data.EntityManagerFactory entityManagerFactory, EntityLinker entityLinker)
         {
             _entityManagerFactory = entityManagerFactory;
+            _entityLinker = entityLinker;
         }
 
         /// <summary>
@@ -36,12 +43,11 @@ namespace EDTradingTool
         /// </summary>
         /// <param name="entityAccess">The object which provides access to the entities.</param>
         public void Initialize(Core.IEntityAccess entityAccess)
-        {
-            // Reset database (will obviously be removed as soon as data can be entered by the user)
-            // If this gets removed, existing links must be re-established as they are not stored in the database (apart from the foreign key)
-            entityAccess.DeleteAll();
-            
+        {            
             entityAccess.LoadAll();
+           
+            // Re-establish links
+            _entityLinker.SetupLinks();
 
             // Tell all registered 
             Action OnInitialEntriesLoadedFunctionSample = OnInitialEntriesLoaded<Core.IEntity>;
