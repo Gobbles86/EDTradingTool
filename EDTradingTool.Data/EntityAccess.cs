@@ -102,101 +102,101 @@ namespace EDTradingTool.Data
             }
         }
 
-        public long AddObject<T>(T obj) where T : Core.IEntity
+        public long AddObject<T>(T dataSet) where T : Core.IEntity
         {
             using (var dbConnection = _dbConnectionFactory.OpenDbConnection())
             {
-                return AddObject<T>(obj, dbConnection);
+                return AddObject<T>(dataSet, dbConnection);
             }
         }
 
-        public long AddObject<T>(T obj, IDbConnection dbConnection) where T : Core.IEntity
+        public long AddObject<T>(T dataSet, IDbConnection dbConnection) where T : Core.IEntity
         {
             var entityType = typeof(T);
 
-            if (obj.HasNameColumn)
+            if (dataSet.HasNameColumn)
             {
-                if (String.IsNullOrEmpty(obj.Name))
+                if (String.IsNullOrEmpty(dataSet.Name))
                 {
                     throw new ArgumentException("You did not specify a name for the " + entityType.ToString() + " you wanted to add.");
                 }
-                if( _typeToNameToObjectMap[entityType].ContainsKey(obj.Name))
+                if( _typeToNameToObjectMap[entityType].ContainsKey(dataSet.Name))
                 {
                     throw new ArgumentException(
-                        String.Format("There already is an existing {0} entry with the name \"{1}\".", entityType.Name, obj.Name)
+                        String.Format("There already is an existing {0} entry with the name \"{1}\".", entityType.Name, dataSet.Name)
                         );
                 }
             }
 
             // Add the entry to the database
-            obj.Id = dbConnection.Insert<T>(obj, selectIdentity: true);
+            dataSet.Id = dbConnection.Insert<T>(dataSet, selectIdentity: true);
 
             // Add the entry to the local dictionaries for faster lookup
-            _typeToIdToObjectMap[entityType].Add(obj.Id, obj);
-            if (obj.HasNameColumn)
+            _typeToIdToObjectMap[entityType].Add(dataSet.Id, dataSet);
+            if (dataSet.HasNameColumn)
             {
-                _typeToNameToObjectMap[entityType].Add(obj.Name, obj);
+                _typeToNameToObjectMap[entityType].Add(dataSet.Name, dataSet);
             }
-            return obj.Id;
+            return dataSet.Id;
         }
 
-        public void RemoveObject<T>(T obj) where T : Core.IEntity
+        public void RemoveObject<T>(T dataSet) where T : Core.IEntity
         {
             using (var dbConnection = _dbConnectionFactory.OpenDbConnection())
             {
-                RemoveObject<T>(obj, dbConnection);
+                RemoveObject<T>(dataSet, dbConnection);
             }
         }
 
-        public void RemoveObject<T>(T obj, IDbConnection dbConnection) where T : Core.IEntity
+        public void RemoveObject<T>(T dataSet, IDbConnection dbConnection) where T : Core.IEntity
         {
-            dbConnection.Delete<T>(obj);
+            dbConnection.Delete<T>(dataSet);
             var entityType = typeof(T);
 
-            _typeToIdToObjectMap[entityType].Remove(obj.Id);
-            if (obj.HasNameColumn)
+            _typeToIdToObjectMap[entityType].Remove(dataSet.Id);
+            if (dataSet.HasNameColumn)
             {
-                _typeToNameToObjectMap[entityType].Remove(obj.Name);
+                _typeToNameToObjectMap[entityType].Remove(dataSet.Name);
             }
         }
 
-        public void UpdateObject<T>(T obj) where T : Core.IEntity
+        public void UpdateObject<T>(T dataSet) where T : Core.IEntity
         {
             using (var dbConnection = _dbConnectionFactory.OpenDbConnection())
             {
-                UpdateObject<T>(obj, dbConnection);
+                UpdateObject<T>(dataSet, dbConnection);
             }
         }
 
-        public void UpdateObject<T>(T obj, IDbConnection dbConnection) where T : Core.IEntity
+        public void UpdateObject<T>(T dataSet, IDbConnection dbConnection) where T : Core.IEntity
         {
-            if (!HasObject<T>(obj.Id))
+            if (!HasObject<T>(dataSet.Id))
             {
                 throw new ArgumentException(
-                    String.Format("You were trying to update the {0} with ID {1}, but such a data set does not exist.", typeof(T).Name, obj.Id)
+                    String.Format("You were trying to update the {0} with ID {1}, but such a data set does not exist.", typeof(T).Name, dataSet.Id)
                     );
             }
 
             String previousName = null;
-            if (obj.HasNameColumn)
+            if (dataSet.HasNameColumn)
             {
                 // Check if the name is still the same. If not, remove the old entry from the dictionary.
-                var currentObjInDatabase = (Core.IEntity)dbConnection.Select<T>(q => q.Id == obj.Id).First();
+                var currentObjInDatabase = (Core.IEntity)dbConnection.Select<T>(q => q.Id == dataSet.Id).First();
 
-                if (currentObjInDatabase.Name != obj.Name)
+                if (currentObjInDatabase.Name != dataSet.Name)
                 {
                     previousName = currentObjInDatabase.Name;
                 }
             }
             
-            dbConnection.Save<T>(obj);
+            dbConnection.Save<T>(dataSet);
 
             // Make sure the type name dictionary is up to date.
-            if (obj.HasNameColumn && !String.IsNullOrEmpty(previousName))
+            if (dataSet.HasNameColumn && !String.IsNullOrEmpty(previousName))
             {
-                var type = obj.GetType();
+                var type = dataSet.GetType();
                 _typeToNameToObjectMap[type].Remove(previousName);
-                _typeToNameToObjectMap[type].Add(obj.Name, obj);
+                _typeToNameToObjectMap[type].Add(dataSet.Name, dataSet);
             }
         }
 

@@ -29,12 +29,12 @@ namespace EDTradingTool.Data
         /// Adds the given commodity type to the database and links it with the given CommodityGroup
         /// </summary>
         /// <param name="commodityType">The commodity type to add.</param>
-        /// <param name="relatedObjects">The commodity group to link to.</param>
-        public override void AddObject(Entity.CommodityType commodityType, params object[] relatedObjects)
+        /// <param name="parentObjects">The commodity group to link to.</param>
+        public override void AddObject(Entity.CommodityType commodityType, params Core.IEntity[] parentObjects)
         {
-            ValidateRelatedObjects(relatedObjects, RelatedTypes);
+            ValidateParentObjects(parentObjects, RelatedTypes);
 
-            var commodityGroup = (Entity.CommodityGroup)relatedObjects.First();
+            var commodityGroup = (Entity.CommodityGroup)parentObjects.First();
 
             commodityType.CommodityGroupId = commodityGroup.Id;
 

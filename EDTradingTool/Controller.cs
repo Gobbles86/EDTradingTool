@@ -62,7 +62,7 @@ namespace EDTradingTool
 
             foreach(Core.IEntityWatcher<T> entityWatcher in entityWatcherList)
             {
-                entityWatcher.OnInitialEntitiesLoaded(entityManager.GetAll());
+                entityWatcher.OnInitialObjectsLoaded(entityManager.GetAll());
             }
         }
 
@@ -87,48 +87,39 @@ namespace EDTradingTool
             _entityWatcherStore.Remove<T>(entityWatcher);
         }
 
-        public void AddObject<T>(T obj, params object[] relatedObjects) where T : Core.IEntity
+        public void AddObject<T>(T dataSet, params Core.IEntity[] parentObjects) where T : Core.IEntity
         {
-            _entityManagerFactory.GetManagerFor<T>().AddObject(obj, relatedObjects);
+            _entityManagerFactory.GetManagerFor<T>().AddObject(dataSet, parentObjects);
 
             var entityWatchers = _entityWatcherStore.GetList<T>();
 
             foreach (var entityWatcher in entityWatchers)
             {
-                entityWatcher.OnObjectAdded(obj, relatedObjects);
-            }
-
-            Action<Core.IEntity> UpdateObjectMethodSample = UpdateObject<Core.IEntity>;
-            MethodInfo InfoOfUpdateObjectMethod = UpdateObjectMethodSample.Method.GetGenericMethodDefinition();
-
-            foreach( var relatedObject in relatedObjects)
-            {
-                var UpdateObjectMethodForCurrentType = InfoOfUpdateObjectMethod.MakeGenericMethod(relatedObject.GetType());
-                UpdateObjectMethodForCurrentType.Invoke(this,new object[] { relatedObject });
+                entityWatcher.OnDataSetAdded(dataSet, parentObjects);
             }
         }
 
-        public void UpdateObject<T>(T obj) where T : Core.IEntity
+        public void UpdateObject<T>(T dataSet) where T : Core.IEntity
         {
-            _entityManagerFactory.GetManagerFor<T>().UpdateObject(obj);
+            _entityManagerFactory.GetManagerFor<T>().UpdateObject(dataSet);
 
             var entityWatchers = _entityWatcherStore.GetList<T>();
 
             foreach (var entityWatcher in entityWatchers)
             {
-                entityWatcher.OnObjectUpdated(obj);
+                entityWatcher.OnDataSetUpdated(dataSet);
             }
         }
 
-        public void RemoveObject<T>(T obj) where T : Core.IEntity
+        public void RemoveObject<T>(T dataSet) where T : Core.IEntity
         {
-            _entityManagerFactory.GetManagerFor<T>().RemoveObject(obj);
+            _entityManagerFactory.GetManagerFor<T>().RemoveObject(dataSet);
 
             var entityWatchers = _entityWatcherStore.GetList<T>();
 
             foreach (var entityWatcher in entityWatchers)
             {
-                entityWatcher.OnObjectRemoved(obj);
+                entityWatcher.OnDataSetRemoved(dataSet);
             }
         }
     }

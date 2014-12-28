@@ -29,21 +29,21 @@ namespace EDTradingTool.Core
         /// <summary>
         /// Stores the given object in the database and relates it to the given other classes.
         /// </summary>
-        /// <param name="obj">The object to add.</param>
-        /// <param name="relatedObjects">The objects to the object to add is related to. By convention, the objects should be supplied in the alphabetical 
+        /// <param name="dataSet">The object to add.</param>
+        /// <param name="parentObjects">The objects to the object to add is related to. By convention, the objects should be supplied in the alphabetical 
         /// order of their Entity Names.</param>
-        public virtual void AddObject(T obj, params object[] relatedObjects)
+        public virtual void AddObject(T dataSet, params Core.IEntity[] parentObjects)
         {
-            EntityAccess.AddObject(obj);
+            EntityAccess.AddObject(dataSet);
         }
 
         /// <summary>
         /// Updates the given object in the database. Note that the ID may never be changed.
         /// </summary>
-        /// <param name="obj">The object to update.</param>
-        public virtual void UpdateObject(T obj)
+        /// <param name="dataSet">The object to update.</param>
+        public virtual void UpdateObject(T dataSet)
         {
-            EntityAccess.UpdateObject(obj);
+            EntityAccess.UpdateObject(dataSet);
         }
 
         /// <summary>
@@ -51,10 +51,10 @@ namespace EDTradingTool.Core
         /// By convention, entity managers should always remove the object directly from its parent object and use entity managers of the child classes for removing the 
         /// child object from the object.
         /// </summary>
-        /// <param name="obj">The object to remove.</param>
-        public virtual void RemoveObject(T obj)
+        /// <param name="dataSet">The object to remove.</param>
+        public virtual void RemoveObject(T dataSet)
         {
-            EntityAccess.RemoveObject(obj);
+            EntityAccess.RemoveObject(dataSet);
         }
 
         /// <summary>
@@ -111,31 +111,31 @@ namespace EDTradingTool.Core
         /// <summary>
         /// Makes sure the given list of related objects matches the list of expected types. This is intended for AddObject overrides.
         /// </summary>
-        /// <param name="relatedObjects">The related objects which were supplied to the AddObject method.</param>
+        /// <param name="parentObjects">The related objects which were supplied to the AddObject method.</param>
         /// <param name="expectedTypes">The types which are expected.</param>
-        protected void ValidateRelatedObjects(object[] relatedObjects, Type[] expectedTypes)
+        protected void ValidateParentObjects(object[] parentObjects, Type[] expectedTypes)
         {
-            if (relatedObjects == null && expectedTypes == null) return;
+            if (parentObjects == null && expectedTypes == null) return;
 
-            if (expectedTypes == null || relatedObjects == null)
+            if (expectedTypes == null || parentObjects == null)
             {
-                throw NewTypeMismatchException(relatedObjects, expectedTypes);
+                throw NewTypeMismatchException(parentObjects, expectedTypes);
             }
 
-            // At this point, neither relatedObjects nor expectedTypes is null.
+            // At this point, neither parentObjects nor expectedTypes is null.
 
-            if( relatedObjects.Count() != expectedTypes.Count() )
+            if( parentObjects.Count() != expectedTypes.Count() )
             {
-                throw NewTypeMismatchException(relatedObjects, expectedTypes);
+                throw NewTypeMismatchException(parentObjects, expectedTypes);
             }
 
             // At this point, the lists have the same lengths, but the content could differ.
 
-            for( int index = 0; index < relatedObjects.Count(); index++ )
+            for( int index = 0; index < parentObjects.Count(); index++ )
             {
-                if( relatedObjects[index].GetType() != expectedTypes[index])
+                if( parentObjects[index].GetType() != expectedTypes[index])
                 {
-                    throw NewTypeMismatchException(relatedObjects, expectedTypes);
+                    throw NewTypeMismatchException(parentObjects, expectedTypes);
                 }
             }
 

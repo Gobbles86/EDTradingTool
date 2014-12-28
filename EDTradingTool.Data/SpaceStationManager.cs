@@ -32,13 +32,13 @@ namespace EDTradingTool.Data
         /// Adds the space station to the database and links it with the given Federation and Solar System.
         /// </summary>
         /// <param name="spaceStation">The space station to add.</param>
-        /// <param name="relatedObjects">The related Federation and Solar System to link to (in that order).</param>
-        public override void AddObject(Entity.SpaceStation spaceStation, params object[] relatedObjects)
+        /// <param name="parentObjects">The related Federation and Solar System to link to (in that order).</param>
+        public override void AddObject(Entity.SpaceStation spaceStation, params Core.IEntity[] parentObjects)
         {
-            ValidateRelatedObjects(relatedObjects, RelatedTypes);
+            ValidateParentObjects(parentObjects, RelatedTypes);
 
-            var federation = (Entity.Federation)relatedObjects[0];
-            var solarSystem = (Entity.SolarSystem)relatedObjects[1];
+            var federation = (Entity.Federation)parentObjects[0];
+            var solarSystem = (Entity.SolarSystem)parentObjects[1];
 
             spaceStation.FederationId = federation.Id;
             spaceStation.SolarSystemId = solarSystem.Id;

@@ -19,26 +19,26 @@ namespace EDTradingTool.Core
         /// <summary>
         /// Reacts on the initial load of entities of the database.
         /// </summary>
-        /// <param name="entities">The entities which will be loaded.</param>
-        void OnInitialEntitiesLoaded(List<T> entities);
+        /// <param name="objects">The entities which will be loaded.</param>
+        void OnInitialObjectsLoaded(List<T> objects);
 
         /// <summary>
         /// Reacts on the addition of an object.
         /// </summary>
-        /// <param name="obj">The object which was added.</param>
-        /// <param name="relatedObjects">The objects the created object is related to.</param>
-        void OnObjectAdded(T obj, params object[] relatedObjects);
+        /// <param name="dataSet">The object which was added.</param>
+        /// <param name="parentObjects">The objects the created object is related to.</param>
+        void OnDataSetAdded(T dataSet, params Core.IEntity[] parentObjects);
 
         /// <summary>
         /// Reacts on an update of an object.
         /// </summary>
-        /// <param name="obj">The object which was updated.</param>
-        void OnObjectUpdated(T obj);
+        /// <param name="dataSet">The object which was updated.</param>
+        void OnDataSetUpdated(T dataSet);
 
         /// <summary>
         /// Reacts on the removal of an object.
         /// </summary>
-        /// <param name="obj">The object which was removed.</param>
-        void OnObjectRemoved(T obj);
+        /// <param name="dataSet">The object which was removed.</param>
+        void OnDataSetRemoved(T dataSet);
     }
 }

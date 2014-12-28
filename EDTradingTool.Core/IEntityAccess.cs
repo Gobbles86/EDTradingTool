@@ -11,9 +11,9 @@ namespace EDTradingTool.Core
     /// </summary>
     public interface IEntityAccess
     {
-        long AddObject<T>(T obj) where T : IEntity;
-        void UpdateObject<T>(T obj) where T : IEntity;
-        void RemoveObject<T>(T obj) where T : IEntity;
+        long AddObject<T>(T dataSet) where T : IEntity;
+        void UpdateObject<T>(T dataSet) where T : IEntity;
+        void RemoveObject<T>(T dataSet) where T : IEntity;
         T GetObject<T>(long primaryKey) where T : IEntity;
         T GetObject<T>(String name) where T : IEntity;
         List<T> GetAll<T>() where T : IEntity;

@@ -29,13 +29,13 @@ namespace EDTradingTool.Data
         /// Adds the market entry and links it to the given Commodity Type and Space Station.
         /// </summary>
         /// <param name="marketEntry">The market entry to add.</param>
-        /// <param name="relatedObjects">The Commodity Type and Space Station to link to.</param>
-        public override void AddObject(Entity.MarketEntry marketEntry, params object[] relatedObjects)
+        /// <param name="parentObjects">The Commodity Type and Space Station to link to.</param>
+        public override void AddObject(Entity.MarketEntry marketEntry, params Core.IEntity[] parentObjects)
         {
-            ValidateRelatedObjects(relatedObjects, RelatedTypes);
+            ValidateParentObjects(parentObjects, RelatedTypes);
 
-            var commodityType = (Entity.CommodityType)relatedObjects[0];
-            var spaceStation = (Entity.SpaceStation)relatedObjects[1];
+            var commodityType = (Entity.CommodityType)parentObjects[0];
+            var spaceStation = (Entity.SpaceStation)parentObjects[1];
 
             marketEntry.CommodityTypeId = commodityType.Id;
             marketEntry.SpaceStationId = spaceStation.Id;
@@ -59,10 +59,10 @@ namespace EDTradingTool.Data
             spaceStation.MarketEntries.Add(marketEntry);
         }
 
-        public override void UpdateObject(Entity.MarketEntry obj)
+        public override void UpdateObject(Entity.MarketEntry dataSet)
         {
-            obj.LastUpdate = DateTime.Now;
-            base.UpdateObject(obj);
+            dataSet.LastUpdate = DateTime.Now;
+            base.UpdateObject(dataSet);
         }
 
         /// <summary>

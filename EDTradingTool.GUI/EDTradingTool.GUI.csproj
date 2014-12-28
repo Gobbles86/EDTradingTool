@@ -41,12 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityTreeNodeStore.cs" />
     <Compile Include="EntityTreeView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="EntityTreeView.Designer.cs">
       <DependentUpon>EntityTreeView.cs</DependentUpon>
     </Compile>
+    <Compile Include="EntityWatcher.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
