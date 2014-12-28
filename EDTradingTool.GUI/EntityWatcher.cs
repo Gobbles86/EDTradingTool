@@ -37,13 +37,16 @@ namespace EDTradingTool.GUI
         public void OnDataSetAdded(T dataSet, params Core.IEntity[] parentObjects)
         {
             _treeView.BeginUpdate();
-            foreach (var parentObject in parentObjects)
+            if (parentObjects != null && parentObjects.Count() > 0)
             {
-                _treeNodeStore.RelateDataSetToParent(dataSet, parentObject);
-                var parentNodes = _treeNodeStore.GetTreeNodesFor(parentObject);
-                foreach (var parentNode in parentNodes)
+                foreach (var parentObject in parentObjects)
                 {
-                    parentNode.Nodes.Add(_treeNodeStore.CreateTreeNodeFor(dataSet));
+                    _treeNodeStore.RelateDataSetToParent(dataSet, parentObject);
+                    var parentNodes = _treeNodeStore.GetTreeNodesFor(parentObject);
+                    foreach (var parentNode in parentNodes)
+                    {
+                        parentNode.Nodes.Add(_treeNodeStore.CreateTreeNodeFor(dataSet));
+                    }
                 }
             }
 

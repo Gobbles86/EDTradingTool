@@ -49,6 +49,12 @@
       <DependentUpon>EntityTreeView.cs</DependentUpon>
     </Compile>
     <Compile Include="EntityWatcher.cs" />
+    <Compile Include="InputMask\AddSolarSystemMask.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InputMask\AddSolarSystemMask.Designer.cs">
+      <DependentUpon>AddSolarSystemMask.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,10 +78,14 @@
     <EmbeddedResource Include="EntityTreeView.resx">
       <DependentUpon>EntityTreeView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InputMask\AddSolarSystemMask.resx">
+      <DependentUpon>AddSolarSystemMask.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

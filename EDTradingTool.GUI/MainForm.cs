@@ -12,6 +12,8 @@ namespace EDTradingTool.GUI
 {
     public partial class MainForm : Form
     {
+        private Core.IEntityHandler _entityHandler;
+
         public MainForm()
         {
             InitializeComponent();
@@ -20,6 +22,21 @@ namespace EDTradingTool.GUI
         public void Initialize(Core.IEntityHandler entityHandler)
         {
             this.EntityTreeView.Initialize(entityHandler);
+            _entityHandler = entityHandler;
+
+            this.AddSolarSystemMask.OnAddSolarSystem += OnAddSolarSystem;
+        }
+
+        void OnAddSolarSystem(object sender, InputMask.AddSolarSystemMask.AddSolarSystemEventArgs e)
+        {
+            try
+            {
+                _entityHandler.AddObject(e.SolarSystem, null);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
