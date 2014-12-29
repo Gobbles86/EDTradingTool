@@ -39,14 +39,11 @@ namespace EDTradingTool
         {
             foreach (var entityList in entityLists)
             {
+                var entityType = entityList.GetType().GetGenericArguments()[0];
+                EntityDictionary.Add(entityType, new Dictionary<long, Core.IEntity>());
+
                 foreach (var entity in entityList)
                 {
-                    var entityType = entity.GetType();
-                    if (!EntityDictionary.ContainsKey(entityType))
-                    {
-                        EntityDictionary.Add(entityType, new Dictionary<long, Core.IEntity>());
-                    }
-
                     EntityDictionary[entityType].Add(entity.Id, entity);
                 }
             }

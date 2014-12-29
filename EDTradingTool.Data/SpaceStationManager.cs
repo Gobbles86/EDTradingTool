@@ -82,9 +82,9 @@ namespace EDTradingTool.Data
             }
 
             // Let the child handler delete all child data sets.
-            foreach (var marketEntry in spaceStation.MarketEntries)
+            while (spaceStation.MarketEntries.Count > 0)
             {
-                _marketEntryManager.RemoveObject(marketEntry);
+                _marketEntryManager.RemoveObject(spaceStation.MarketEntries.First());
             }
 
             base.RemoveObject(spaceStation);

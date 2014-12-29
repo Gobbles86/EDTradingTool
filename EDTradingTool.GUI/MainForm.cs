@@ -96,7 +96,11 @@ namespace EDTradingTool.GUI
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.InnerException.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var message = ex.InnerException.Message;
+#if DEBUG
+                message += "\n\nStack Trace:\n" + ex.InnerException.StackTrace;
+#endif
+                MessageBox.Show(message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

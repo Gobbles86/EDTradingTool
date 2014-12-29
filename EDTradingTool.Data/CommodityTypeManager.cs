@@ -70,9 +70,9 @@ namespace EDTradingTool.Data
                 commodityType.CommodityGroupId = null;
             }
             // Use the entity manager of the child type (MarketEntry) to remove the associated market entries.
-            foreach (var marketEntry in commodityType.MarketEntries)
+            while (commodityType.MarketEntries.Count > 0)
             {
-                _marketEntryManager.RemoveObject(marketEntry);
+                _marketEntryManager.RemoveObject(commodityType.MarketEntries.First());
             }
             // Now remove the object rom the database.
             base.RemoveObject(commodityType);

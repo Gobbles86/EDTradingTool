@@ -29,6 +29,7 @@ namespace EDTradingTool.GUI
             this.TreeView.Nodes.AddRange(new TreeNode[] {
                 SolarSystemNode, FederationNode, CommodityGroupNode
             });
+            this.TreeView.Sort();
 
             this.TreeView.AfterSelect += TreeView_AfterSelect;
         }

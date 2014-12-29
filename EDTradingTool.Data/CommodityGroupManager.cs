@@ -25,10 +25,11 @@ namespace EDTradingTool.Data
         /// <param name="commodityGroup">The commodity to remove.</param>
         public override void RemoveObject(Entity.CommodityGroup commodityGroup)
         {
-            foreach (var commodityType in commodityGroup.CommodityTypes)
+            while (commodityGroup.CommodityTypes.Count > 0)
             {
-                _commodityTypeManager.RemoveObject(commodityType);
+                _commodityTypeManager.RemoveObject(commodityGroup.CommodityTypes.First());
             }
+
             base.RemoveObject(commodityGroup);
         }
     }

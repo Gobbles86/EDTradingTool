@@ -26,9 +26,9 @@ namespace EDTradingTool.Data
         /// <param name="solarSystem">The solar system to remove.</param>
         public override void RemoveObject(Entity.SolarSystem solarSystem)
         {
-            foreach (var spaceStation in solarSystem.SpaceStations)
+            while (solarSystem.SpaceStations.Count > 0)
             {
-                _spaceStationManager.RemoveObject(spaceStation);
+                _spaceStationManager.RemoveObject(solarSystem.SpaceStations.First());
             }
 
             base.RemoveObject(solarSystem);
