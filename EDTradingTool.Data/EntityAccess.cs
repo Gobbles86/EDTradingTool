@@ -150,7 +150,7 @@ namespace EDTradingTool.Data
 
         public void RemoveObject<T>(T dataSet, IDbConnection dbConnection) where T : Core.IEntity
         {
-            dbConnection.Delete<T>(dataSet);
+            dbConnection.DeleteById<T>(dataSet.Id);
             var entityType = typeof(T);
 
             _typeToIdToObjectMap[entityType].Remove(dataSet.Id);

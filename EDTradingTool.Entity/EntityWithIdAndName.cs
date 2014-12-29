@@ -20,5 +20,10 @@ namespace EDTradingTool.Entity
 
         public abstract IEnumerable<Core.IEntity> Children();
         public abstract IEnumerable<Core.IEntity> Parents();
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

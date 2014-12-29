@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityAdditionMask.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="EntityTreeNodeStore.cs" />
     <Compile Include="EntityTreeView.cs">
       <SubType>UserControl</SubType>
@@ -49,17 +52,8 @@
       <DependentUpon>EntityTreeView.cs</DependentUpon>
     </Compile>
     <Compile Include="EntityWatcher.cs" />
-    <Compile Include="InputMask\AddSpaceStationMask.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="InputMask\AddSpaceStationMask.Designer.cs">
-      <DependentUpon>AddSpaceStationMask.cs</DependentUpon>
-    </Compile>
-    <Compile Include="InputMask\AddSolarSystemMask.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="InputMask\AddSolarSystemMask.Designer.cs">
-      <DependentUpon>AddSolarSystemMask.cs</DependentUpon>
+    <Compile Include="EntityComboBox.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="IRequiresEntityHandler.cs" />
     <Compile Include="MainForm.cs">
@@ -82,14 +76,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="EntityAdditionMask.resx">
+      <DependentUpon>EntityAdditionMask.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EntityTreeView.resx">
       <DependentUpon>EntityTreeView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InputMask\AddSpaceStationMask.resx">
-      <DependentUpon>AddSpaceStationMask.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InputMask\AddSolarSystemMask.resx">
-      <DependentUpon>AddSolarSystemMask.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
