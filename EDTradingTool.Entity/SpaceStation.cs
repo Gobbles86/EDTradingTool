@@ -36,5 +36,13 @@ namespace EDTradingTool.Entity
         {
             return MarketEntries.Cast<Core.IEntity>();
         }
+
+        public override IEnumerable<Core.IEntity> Parents()
+        {
+            var parents = new List<Core.IEntity>();
+            if (Federation != null) parents.Add(Federation);
+            if (SolarSystem != null) parents.Add(SolarSystem);
+            return parents;
+        }
     }
 }

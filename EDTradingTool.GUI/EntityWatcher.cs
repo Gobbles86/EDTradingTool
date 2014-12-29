@@ -21,17 +21,16 @@ namespace EDTradingTool.GUI
             _optionalFixedParentNode = optionalFixedParentNode;
         }
 
-        public void OnInitialObjectsLoaded(List<T> dataSetects)
+        public void OnInitialObjectsLoaded(List<T> dataSets)
         {
             if (_optionalFixedParentNode != null)
             {
                 _optionalFixedParentNode.Nodes.Clear();
             }
-            foreach (var dataSet in dataSetects)
+            foreach (var dataSet in dataSets)
             {
-                OnDataSetAdded(dataSet, null);
+                OnDataSetAdded(dataSet, dataSet.Parents().ToArray());
             }
-            // TODO - Relate dataSetects to their parents
         }
 
         public void OnDataSetAdded(T dataSet, params Core.IEntity[] parentObjects)

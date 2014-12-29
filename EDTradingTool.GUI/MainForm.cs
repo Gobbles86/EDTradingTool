@@ -22,21 +22,21 @@ namespace EDTradingTool.GUI
 
         public void Initialize(Core.IEntityHandler entityHandler)
         {
-            this.EntityTreeView.Initialize(entityHandler);
             _entityHandler = entityHandler;
 
-            this.AddSolarSystemMask.OnAddSolarSystem += OnAddSolarSystem;
+            CallInitializeForAllSubControls(this.Controls, entityHandler);
         }
 
-        void OnAddSolarSystem(object sender, InputMask.AddSolarSystemMask.AddSolarSystemEventArgs e)
+        private void CallInitializeForAllSubControls(Control.ControlCollection controlCollection, Core.IEntityHandler entityHandler)
         {
-            try
+            foreach (Control control in controlCollection)
             {
-                _entityHandler.AddObject(e.SolarSystem, null);
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (typeof(IRequiresEntityHandler).IsAssignableFrom(control.GetType()))
+                {
+                    ((IRequiresEntityHandler)control).Initialize(entityHandler);
+                }
+
+                CallInitializeForAllSubControls(control.Controls, entityHandler);
             }
         }
 

@@ -24,5 +24,9 @@ namespace EDTradingTool.Entity
         {
             return SpaceStations.Cast<Core.IEntity>();
         }
+        public override IEnumerable<Core.IEntity> Parents()
+        {
+            return new List<Core.IEntity>();
+        }
     }
 }

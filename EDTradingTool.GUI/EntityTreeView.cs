@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace EDTradingTool.GUI
 {
-    public partial class EntityTreeView : UserControl
+    public partial class EntityTreeView : UserControl, IRequiresEntityHandler
     {
-        public TreeNode SolarSystemNode { get; set; }
-        public TreeNode FederationNode { get; set; }
-        public TreeNode CommodityGroupNode { get; set; }
+        protected TreeNode SolarSystemNode { get; set; }
+        protected TreeNode FederationNode { get; set; }
+        protected TreeNode CommodityGroupNode { get; set; }
 
         private Core.IEntityHandler _entityHandler;
 
@@ -71,6 +71,5 @@ namespace EDTradingTool.GUI
             var entity = ((EntityTreeNode)e.Node).DataSet;
             Console.WriteLine(entity.Id + "/" + entity.Name);
         }
-
     }
 }

@@ -49,12 +49,19 @@
       <DependentUpon>EntityTreeView.cs</DependentUpon>
     </Compile>
     <Compile Include="EntityWatcher.cs" />
+    <Compile Include="InputMask\AddSpaceStationMask.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="InputMask\AddSpaceStationMask.Designer.cs">
+      <DependentUpon>AddSpaceStationMask.cs</DependentUpon>
+    </Compile>
     <Compile Include="InputMask\AddSolarSystemMask.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="InputMask\AddSolarSystemMask.Designer.cs">
       <DependentUpon>AddSolarSystemMask.cs</DependentUpon>
     </Compile>
+    <Compile Include="IRequiresEntityHandler.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +84,9 @@
   <ItemGroup>
     <EmbeddedResource Include="EntityTreeView.resx">
       <DependentUpon>EntityTreeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputMask\AddSpaceStationMask.resx">
+      <DependentUpon>AddSpaceStationMask.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputMask\AddSolarSystemMask.resx">
       <DependentUpon>AddSolarSystemMask.cs</DependentUpon>

@@ -16,5 +16,11 @@ namespace EDTradingTool.Core
         bool HasNameColumn { get; }
 
         IEnumerable<IEntity> Children();
+
+        /// <summary>
+        /// Retrieves the parents in alphabetical order of their type names.
+        /// </summary>
+        /// <returns>The parents (if any).</returns>
+        IEnumerable<IEntity> Parents();
     }
 }

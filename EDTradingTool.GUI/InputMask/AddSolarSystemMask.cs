@@ -10,18 +10,18 @@ using System.Windows.Forms;
 
 namespace EDTradingTool.GUI.InputMask
 {
-    public partial class AddSolarSystemMask : UserControl
+    public partial class AddSolarSystemMask : UserControl, IRequiresEntityHandler
     {
-        public class AddSolarSystemEventArgs : EventArgs
-        {
-            public Entity.SolarSystem SolarSystem;
-        }
-
-        public event EventHandler<AddSolarSystemEventArgs> OnAddSolarSystem;
-
         public AddSolarSystemMask()
         {
             InitializeComponent();
+        }
+
+        private Core.IEntityHandler _entityHandler;
+
+        public void Initialize(Core.IEntityHandler entityHandler)
+        {
+            _entityHandler = entityHandler;
         }
 
         private void AddButton_Click(object sender, EventArgs e)
@@ -31,10 +31,13 @@ namespace EDTradingTool.GUI.InputMask
                 Name = this.NameTextBox.Text
             };
 
-            var tempEvent = OnAddSolarSystem;
-            if( tempEvent != null )
+            try
             {
-                tempEvent(this, new AddSolarSystemEventArgs() { SolarSystem = solarSystem });
+                _entityHandler.AddObject(solarSystem, null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -35,5 +35,13 @@ namespace EDTradingTool.Entity
         {
             return new List<Core.IEntity>();
         }
+
+        public override IEnumerable<Core.IEntity> Parents()
+        {
+            var parents = new List<Core.IEntity>();
+            if (CommodityType != null) parents.Add(CommodityType);
+            if (SpaceStation != null) parents.Add(SpaceStation);
+            return parents;
+        }
     }
 }

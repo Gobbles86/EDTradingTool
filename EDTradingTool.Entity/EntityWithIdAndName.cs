@@ -19,5 +19,6 @@ namespace EDTradingTool.Entity
         public bool HasNameColumn { get { return true; } }
 
         public abstract IEnumerable<Core.IEntity> Children();
+        public abstract IEnumerable<Core.IEntity> Parents();
     }
 }
