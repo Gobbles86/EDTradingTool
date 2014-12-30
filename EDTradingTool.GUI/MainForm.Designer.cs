@@ -60,6 +60,7 @@
             this.TabControl.SelectedIndex = 0;
             this.TabControl.Size = new System.Drawing.Size(554, 378);
             this.TabControl.TabIndex = 4;
+            this.TabControl.SelectedIndexChanged += new System.EventHandler(this.TabControl_SelectedIndexChanged);
             // 
             // MarketEntryPage
             // 

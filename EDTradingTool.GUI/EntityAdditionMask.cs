@@ -138,6 +138,7 @@ namespace EDTradingTool.GUI
             try
             {
                 _entityHandler.AddObject(dataSet, parentDataSets.ToArray());
+                _entityTextBox.Clear();
                 MessageBox.Show(
                     String.Format("Successfully added {0} \"{1}\".", _tableLayoutPanel.Controls["EntityNameLabel"].Text, dataSet.Name),
                     Application.ProductName

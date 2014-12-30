@@ -110,5 +110,39 @@ namespace EDTradingTool.GUI
             var selectedNode = EntityTreeView.TreeView.SelectedNode;
             DeleteToolStripMenuItem.Enabled = typeof(EntityTreeNode).IsAssignableFrom(selectedNode.GetType());
         }
+
+        private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var button = FindButton(TabControl.SelectedTab);
+
+            if (button != null)
+            {
+                this.AcceptButton = button;
+            }
+            else
+            {
+                this.AcceptButton = null;
+            }
+
+        }
+
+        private Button FindButton(Control control)
+        {
+            if (control == null || control.Controls.Count == 0) return null;
+
+            // Check if a button is present
+            var buttons = control.Controls.OfType<Button>();
+            if (buttons.Count() > 0) return buttons.First();
+
+            // Otherwise, check for buttons in sub controls recursively
+            foreach (Control subControl in control.Controls)
+            {
+                var potentialButton = FindButton(subControl);
+                if (potentialButton != null) return potentialButton;
+            }
+
+            // Else: No button in this path, return one level (or completely)
+            return null;
+        }
     }
 }

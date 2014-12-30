@@ -38,5 +38,23 @@ namespace EDTradingTool.GUI
                    Demand.TextLength > 0 &&
                    Supply.TextLength > 0;
         }
+
+        public Entity.MarketEntry CreateMarketEntry()
+        {
+            return new Entity.MarketEntry()
+            {
+                SellToStationPrice = GetNumberFromTextBox(this.SellToStationPrice),
+                BuyFromStationPrice = GetNumberFromTextBox(this.BuyFromStationPrice),
+                Demand = GetNumberFromTextBox(this.Demand),
+                Supply = GetNumberFromTextBox(this.Supply)
+            };
+        }
+
+        private int? GetNumberFromTextBox(MaskedTextBox textBox)
+        {
+            if (textBox.TextLength == 0 || textBox.Text == "0") return null;
+
+            return Convert.ToInt32(textBox.Text);
+        }
     }
 }

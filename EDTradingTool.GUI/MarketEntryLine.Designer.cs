@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.TableLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.SellToStationPrice = new System.Windows.Forms.MaskedTextBox();
-            this.BuyFromStationPrice = new System.Windows.Forms.MaskedTextBox();
-            this.Demand = new System.Windows.Forms.MaskedTextBox();
-            this.Supply = new System.Windows.Forms.MaskedTextBox();
-            this.PlaceHolderLabel = new System.Windows.Forms.Label();
             this.GalacticAverage = new System.Windows.Forms.MaskedTextBox();
+            this.Supply = new System.Windows.Forms.MaskedTextBox();
+            this.Demand = new System.Windows.Forms.MaskedTextBox();
+            this.BuyFromStationPrice = new System.Windows.Forms.MaskedTextBox();
+            this.SellToStationPrice = new System.Windows.Forms.MaskedTextBox();
+            this.PlaceHolderLabel = new System.Windows.Forms.Label();
             this.TableLayout.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,38 +62,16 @@
             this.TableLayout.Size = new System.Drawing.Size(343, 25);
             this.TableLayout.TabIndex = 0;
             // 
-            // SellToStationPrice
+            // GalacticAverage
             // 
-            this.SellToStationPrice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.SellToStationPrice.Location = new System.Drawing.Point(59, 3);
-            this.SellToStationPrice.Mask = "99999";
-            this.SellToStationPrice.MinimumSize = new System.Drawing.Size(50, 4);
-            this.SellToStationPrice.Name = "SellToStationPrice";
-            this.SellToStationPrice.Size = new System.Drawing.Size(50, 20);
-            this.SellToStationPrice.TabIndex = 1;
-            this.SellToStationPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // BuyFromStationPrice
-            // 
-            this.BuyFromStationPrice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BuyFromStationPrice.Location = new System.Drawing.Point(115, 3);
-            this.BuyFromStationPrice.Mask = "99999";
-            this.BuyFromStationPrice.MinimumSize = new System.Drawing.Size(70, 4);
-            this.BuyFromStationPrice.Name = "BuyFromStationPrice";
-            this.BuyFromStationPrice.Size = new System.Drawing.Size(70, 20);
-            this.BuyFromStationPrice.TabIndex = 2;
-            this.BuyFromStationPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // Demand
-            // 
-            this.Demand.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Demand.Location = new System.Drawing.Point(191, 3);
-            this.Demand.Mask = "9999999";
-            this.Demand.MinimumSize = new System.Drawing.Size(70, 4);
-            this.Demand.Name = "Demand";
-            this.Demand.Size = new System.Drawing.Size(70, 20);
-            this.Demand.TabIndex = 3;
-            this.Demand.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.GalacticAverage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GalacticAverage.Location = new System.Drawing.Point(3, 3);
+            this.GalacticAverage.Mask = "99999";
+            this.GalacticAverage.MinimumSize = new System.Drawing.Size(50, 4);
+            this.GalacticAverage.Name = "GalacticAverage";
+            this.GalacticAverage.Size = new System.Drawing.Size(50, 20);
+            this.GalacticAverage.TabIndex = 5;
+            this.GalacticAverage.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // Supply
             // 
@@ -106,6 +84,39 @@
             this.Supply.TabIndex = 4;
             this.Supply.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // Demand
+            // 
+            this.Demand.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Demand.Location = new System.Drawing.Point(191, 3);
+            this.Demand.Mask = "9999999";
+            this.Demand.MinimumSize = new System.Drawing.Size(70, 4);
+            this.Demand.Name = "Demand";
+            this.Demand.Size = new System.Drawing.Size(70, 20);
+            this.Demand.TabIndex = 3;
+            this.Demand.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // BuyFromStationPrice
+            // 
+            this.BuyFromStationPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BuyFromStationPrice.Location = new System.Drawing.Point(115, 3);
+            this.BuyFromStationPrice.Mask = "99999";
+            this.BuyFromStationPrice.MinimumSize = new System.Drawing.Size(70, 4);
+            this.BuyFromStationPrice.Name = "BuyFromStationPrice";
+            this.BuyFromStationPrice.Size = new System.Drawing.Size(70, 20);
+            this.BuyFromStationPrice.TabIndex = 2;
+            this.BuyFromStationPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // SellToStationPrice
+            // 
+            this.SellToStationPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SellToStationPrice.Location = new System.Drawing.Point(59, 3);
+            this.SellToStationPrice.Mask = "99999";
+            this.SellToStationPrice.MinimumSize = new System.Drawing.Size(50, 4);
+            this.SellToStationPrice.Name = "SellToStationPrice";
+            this.SellToStationPrice.Size = new System.Drawing.Size(50, 20);
+            this.SellToStationPrice.TabIndex = 1;
+            this.SellToStationPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // PlaceHolderLabel
             // 
             this.PlaceHolderLabel.AutoSize = true;
@@ -114,17 +125,6 @@
             this.PlaceHolderLabel.Name = "PlaceHolderLabel";
             this.PlaceHolderLabel.Size = new System.Drawing.Size(17, 25);
             this.PlaceHolderLabel.TabIndex = 6;
-            // 
-            // GalacticAverage
-            // 
-            this.GalacticAverage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GalacticAverage.Location = new System.Drawing.Point(3, 3);
-            this.GalacticAverage.Mask = "99999";
-            this.GalacticAverage.MinimumSize = new System.Drawing.Size(50, 4);
-            this.GalacticAverage.Name = "GalacticAverage";
-            this.GalacticAverage.Size = new System.Drawing.Size(50, 20);
-            this.GalacticAverage.TabIndex = 5;
-            this.GalacticAverage.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // MarketEntryLine
             // 
