@@ -161,7 +161,7 @@ namespace EDTradingTool.GUI
             // EntityAdditionMask
             // 
             this.Name = "EntityAdditionMask";
-            this.Size = new System.Drawing.Size(151, 26);
+            this.Size = new System.Drawing.Size(300, 25);
             this.ResumeLayout(false);
 
         }

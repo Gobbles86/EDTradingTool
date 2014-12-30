@@ -41,7 +41,7 @@ namespace EDTradingTool
 
             // Create a factory for database connections
             var dbFactory = new OrmLiteConnectionFactory(
-                "./db.sqlite", SqliteDialect.Provider, false
+                Environment.GetEnvironmentVariable("APPDATA") + @"\EDTradingTool\EDTradingToolDB.sqlite", SqliteDialect.Provider, false
                 );
 
             // Create the class which is used for accessing entities

@@ -31,6 +31,9 @@ namespace EDTradingTool.GUI
                     Visible = true
                 };
 
+                tabPage.AutoScroll = true;
+                // TODO TEMP WORKAROUND
+                tabPage.AutoScrollMinSize = new Size(5000, 5000);
                 tabPage.Controls.Add(layout);
             }
 
@@ -50,16 +53,16 @@ namespace EDTradingTool.GUI
                 new List<Type>() { typeof(Entity.CommodityGroup) },
                 new List<string>() { "Commodity Group" }
                 );
-            
-            MarketEntryPage.Controls[layoutName].Controls.Add(new MarketEntryAdditionMask());
+
+            var marketEntryAdditionMask = new MarketEntryAdditionMask();
+            MarketEntryPage.Controls[layoutName].Controls.Add(marketEntryAdditionMask);
         }
 
         private void AddAdditionMask<T>(TabPage tabPage, String readableEntityName, List<Type> parentTypes = null, List<string> parentReadableTypeNames = null)
             where T : Entity.EntityWithIdAndName, new()
         {
-            tabPage.Controls["Layout"].Controls.Add(
-                new EntityAdditionMask<T>(readableEntityName, parentTypes, parentReadableTypeNames)
-                );
+            var entityAdditionMask = new EntityAdditionMask<T>(readableEntityName, parentTypes, parentReadableTypeNames);
+            tabPage.Controls["Layout"].Controls.Add(entityAdditionMask);
         }
 
         public void Initialize(Core.IEntityHandler entityHandler)
