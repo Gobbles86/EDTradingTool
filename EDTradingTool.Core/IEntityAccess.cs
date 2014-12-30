@@ -21,5 +21,6 @@ namespace EDTradingTool.Core
         bool HasObject<T>(String name) where T : IEntity;
         void LoadAll();
         void DeleteAll();
+        List<Type> HandledTypes { get; }
     }
 }

@@ -50,7 +50,8 @@ namespace EDTradingTool.GUI
                 new List<Type>() { typeof(Entity.CommodityGroup) },
                 new List<string>() { "Commodity Group" }
                 );
-            // No addition mask for Market Entries - There is a special one
+            
+            MarketEntryPage.Controls[layoutName].Controls.Add(new MarketEntryAdditionMask());
         }
 
         private void AddAdditionMask<T>(TabPage tabPage, String readableEntityName, List<Type> parentTypes = null, List<string> parentReadableTypeNames = null)

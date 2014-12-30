@@ -28,14 +28,20 @@ namespace EDTradingTool
         private Core.EntityWatcherStore _entityWatcherStore = new Core.EntityWatcherStore();
 
         /// <summary>
+        /// The list of types which can be handled, sorted so that parent entities appear before their child entities.
+        /// </summary>
+        private List<Type> _handledTypes;
+
+        /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="entityManagerFactory">The factory for entity managers.</param>
         /// <param name="entityLinker">The linker for entities.</param>
-        public Controller(Data.EntityManagerFactory entityManagerFactory, EntityLinker entityLinker)
+        public Controller(Data.EntityManagerFactory entityManagerFactory, EntityLinker entityLinker, List<Type> handledTypes)
         {
             _entityManagerFactory = entityManagerFactory;
             _entityLinker = entityLinker;
+            _handledTypes = handledTypes;
         }
 
         /// <summary>
@@ -53,8 +59,10 @@ namespace EDTradingTool
             Action OnInitialEntriesLoadedFunctionSample = OnInitialEntriesLoaded<Core.IEntity>;
             MethodInfo InfoOfInitialEntriesLoadedFunction = OnInitialEntriesLoadedFunctionSample.Method.GetGenericMethodDefinition();
 
-            foreach (var entityType in _entityWatcherStore.Types())
+            foreach (var entityType in _handledTypes)
             {
+                if (!_entityWatcherStore.HasEntityWatcher(entityType)) continue;
+
                 var MethodInfoForCurrentType = InfoOfInitialEntriesLoadedFunction.MakeGenericMethod(entityType);
                 MethodInfoForCurrentType.Invoke(this, null);
             }

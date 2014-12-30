@@ -51,7 +51,7 @@ namespace EDTradingTool
             var entityManagerFactory = new Data.EntityManagerFactory(entityAccess);
 
             // Create a controller
-            var controller = new Controller(entityManagerFactory, new EntityLinker(entityAccess));
+            var controller = new Controller(entityManagerFactory, new EntityLinker(entityAccess), entityAccess.HandledTypes);
             
             // Create a GUI
             var mainForm = new GUI.MainForm();

@@ -30,15 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.TabControl = new System.Windows.Forms.TabControl();
-            this.FederationPage = new System.Windows.Forms.TabPage();
-            this.SpaceStationPage = new System.Windows.Forms.TabPage();
-            this.CommodityGroupPage = new System.Windows.Forms.TabPage();
-            this.CommodityTypePage = new System.Windows.Forms.TabPage();
             this.MarketEntryPage = new System.Windows.Forms.TabPage();
+            this.SpaceStationPage = new System.Windows.Forms.TabPage();
+            this.SolarSystemPage = new System.Windows.Forms.TabPage();
+            this.FederationPage = new System.Windows.Forms.TabPage();
+            this.CommodityTypePage = new System.Windows.Forms.TabPage();
+            this.CommodityGroupPage = new System.Windows.Forms.TabPage();
             this.TreeContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.AddToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SolarSystemPage = new System.Windows.Forms.TabPage();
             this.EntityTreeView = new EDTradingTool.GUI.EntityTreeView();
             this.TabControl.SuspendLayout();
             this.TreeContextMenu.SuspendLayout();
@@ -61,15 +61,15 @@
             this.TabControl.Size = new System.Drawing.Size(554, 378);
             this.TabControl.TabIndex = 4;
             // 
-            // FederationPage
+            // MarketEntryPage
             // 
-            this.FederationPage.Location = new System.Drawing.Point(4, 22);
-            this.FederationPage.Name = "FederationPage";
-            this.FederationPage.Padding = new System.Windows.Forms.Padding(3);
-            this.FederationPage.Size = new System.Drawing.Size(546, 352);
-            this.FederationPage.TabIndex = 1;
-            this.FederationPage.Text = "Federations";
-            this.FederationPage.UseVisualStyleBackColor = true;
+            this.MarketEntryPage.Location = new System.Drawing.Point(4, 22);
+            this.MarketEntryPage.Name = "MarketEntryPage";
+            this.MarketEntryPage.Padding = new System.Windows.Forms.Padding(3);
+            this.MarketEntryPage.Size = new System.Drawing.Size(546, 352);
+            this.MarketEntryPage.TabIndex = 5;
+            this.MarketEntryPage.Text = "Market Entries";
+            this.MarketEntryPage.UseVisualStyleBackColor = true;
             // 
             // SpaceStationPage
             // 
@@ -81,15 +81,25 @@
             this.SpaceStationPage.Text = "Space Stations";
             this.SpaceStationPage.UseVisualStyleBackColor = true;
             // 
-            // CommodityGroupPage
+            // SolarSystemPage
             // 
-            this.CommodityGroupPage.Location = new System.Drawing.Point(4, 22);
-            this.CommodityGroupPage.Name = "CommodityGroupPage";
-            this.CommodityGroupPage.Padding = new System.Windows.Forms.Padding(3);
-            this.CommodityGroupPage.Size = new System.Drawing.Size(546, 352);
-            this.CommodityGroupPage.TabIndex = 2;
-            this.CommodityGroupPage.Text = "Commodity Groups";
-            this.CommodityGroupPage.UseVisualStyleBackColor = true;
+            this.SolarSystemPage.Location = new System.Drawing.Point(4, 22);
+            this.SolarSystemPage.Name = "SolarSystemPage";
+            this.SolarSystemPage.Padding = new System.Windows.Forms.Padding(3);
+            this.SolarSystemPage.Size = new System.Drawing.Size(546, 352);
+            this.SolarSystemPage.TabIndex = 0;
+            this.SolarSystemPage.Text = "Solar Systems";
+            this.SolarSystemPage.UseVisualStyleBackColor = true;
+            // 
+            // FederationPage
+            // 
+            this.FederationPage.Location = new System.Drawing.Point(4, 22);
+            this.FederationPage.Name = "FederationPage";
+            this.FederationPage.Padding = new System.Windows.Forms.Padding(3);
+            this.FederationPage.Size = new System.Drawing.Size(546, 352);
+            this.FederationPage.TabIndex = 1;
+            this.FederationPage.Text = "Federations";
+            this.FederationPage.UseVisualStyleBackColor = true;
             // 
             // CommodityTypePage
             // 
@@ -101,15 +111,15 @@
             this.CommodityTypePage.Text = "Commodity Types";
             this.CommodityTypePage.UseVisualStyleBackColor = true;
             // 
-            // MarketEntryPage
+            // CommodityGroupPage
             // 
-            this.MarketEntryPage.Location = new System.Drawing.Point(4, 22);
-            this.MarketEntryPage.Name = "MarketEntryPage";
-            this.MarketEntryPage.Padding = new System.Windows.Forms.Padding(3);
-            this.MarketEntryPage.Size = new System.Drawing.Size(546, 352);
-            this.MarketEntryPage.TabIndex = 5;
-            this.MarketEntryPage.Text = "Market Entries";
-            this.MarketEntryPage.UseVisualStyleBackColor = true;
+            this.CommodityGroupPage.Location = new System.Drawing.Point(4, 22);
+            this.CommodityGroupPage.Name = "CommodityGroupPage";
+            this.CommodityGroupPage.Padding = new System.Windows.Forms.Padding(3);
+            this.CommodityGroupPage.Size = new System.Drawing.Size(546, 352);
+            this.CommodityGroupPage.TabIndex = 2;
+            this.CommodityGroupPage.Text = "Commodity Groups";
+            this.CommodityGroupPage.UseVisualStyleBackColor = true;
             // 
             // TreeContextMenu
             // 
@@ -133,16 +143,6 @@
             this.DeleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.DeleteToolStripMenuItem.Text = "Delete";
             this.DeleteToolStripMenuItem.Click += new System.EventHandler(this.DeleteToolStripMenuItem_Click);
-            // 
-            // SolarSystemPage
-            // 
-            this.SolarSystemPage.Location = new System.Drawing.Point(4, 22);
-            this.SolarSystemPage.Name = "SolarSystemPage";
-            this.SolarSystemPage.Padding = new System.Windows.Forms.Padding(3);
-            this.SolarSystemPage.Size = new System.Drawing.Size(546, 352);
-            this.SolarSystemPage.TabIndex = 0;
-            this.SolarSystemPage.Text = "Solar Systems";
-            this.SolarSystemPage.UseVisualStyleBackColor = true;
             // 
             // EntityTreeView
             // 

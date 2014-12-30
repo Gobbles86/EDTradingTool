@@ -23,7 +23,7 @@ namespace EDTradingTool.Data
         /// Defines the types which are available for this class.
         /// IMPORTANT: This must be sorted so that parent entities appear before their children.
         /// </summary>
-        public static readonly List<Type> HandledTypes = new List<Type>()
+        private static readonly List<Type> _handledTypes = new List<Type>()
         {
             typeof(Entity.SolarSystem),
             typeof(Entity.SpaceStation),
@@ -32,6 +32,8 @@ namespace EDTradingTool.Data
             typeof(Entity.CommodityType),
             typeof(Entity.MarketEntry)
         };
+
+        public List<Type> HandledTypes { get { return _handledTypes; } }
 
         /// <summary>
         /// Stores one dictionary for each type, where each inner dictionary maps the primary key to the associated object.

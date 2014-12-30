@@ -40,9 +40,14 @@ namespace EDTradingTool.Core
             return _internalDictionary[entityType].Cast<IEntityWatcher<TEntity>>().ToList();
         }
 
-        public List<Type> Types()
+        public bool HasEntityWatcher<TEntity>()
         {
-            return _internalDictionary.Keys.ToList<Type>();
+            return HasEntityWatcher(typeof(TEntity));
+        }
+
+        public bool HasEntityWatcher(Type type)
+        {
+            return _internalDictionary.ContainsKey(type);
         }
     }
 }
