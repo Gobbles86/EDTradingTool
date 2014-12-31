@@ -29,6 +29,7 @@ namespace EDTradingTool.GUI
             toolTip.SetToolTip(Demand, "Demand");
             toolTip.SetToolTip(Supply, "Supply");
             toolTip.SetToolTip(GalacticAverage, "Galactic Average");
+            toolTip.SetToolTip(LastUpdateLabel, "Last Update");
         }
 
         public bool IsComplete()
@@ -48,11 +49,33 @@ namespace EDTradingTool.GUI
             };
         }
 
+        public void FillFromMarketEntry(Entity.MarketEntry marketEntry)
+        {
+            SetTextBoxValue(this.SellToStationPrice, marketEntry.SellToStationPrice);
+            SetTextBoxValue(this.BuyFromStationPrice, marketEntry.BuyFromStationPrice);
+            SetTextBoxValue(this.Demand, marketEntry.Demand);
+            SetTextBoxValue(this.Supply, marketEntry.Supply);
+            LastUpdateLabel.Text = marketEntry.LastUpdate.ToString("yyyy-MM-dd hh:mm:ss");
+        }
+
         private int? GetNumberFromTextBox(Common.NumericTextBox textBox)
         {
             if (textBox.TextLength == 0 || textBox.Text == "0") return null;
 
             return Convert.ToInt32(textBox.Value);
+        }
+
+        private void SetTextBoxValue(Common.NumericTextBox textBox, int? value)
+        {
+            if (value.HasValue)
+            {
+                textBox.Text = value.Value.ToString();
+            }
+            else
+            {
+                textBox.Value = 0;
+                textBox.Text = String.Empty;
+            }
         }
     }
 }

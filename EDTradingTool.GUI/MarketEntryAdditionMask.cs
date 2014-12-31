@@ -20,7 +20,11 @@ namespace EDTradingTool.GUI
         private Dictionary<Entity.CommodityType, MarketEntryLine> _marketEntryLines = new Dictionary<Entity.CommodityType, MarketEntryLine>();
         
         private TableLayoutPanel _layout = new TableLayoutPanel() { Dock = DockStyle.Fill };
-        private EntityComboBox<Entity.SpaceStation> _spaceStationComboBox = new EntityComboBox<Entity.SpaceStation>() { Dock = DockStyle.Fill };
+        private EntityComboBox<Entity.SpaceStation> _spaceStationComboBox = new EntityComboBox<Entity.SpaceStation>() 
+        {
+            Dock = DockStyle.Fill,
+            MaximumSize = new Size(500, 20)
+        };
         private Button _addButton = new Button() { Text = "Add", Anchor = AnchorStyles.Top | AnchorStyles.Right };
 
         public MarketEntryAdditionMask()
@@ -32,8 +36,34 @@ namespace EDTradingTool.GUI
             RebuildMask();
 
             _addButton.Click += AddButton_Click;
+            _spaceStationComboBox.SelectedIndexChanged += SpaceStationComboBox_SelectedIndexChanged;
         }
 
+        /// <summary>
+        /// Fills in all market entries which are known for the selected Space Station.
+        /// </summary>
+        /// <param name="sender">Unused.</param>
+        /// <param name="e">Unused.</param>
+        private void SpaceStationComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_spaceStationComboBox.SelectedItem == null)
+            {
+                RebuildMask();
+                return;
+            }
+
+            var currentSpaceStation = (Entity.SpaceStation)_spaceStationComboBox.SelectedItem;
+
+            foreach (var marketEntry in currentSpaceStation.MarketEntries)
+            {
+                if (_marketEntryLines.ContainsKey(marketEntry.CommodityType))
+                {
+                    _marketEntryLines[marketEntry.CommodityType].FillFromMarketEntry(marketEntry);
+                }
+            }
+        }
+
+        #region Interface Implementation
         public void Initialize(Core.IEntityHandler entityHandler)
         {
             _entityHandler = entityHandler;
@@ -67,6 +97,9 @@ namespace EDTradingTool.GUI
             _commodityGroups.RemoveWhere(x => x.CommodityTypes == null || x.CommodityTypes.Count == 0);
             RebuildMask();
         }
+        #endregion
+
+        // TODO - REFACTOR - Many of the following functions could be exported into a GUI Factory
 
         private void RebuildMask()
         {
