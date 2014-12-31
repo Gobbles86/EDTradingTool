@@ -136,5 +136,10 @@ namespace EDTradingTool
                 entityWatcher.OnDataSetRemoved(dataSet);
             }
         }
+        
+        public Core.AbstractEntityManager<T> GetEntityManager<T>() where T : Core.IEntity
+        {
+            return _entityManagerFactory.GetManagerFor<T>();
+        }
     }
 }

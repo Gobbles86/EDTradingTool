@@ -78,6 +78,10 @@
     <Compile Include="EntityTreeNode.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{09e23edb-1532-41df-9fda-c49973a2983b}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EDTradingTool.Core\EDTradingTool.Core.csproj">
       <Project>{f927af5d-08db-4a9b-a2b2-aada1d5ea723}</Project>
       <Name>EDTradingTool.Core</Name>

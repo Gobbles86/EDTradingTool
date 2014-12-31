@@ -50,11 +50,11 @@ namespace EDTradingTool.GUI
             };
         }
 
-        private int? GetNumberFromTextBox(MaskedTextBox textBox)
+        private int? GetNumberFromTextBox(Common.NumericTextBox textBox)
         {
             if (textBox.TextLength == 0 || textBox.Text == "0") return null;
 
-            return Convert.ToInt32(textBox.Text);
+            return Convert.ToInt32(textBox.Value);
         }
     }
 }

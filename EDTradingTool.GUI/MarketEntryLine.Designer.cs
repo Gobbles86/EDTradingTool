@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.TableLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.GalacticAverage = new System.Windows.Forms.MaskedTextBox();
-            this.Supply = new System.Windows.Forms.MaskedTextBox();
-            this.Demand = new System.Windows.Forms.MaskedTextBox();
-            this.BuyFromStationPrice = new System.Windows.Forms.MaskedTextBox();
-            this.SellToStationPrice = new System.Windows.Forms.MaskedTextBox();
+            this.GalacticAverage = new Common.NumericTextBox(this.components);
+            this.Supply = new Common.NumericTextBox(this.components);
+            this.Demand = new Common.NumericTextBox(this.components);
+            this.BuyFromStationPrice = new Common.NumericTextBox(this.components);
+            this.SellToStationPrice = new Common.NumericTextBox(this.components);
             this.PlaceHolderLabel = new System.Windows.Forms.Label();
             this.TableLayout.SuspendLayout();
             this.SuspendLayout();
@@ -64,58 +65,248 @@
             // 
             // GalacticAverage
             // 
+            this.GalacticAverage.AutoValidate = false;
+            this.GalacticAverage.AutoValidationTime = 0;
+            this.GalacticAverage.DecimalPlaces = 0;
             this.GalacticAverage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GalacticAverage.EnableErrorValue = false;
+            this.GalacticAverage.EnableWarningValue = false;
+            this.GalacticAverage.ErrorColor = System.Drawing.Color.OrangeRed;
+            this.GalacticAverage.ErrorValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.GalacticAverage.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.GalacticAverage.InterceptArrowKeys = true;
             this.GalacticAverage.Location = new System.Drawing.Point(3, 3);
-            this.GalacticAverage.Mask = "99999";
+            this.GalacticAverage.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.GalacticAverage.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.GalacticAverage.MinimumSize = new System.Drawing.Size(50, 4);
             this.GalacticAverage.Name = "GalacticAverage";
             this.GalacticAverage.Size = new System.Drawing.Size(50, 20);
-            this.GalacticAverage.TabIndex = 5;
+            this.GalacticAverage.TabIndex = 0;
             this.GalacticAverage.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.GalacticAverage.ThousandsSeparator = false;
+            this.GalacticAverage.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.GalacticAverage.WarningColor = System.Drawing.Color.Gold;
+            this.GalacticAverage.WarningValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             // 
             // Supply
             // 
+            this.Supply.AutoValidate = false;
+            this.Supply.AutoValidationTime = 0;
+            this.Supply.DecimalPlaces = 0;
             this.Supply.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Supply.EnableErrorValue = false;
+            this.Supply.EnableWarningValue = false;
+            this.Supply.ErrorColor = System.Drawing.Color.OrangeRed;
+            this.Supply.ErrorValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.Supply.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.Supply.InterceptArrowKeys = true;
             this.Supply.Location = new System.Drawing.Point(267, 3);
-            this.Supply.Mask = "9999999";
+            this.Supply.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.Supply.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.Supply.MinimumSize = new System.Drawing.Size(50, 4);
             this.Supply.Name = "Supply";
             this.Supply.Size = new System.Drawing.Size(50, 20);
             this.Supply.TabIndex = 4;
             this.Supply.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.Supply.ThousandsSeparator = false;
+            this.Supply.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.Supply.WarningColor = System.Drawing.Color.Gold;
+            this.Supply.WarningValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             // 
             // Demand
             // 
+            this.Demand.AutoValidate = false;
+            this.Demand.AutoValidationTime = 0;
+            this.Demand.DecimalPlaces = 0;
             this.Demand.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Demand.EnableErrorValue = false;
+            this.Demand.EnableWarningValue = false;
+            this.Demand.ErrorColor = System.Drawing.Color.OrangeRed;
+            this.Demand.ErrorValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.Demand.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.Demand.InterceptArrowKeys = true;
             this.Demand.Location = new System.Drawing.Point(191, 3);
-            this.Demand.Mask = "9999999";
+            this.Demand.Maximum = new decimal(new int[] {
+            9999999,
+            0,
+            0,
+            0});
+            this.Demand.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.Demand.MinimumSize = new System.Drawing.Size(70, 4);
             this.Demand.Name = "Demand";
             this.Demand.Size = new System.Drawing.Size(70, 20);
             this.Demand.TabIndex = 3;
             this.Demand.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.Demand.ThousandsSeparator = false;
+            this.Demand.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.Demand.WarningColor = System.Drawing.Color.Gold;
+            this.Demand.WarningValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             // 
             // BuyFromStationPrice
             // 
+            this.BuyFromStationPrice.AutoValidate = false;
+            this.BuyFromStationPrice.AutoValidationTime = 0;
+            this.BuyFromStationPrice.DecimalPlaces = 0;
             this.BuyFromStationPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BuyFromStationPrice.EnableErrorValue = false;
+            this.BuyFromStationPrice.EnableWarningValue = false;
+            this.BuyFromStationPrice.ErrorColor = System.Drawing.Color.OrangeRed;
+            this.BuyFromStationPrice.ErrorValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.BuyFromStationPrice.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.BuyFromStationPrice.InterceptArrowKeys = true;
             this.BuyFromStationPrice.Location = new System.Drawing.Point(115, 3);
-            this.BuyFromStationPrice.Mask = "99999";
+            this.BuyFromStationPrice.Maximum = new decimal(new int[] {
+            9999999,
+            0,
+            0,
+            0});
+            this.BuyFromStationPrice.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.BuyFromStationPrice.MinimumSize = new System.Drawing.Size(70, 4);
             this.BuyFromStationPrice.Name = "BuyFromStationPrice";
             this.BuyFromStationPrice.Size = new System.Drawing.Size(70, 20);
             this.BuyFromStationPrice.TabIndex = 2;
             this.BuyFromStationPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.BuyFromStationPrice.ThousandsSeparator = false;
+            this.BuyFromStationPrice.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.BuyFromStationPrice.WarningColor = System.Drawing.Color.Gold;
+            this.BuyFromStationPrice.WarningValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             // 
             // SellToStationPrice
             // 
+            this.SellToStationPrice.AutoValidate = false;
+            this.SellToStationPrice.AutoValidationTime = 0;
+            this.SellToStationPrice.DecimalPlaces = 0;
             this.SellToStationPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SellToStationPrice.EnableErrorValue = false;
+            this.SellToStationPrice.EnableWarningValue = false;
+            this.SellToStationPrice.ErrorColor = System.Drawing.Color.OrangeRed;
+            this.SellToStationPrice.ErrorValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.SellToStationPrice.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.SellToStationPrice.InterceptArrowKeys = true;
             this.SellToStationPrice.Location = new System.Drawing.Point(59, 3);
-            this.SellToStationPrice.Mask = "99999";
+            this.SellToStationPrice.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.SellToStationPrice.Minimum = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.SellToStationPrice.MinimumSize = new System.Drawing.Size(50, 4);
             this.SellToStationPrice.Name = "SellToStationPrice";
             this.SellToStationPrice.Size = new System.Drawing.Size(50, 20);
             this.SellToStationPrice.TabIndex = 1;
             this.SellToStationPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.SellToStationPrice.ThousandsSeparator = false;
+            this.SellToStationPrice.Value = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.SellToStationPrice.WarningColor = System.Drawing.Color.Gold;
+            this.SellToStationPrice.WarningValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             // 
             // PlaceHolderLabel
             // 
@@ -124,7 +315,7 @@
             this.PlaceHolderLabel.Location = new System.Drawing.Point(323, 0);
             this.PlaceHolderLabel.Name = "PlaceHolderLabel";
             this.PlaceHolderLabel.Size = new System.Drawing.Size(17, 25);
-            this.PlaceHolderLabel.TabIndex = 6;
+            this.PlaceHolderLabel.TabIndex = 5;
             // 
             // MarketEntryLine
             // 
@@ -145,10 +336,10 @@
 
         private System.Windows.Forms.TableLayoutPanel TableLayout;
         private System.Windows.Forms.Label PlaceHolderLabel;
-        public System.Windows.Forms.MaskedTextBox SellToStationPrice;
-        public System.Windows.Forms.MaskedTextBox Supply;
-        public System.Windows.Forms.MaskedTextBox Demand;
-        public System.Windows.Forms.MaskedTextBox BuyFromStationPrice;
-        public System.Windows.Forms.MaskedTextBox GalacticAverage;
+        public Common.NumericTextBox SellToStationPrice;
+        public Common.NumericTextBox Supply;
+        public Common.NumericTextBox Demand;
+        public Common.NumericTextBox BuyFromStationPrice;
+        public Common.NumericTextBox GalacticAverage;
     }
 }

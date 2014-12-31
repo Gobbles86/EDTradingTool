@@ -41,10 +41,17 @@ namespace EDTradingTool.Core
         void UpdateObject<T>(T dataSet) where T : IEntity;
 
         /// <summary>
-        /// Hanles the removal of an object.
+        /// Handles the removal of an object.
         /// </summary>
         /// <typeparam name="T">The type of the entity object to remove.</typeparam>
         /// <param name="dataSet">The object to remove.</param>
         void RemoveObject<T>(T dataSet) where T : IEntity;
+
+        /// <summary>
+        /// Retrieves the entity manager for the given type.
+        /// </summary>
+        /// <typeparam name="T">The type of the entity the entity manager shall manage.</typeparam>
+        /// <returns>The desired entity manager.</returns>
+        AbstractEntityManager<T> GetEntityManager<T>() where T : IEntity;
     }
 }

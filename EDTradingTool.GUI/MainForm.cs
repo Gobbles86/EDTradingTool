@@ -56,6 +56,9 @@ namespace EDTradingTool.GUI
 
             var marketEntryAdditionMask = new MarketEntryAdditionMask();
             MarketEntryPage.Controls[layoutName].Controls.Add(marketEntryAdditionMask);
+
+            // Simulate a tab index change to apply the Accept Button Logic
+            TabControl_SelectedIndexChanged(this, null);
         }
 
         private void AddAdditionMask<T>(TabPage tabPage, String readableEntityName, List<Type> parentTypes = null, List<string> parentReadableTypeNames = null)

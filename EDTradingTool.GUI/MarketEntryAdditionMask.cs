@@ -21,6 +21,7 @@ namespace EDTradingTool.GUI
         
         private TableLayoutPanel _layout = new TableLayoutPanel() { Dock = DockStyle.Fill };
         private EntityComboBox<Entity.SpaceStation> _spaceStationComboBox = new EntityComboBox<Entity.SpaceStation>() { Dock = DockStyle.Fill };
+        private Button _addButton = new Button() { Text = "Add", Anchor = AnchorStyles.Top | AnchorStyles.Right };
 
         public MarketEntryAdditionMask()
         {
@@ -29,6 +30,8 @@ namespace EDTradingTool.GUI
             this.Dock = DockStyle.Fill;
 
             RebuildMask();
+
+            _addButton.Click += AddButton_Click;
         }
 
         public void Initialize(Core.IEntityHandler entityHandler)
@@ -81,6 +84,8 @@ namespace EDTradingTool.GUI
                 numberOfRows++;
             }
 
+            _layout.Controls.Add(_addButton, 1, numberOfRows);
+            numberOfRows++;
             _layout.Controls.Add(new Label() { Text = String.Empty, Dock = DockStyle.Fill }, 0, numberOfRows);
         }
 
@@ -133,6 +138,59 @@ namespace EDTradingTool.GUI
             layout.Controls.Add(marketEntryLine, 1, row);
 
             _marketEntryLines.Add(commodityType, marketEntryLine);
+        }
+
+        void AddButton_Click(object sender, EventArgs e)
+        {
+            // Check if everything has been entered.
+            if (_spaceStationComboBox.SelectedItem == null) return;
+            
+            var marketEntryManager = _entityHandler.GetEntityManager<Entity.MarketEntry>();
+
+            // Retrieve the Market Entries
+            int createdEntries = 0;
+            int updatedEntries = 0;
+            foreach (var commodityType in _marketEntryLines.Keys)
+            {
+                // skip incomplete Market Entries
+                var marketEntryLine = _marketEntryLines[commodityType];
+                if (!marketEntryLine.IsComplete()) return;
+
+                // Create or reuse a market entry
+                CreateOrUpdateMarketEntry(marketEntryManager, commodityType, marketEntryLine, ref createdEntries, ref updatedEntries);
+
+            }
+
+            MessageBox.Show("Added " + createdEntries + " market entries and updated " + updatedEntries + " entries");
+        }
+
+        private void CreateOrUpdateMarketEntry(
+            Core.AbstractEntityManager<Entity.MarketEntry> marketEntryManager, Entity.CommodityType commodityType, MarketEntryLine marketEntryLine,
+            ref int createdEntries, ref int updatedEntries
+            )
+        {
+            var potentialMatches = marketEntryManager.GetAll().Where(x => x.CommodityType == commodityType);
+            if (potentialMatches.Count() == 0)
+            {
+                _entityHandler.AddObject(
+                    marketEntryLine.CreateMarketEntry(),
+                    commodityType,
+                    ((Entity.SolarSystem)_spaceStationComboBox.SelectedItem)
+                    );
+                createdEntries++;
+            }
+            else
+            {
+                var tempEntry = marketEntryLine.CreateMarketEntry();
+                var marketEntry = potentialMatches.First();
+                marketEntry.SellToStationPrice = tempEntry.SellToStationPrice;
+                marketEntry.BuyFromStationPrice = tempEntry.BuyFromStationPrice;
+                marketEntry.Demand = tempEntry.Demand;
+                marketEntry.Supply = tempEntry.Supply;
+
+                _entityHandler.UpdateObject(marketEntry);
+                updatedEntries++;
+            }
         }
     }
 }
