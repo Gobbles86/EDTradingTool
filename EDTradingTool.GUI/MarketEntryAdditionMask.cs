@@ -209,7 +209,7 @@ namespace EDTradingTool.GUI
             ref int createdEntries, ref int updatedEntries
             )
         {
-            var potentialMatches = marketEntryManager.GetAll().Where(x => x.CommodityType == commodityType);
+            var potentialMatches = marketEntryManager.GetAll().Where(x => x.CommodityType == commodityType && x.SpaceStation == _spaceStationComboBox.SelectedItem);
             if (potentialMatches.Count() == 0)
             {
                 _entityHandler.AddObject(

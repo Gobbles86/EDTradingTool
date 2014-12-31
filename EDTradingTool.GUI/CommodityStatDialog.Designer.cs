@@ -33,6 +33,8 @@
             this.BuyFromStationLabel = new System.Windows.Forms.Label();
             this.SellToStationPriceList = new System.Windows.Forms.ListView();
             this.BuyFromStationPriceList = new System.Windows.Forms.ListView();
+            this.SingleColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.SingleHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,23 +79,37 @@
             // 
             // SellToStationPriceList
             // 
+            this.SellToStationPriceList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.SingleColumn});
             this.SellToStationPriceList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SellToStationPriceList.Location = new System.Drawing.Point(3, 16);
             this.SellToStationPriceList.Name = "SellToStationPriceList";
             this.SellToStationPriceList.Size = new System.Drawing.Size(694, 223);
             this.SellToStationPriceList.TabIndex = 2;
             this.SellToStationPriceList.UseCompatibleStateImageBehavior = false;
-            this.SellToStationPriceList.View = System.Windows.Forms.View.SmallIcon;
+            this.SellToStationPriceList.View = System.Windows.Forms.View.Details;
             // 
             // BuyFromStationPriceList
             // 
+            this.BuyFromStationPriceList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.SingleHeader});
             this.BuyFromStationPriceList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BuyFromStationPriceList.Location = new System.Drawing.Point(3, 258);
             this.BuyFromStationPriceList.Name = "BuyFromStationPriceList";
             this.BuyFromStationPriceList.Size = new System.Drawing.Size(694, 224);
             this.BuyFromStationPriceList.TabIndex = 3;
             this.BuyFromStationPriceList.UseCompatibleStateImageBehavior = false;
-            this.BuyFromStationPriceList.View = System.Windows.Forms.View.SmallIcon;
+            this.BuyFromStationPriceList.View = System.Windows.Forms.View.Details;
+            // 
+            // SingleColumn
+            // 
+            this.SingleColumn.Text = "Stations which sell";
+            this.SingleColumn.Width = 1024;
+            // 
+            // SingleHeader
+            // 
+            this.SingleHeader.Text = "Stations which buy";
+            this.SingleHeader.Width = 1024;
             // 
             // CommodityStatDialog
             // 
@@ -116,6 +132,8 @@
         private System.Windows.Forms.Label BuyFromStationLabel;
         private System.Windows.Forms.ListView SellToStationPriceList;
         private System.Windows.Forms.ListView BuyFromStationPriceList;
+        private System.Windows.Forms.ColumnHeader SingleColumn;
+        private System.Windows.Forms.ColumnHeader SingleHeader;
 
     }
 }
