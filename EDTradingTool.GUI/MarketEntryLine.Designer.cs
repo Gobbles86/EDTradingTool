@@ -30,38 +30,50 @@
         {
             this.components = new System.ComponentModel.Container();
             this.TableLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.LastUpdateLabel = new System.Windows.Forms.Label();
             this.SellToStationPrice = new Common.NumericTextBox(this.components);
             this.BuyFromStationPrice = new Common.NumericTextBox(this.components);
             this.Demand = new Common.NumericTextBox(this.components);
             this.Supply = new Common.NumericTextBox(this.components);
             this.GalacticAverage = new Common.NumericTextBox(this.components);
-            this.LastUpdateLabel = new System.Windows.Forms.Label();
+            this.HighestBuyerLabel = new System.Windows.Forms.Label();
             this.TableLayout.SuspendLayout();
             this.SuspendLayout();
             // 
             // TableLayout
             // 
-            this.TableLayout.ColumnCount = 6;
+            this.TableLayout.ColumnCount = 7;
+            this.TableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.TableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.TableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.TableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.TableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.TableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.TableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TableLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.TableLayout.Controls.Add(this.SellToStationPrice, 0, 0);
             this.TableLayout.Controls.Add(this.BuyFromStationPrice, 1, 0);
             this.TableLayout.Controls.Add(this.Demand, 2, 0);
             this.TableLayout.Controls.Add(this.Supply, 3, 0);
             this.TableLayout.Controls.Add(this.GalacticAverage, 4, 0);
             this.TableLayout.Controls.Add(this.LastUpdateLabel, 5, 0);
+            this.TableLayout.Controls.Add(this.HighestBuyerLabel, 6, 0);
             this.TableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TableLayout.Location = new System.Drawing.Point(0, 0);
             this.TableLayout.Name = "TableLayout";
             this.TableLayout.RowCount = 1;
             this.TableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TableLayout.Size = new System.Drawing.Size(343, 25);
+            this.TableLayout.Size = new System.Drawing.Size(886, 25);
             this.TableLayout.TabIndex = 0;
+            // 
+            // LastUpdateLabel
+            // 
+            this.LastUpdateLabel.AutoSize = true;
+            this.LastUpdateLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LastUpdateLabel.Location = new System.Drawing.Point(323, 0);
+            this.LastUpdateLabel.Name = "LastUpdateLabel";
+            this.LastUpdateLabel.Size = new System.Drawing.Size(65, 25);
+            this.LastUpdateLabel.TabIndex = 5;
+            this.LastUpdateLabel.Text = "Last Update";
             // 
             // SellToStationPrice
             // 
@@ -308,14 +320,14 @@
             0,
             0});
             // 
-            // LastUpdateLabel
+            // HighestBuyerLabel
             // 
-            this.LastUpdateLabel.AutoSize = true;
-            this.LastUpdateLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LastUpdateLabel.Location = new System.Drawing.Point(323, 0);
-            this.LastUpdateLabel.Name = "LastUpdateLabel";
-            this.LastUpdateLabel.Size = new System.Drawing.Size(17, 25);
-            this.LastUpdateLabel.TabIndex = 5;
+            this.HighestBuyerLabel.AutoSize = true;
+            this.HighestBuyerLabel.Location = new System.Drawing.Point(394, 0);
+            this.HighestBuyerLabel.Name = "HighestBuyerLabel";
+            this.HighestBuyerLabel.Size = new System.Drawing.Size(73, 13);
+            this.HighestBuyerLabel.TabIndex = 6;
+            this.HighestBuyerLabel.Text = "Highest Buyer";
             // 
             // MarketEntryLine
             // 
@@ -325,7 +337,7 @@
             this.MaximumSize = new System.Drawing.Size(16777215, 25);
             this.MinimumSize = new System.Drawing.Size(0, 25);
             this.Name = "MarketEntryLine";
-            this.Size = new System.Drawing.Size(343, 25);
+            this.Size = new System.Drawing.Size(886, 25);
             this.TableLayout.ResumeLayout(false);
             this.TableLayout.PerformLayout();
             this.ResumeLayout(false);
@@ -341,5 +353,6 @@
         public Common.NumericTextBox Demand;
         public Common.NumericTextBox BuyFromStationPrice;
         public Common.NumericTextBox GalacticAverage;
+        private System.Windows.Forms.Label HighestBuyerLabel;
     }
 }

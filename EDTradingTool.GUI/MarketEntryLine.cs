@@ -12,10 +12,17 @@ namespace EDTradingTool.GUI
 {
     public partial class MarketEntryLine : UserControl
     {
-        public MarketEntryLine()
+        public MarketEntryLine(Entity.CommodityType commodityType)
         {
             InitializeComponent();
 
+            SetupToolTips();
+
+            UpdateHighestBuyer(commodityType);
+        }
+
+        private void SetupToolTips()
+        {
             var toolTip = new ToolTip()
             {
                 AutoPopDelay = 5000,
@@ -23,13 +30,37 @@ namespace EDTradingTool.GUI
                 ReshowDelay = 500,
                 ShowAlways = true
             };
-            
+
             toolTip.SetToolTip(SellToStationPrice, "Sell To Station");
             toolTip.SetToolTip(BuyFromStationPrice, "Buy From Station");
             toolTip.SetToolTip(Demand, "Demand");
             toolTip.SetToolTip(Supply, "Supply");
             toolTip.SetToolTip(GalacticAverage, "Galactic Average");
             toolTip.SetToolTip(LastUpdateLabel, "Last Update");
+            toolTip.SetToolTip(HighestBuyerLabel, "Highest Buy Price");
+        }
+
+        public void UpdateHighestBuyer(Entity.CommodityType commodityType, Entity.SpaceStation currentStation = null)
+        {
+            IEnumerable<Entity.MarketEntry> marketEntries = commodityType.MarketEntries;
+            if (currentStation != null)
+            {
+                // Do not inspect current station
+                marketEntries = marketEntries.Where(x => x.SpaceStation != currentStation);
+            }
+
+            var maximumBuyPrice = marketEntries.Max(x => x.SellToStationPrice);
+
+            if (!maximumBuyPrice.HasValue)
+            {
+                HighestBuyerLabel.Text = String.Empty;
+            }
+            else
+            {
+                var highestEntry = marketEntries.Where(x => x.SellToStationPrice == maximumBuyPrice);
+                HighestBuyerLabel.Text = highestEntry.First().SellToStationPrice.ToString() + ": " + 
+                    highestEntry.First().SpaceStation.Name + " (" + highestEntry.First().SpaceStation.SolarSystem.Name + ")";
+            }
         }
 
         public bool IsComplete()
@@ -93,6 +124,7 @@ namespace EDTradingTool.GUI
             SetTextBoxValue(this.Demand, null);
             SetTextBoxValue(this.Supply, null);
             LastUpdateLabel.Text = String.Empty;
+            HighestBuyerLabel.Text = String.Empty;
         }
     }
 }

@@ -53,10 +53,15 @@ namespace EDTradingTool.GUI
                 marketEntryLine.Clear();
             }
 
-            if (_spaceStationComboBox.SelectedItem == null) { return; }
-
             var currentSpaceStation = (Entity.SpaceStation)_spaceStationComboBox.SelectedItem;
 
+            foreach (var commodityType in _marketEntryLines.Keys)
+            {
+                _marketEntryLines[commodityType].UpdateHighestBuyer(commodityType, currentSpaceStation);
+            }
+
+            if (currentSpaceStation == null) { return; }
+            
             foreach (var marketEntry in currentSpaceStation.MarketEntries)
             {
                 if (_marketEntryLines.ContainsKey(marketEntry.CommodityType))
@@ -172,7 +177,7 @@ namespace EDTradingTool.GUI
                 Dock = DockStyle.Fill,
                 AutoSize = true
             };
-            var marketEntryLine = new MarketEntryLine() { Dock = DockStyle.Fill };
+            var marketEntryLine = new MarketEntryLine(commodityType) { Dock = DockStyle.Fill };
 
             layout.Controls.Add(commodityTypeLabel, 0, row);
             layout.Controls.Add(marketEntryLine, 1, row);
