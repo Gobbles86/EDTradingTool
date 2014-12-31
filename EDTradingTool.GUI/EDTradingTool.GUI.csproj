@@ -41,6 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommodityStatDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommodityStatDialog.Designer.cs">
+      <DependentUpon>CommodityStatDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommodityTypeStatsHandler.cs" />
     <Compile Include="EntityAdditionMask.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -92,6 +99,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CommodityStatDialog.resx">
+      <DependentUpon>CommodityStatDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EntityAdditionMask.resx">
       <DependentUpon>EntityAdditionMask.cs</DependentUpon>
     </EmbeddedResource>

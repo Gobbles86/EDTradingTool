@@ -14,10 +14,14 @@ namespace EDTradingTool.GUI
     public partial class MainForm : Form
     {
         private Core.IEntityHandler _entityHandler;
+        private CommodityTypeStatsHandler _statsHandler;
 
-        public MainForm()
+        public MainForm(CommodityTypeStatsHandler statsHandler)
         {
             InitializeComponent();
+
+            _statsHandler = statsHandler;
+            EntityTreeView.TreeView.NodeMouseDoubleClick += statsHandler.OnCommodityTypeDoubleClick;
 
             var layoutName = "Layout";
 
