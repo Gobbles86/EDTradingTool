@@ -77,5 +77,14 @@ namespace EDTradingTool.GUI
                 textBox.Text = String.Empty;
             }
         }
+
+        public void Clear()
+        {
+            SetTextBoxValue(this.SellToStationPrice, null);
+            SetTextBoxValue(this.BuyFromStationPrice, null);
+            SetTextBoxValue(this.Demand, null);
+            SetTextBoxValue(this.Supply, null);
+            LastUpdateLabel.Text = String.Empty;
+        }
     }
 }

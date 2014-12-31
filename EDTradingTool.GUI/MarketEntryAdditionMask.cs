@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Common;
 
 namespace EDTradingTool.GUI
 {
@@ -46,11 +47,13 @@ namespace EDTradingTool.GUI
         /// <param name="e">Unused.</param>
         private void SpaceStationComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_spaceStationComboBox.SelectedItem == null)
+            // Clear any text boxes
+            foreach (var marketEntryLine in _marketEntryLines.Values)
             {
-                RebuildMask();
-                return;
+                marketEntryLine.Clear();
             }
+
+            if (_spaceStationComboBox.SelectedItem == null) { return; }
 
             var currentSpaceStation = (Entity.SpaceStation)_spaceStationComboBox.SelectedItem;
 
@@ -103,6 +106,8 @@ namespace EDTradingTool.GUI
 
         private void RebuildMask()
         {
+            this.SuspendDrawing();
+
             _layout.Controls.Clear();
             this.Controls.Clear();
             _marketEntryLines.Clear();
@@ -120,6 +125,8 @@ namespace EDTradingTool.GUI
             _layout.Controls.Add(_addButton, 1, numberOfRows);
             numberOfRows++;
             _layout.Controls.Add(new Label() { Text = String.Empty, Dock = DockStyle.Fill }, 0, numberOfRows);
+
+            this.ResumeDrawing();
         }
 
         private void SetupInitialLayout()
