@@ -23,9 +23,9 @@ namespace EDTradingTool.GUI
             var commodityType = (Entity.CommodityType)entityTreeNode.DataSet;
 
             var sellToStationEntries = commodityType.MarketEntries.Where(x => x.SellToStationPrice.HasValue)
-                                                                  .OrderByDescending(x => x.SellToStationPrice).Take(10);
+                                                                  .OrderByDescending(x => x.SellToStationPrice);
             var buyFromStationEntries = commodityType.MarketEntries.Where(x => x.BuyFromStationPrice.HasValue)
-                                                                   .OrderBy(x => x.BuyFromStationPrice).Take(10);
+                                                                   .OrderBy(x => x.BuyFromStationPrice);
 
             new CommodityStatDialog(commodityType.Name, sellToStationEntries, buyFromStationEntries).Show();
         }
