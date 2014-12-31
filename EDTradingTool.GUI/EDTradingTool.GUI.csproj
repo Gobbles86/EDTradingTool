@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ObjectListView">
+      <HintPath>..\packages\ObjectListView.Official.2.8.0\lib\net20\ObjectListView.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -81,8 +84,16 @@
     <Compile Include="MarketEntryLine.Designer.cs">
       <DependentUpon>MarketEntryLine.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProfitEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EntityTreeNode.cs" />
+    <Compile Include="SpaceStationCommodityDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SpaceStationCommodityDialog.Designer.cs">
+      <DependentUpon>SpaceStationCommodityDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SpaceStationStatsHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
@@ -117,8 +128,13 @@
     <EmbeddedResource Include="MarketEntryLine.resx">
       <DependentUpon>MarketEntryLine.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SpaceStationCommodityDialog.resx">
+      <DependentUpon>SpaceStationCommodityDialog.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

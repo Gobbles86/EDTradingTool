@@ -46,6 +46,8 @@ namespace EDTradingTool.GUI
 
         public void OnDataSetRemoved(T dataSet)
         {
+            if (!Items.Contains(dataSet)) return;
+
             Items.Remove(dataSet);
         }
     }
