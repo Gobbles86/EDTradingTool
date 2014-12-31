@@ -99,7 +99,7 @@
             this.GalacticAverage.Size = new System.Drawing.Size(50, 20);
             this.GalacticAverage.TabIndex = 0;
             this.GalacticAverage.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.GalacticAverage.ThousandsSeparator = false;
+            this.GalacticAverage.ThousandsSeparator = true;
             this.GalacticAverage.Value = new decimal(new int[] {
             0,
             0,
@@ -148,7 +148,7 @@
             this.Supply.Size = new System.Drawing.Size(50, 20);
             this.Supply.TabIndex = 4;
             this.Supply.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.Supply.ThousandsSeparator = false;
+            this.Supply.ThousandsSeparator = true;
             this.Supply.Value = new decimal(new int[] {
             0,
             0,
@@ -197,7 +197,7 @@
             this.Demand.Size = new System.Drawing.Size(70, 20);
             this.Demand.TabIndex = 3;
             this.Demand.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.Demand.ThousandsSeparator = false;
+            this.Demand.ThousandsSeparator = true;
             this.Demand.Value = new decimal(new int[] {
             0,
             0,
@@ -246,7 +246,7 @@
             this.BuyFromStationPrice.Size = new System.Drawing.Size(70, 20);
             this.BuyFromStationPrice.TabIndex = 2;
             this.BuyFromStationPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.BuyFromStationPrice.ThousandsSeparator = false;
+            this.BuyFromStationPrice.ThousandsSeparator = true;
             this.BuyFromStationPrice.Value = new decimal(new int[] {
             0,
             0,
@@ -295,7 +295,7 @@
             this.SellToStationPrice.Size = new System.Drawing.Size(50, 20);
             this.SellToStationPrice.TabIndex = 1;
             this.SellToStationPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.SellToStationPrice.ThousandsSeparator = false;
+            this.SellToStationPrice.ThousandsSeparator = true;
             this.SellToStationPrice.Value = new decimal(new int[] {
             0,
             0,

@@ -33,10 +33,8 @@ namespace EDTradingTool.GUI
 
         public bool IsComplete()
         {
-            return SellToStationPrice.TextLength > 0 &&
-                   BuyFromStationPrice.TextLength > 0 &&
-                   Demand.TextLength > 0 &&
-                   Supply.TextLength > 0;
+            return SellToStationPrice.Value > 0 && Demand.Value > 0 ||
+                   BuyFromStationPrice.Value > 0 && Supply.Value > 0;
         }
 
         public Entity.MarketEntry CreateMarketEntry()

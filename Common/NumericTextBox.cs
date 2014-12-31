@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Globalization;
 
 namespace Common
 {
@@ -352,7 +353,7 @@ namespace Common
 
             string s;
             if (ThousandsSeparator)
-                s = String.Format("{0:0,0" + dec + "}", Value);
+                s = String.Format("{0:#,0" + dec + "}", Value);
             else
                 s = String.Format("{0:0" + dec + "}", Value);
 

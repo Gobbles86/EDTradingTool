@@ -154,7 +154,7 @@ namespace EDTradingTool.GUI
             {
                 // skip incomplete Market Entries
                 var marketEntryLine = _marketEntryLines[commodityType];
-                if (!marketEntryLine.IsComplete()) return;
+                if (!marketEntryLine.IsComplete()) continue;
 
                 // Create or reuse a market entry
                 CreateOrUpdateMarketEntry(marketEntryManager, commodityType, marketEntryLine, ref createdEntries, ref updatedEntries);
@@ -175,7 +175,7 @@ namespace EDTradingTool.GUI
                 _entityHandler.AddObject(
                     marketEntryLine.CreateMarketEntry(),
                     commodityType,
-                    ((Entity.SolarSystem)_spaceStationComboBox.SelectedItem)
+                    ((Entity.SpaceStation)_spaceStationComboBox.SelectedItem)
                     );
                 createdEntries++;
             }
