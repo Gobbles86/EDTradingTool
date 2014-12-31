@@ -190,26 +190,59 @@ namespace EDTradingTool.GUI
             // Retrieve the Market Entries
             int createdEntries = 0;
             int updatedEntries = 0;
+            int removedEntries = 0;
+            int skippedEntries = 0;
             foreach (var commodityType in _marketEntryLines.Keys)
             {
-                // skip incomplete Market Entries
                 var marketEntryLine = _marketEntryLines[commodityType];
-                if (!marketEntryLine.IsComplete()) continue;
 
-                // Create or reuse a market entry
-                CreateOrUpdateMarketEntry(marketEntryManager, commodityType, marketEntryLine, ref createdEntries, ref updatedEntries);
+                // skip lines which are neither empty nor complete (i.e. incomplete)
+                if (!marketEntryLine.IsEmpty() && !marketEntryLine.IsComplete())
+                {
+                    skippedEntries++;
+                    continue;
+                }
+
+                // Add, Update or Delete the market entry
+                CreateUpdateOrDeleteMarketEntry(
+                    marketEntryManager, commodityType, marketEntryLine,
+                    ref createdEntries, ref updatedEntries, ref removedEntries, ref skippedEntries
+                    );
 
             }
 
-            MessageBox.Show("Added " + createdEntries + " market entries and updated " + updatedEntries + " entries");
+            MessageBox.Show(String.Format(
+                "{0} entries were added\n" +
+                "{1} entries were updated\n" + 
+                "{2} entries were removed\n" + 
+                "{3} entries were skipped",
+                createdEntries, updatedEntries, removedEntries, skippedEntries
+                ));
         }
 
-        private void CreateOrUpdateMarketEntry(
+        private void CreateUpdateOrDeleteMarketEntry(
             Core.AbstractEntityManager<Entity.MarketEntry> marketEntryManager, Entity.CommodityType commodityType, MarketEntryLine marketEntryLine,
-            ref int createdEntries, ref int updatedEntries
+            ref int createdEntries, ref int updatedEntries, ref int removedEntries, ref int skippedEntries
             )
         {
             var potentialMatches = marketEntryManager.GetAll().Where(x => x.CommodityType == commodityType && x.SpaceStation == _spaceStationComboBox.SelectedItem);
+
+            if (marketEntryLine.IsEmpty())
+            {
+                // If there are no market entires for the current commodity type and space stations, skip this line
+                if (potentialMatches.Count() == 0)
+                {
+                    skippedEntries++;
+                    return;
+                }
+
+                // Otherwise: Delete the potential match (should only be one)
+                marketEntryManager.RemoveObject(potentialMatches.First());
+                removedEntries++;
+                return;
+            }
+
+            // Else: If there is a matching entry, update that one, otherwise create a new one
             if (potentialMatches.Count() == 0)
             {
                 _entityHandler.AddObject(

@@ -103,12 +103,12 @@
             // 
             // SingleColumn
             // 
-            this.SingleColumn.Text = "Stations which sell";
+            this.SingleColumn.Text = "Stations which buy";
             this.SingleColumn.Width = 1024;
             // 
             // SingleHeader
             // 
-            this.SingleHeader.Text = "Stations which buy";
+            this.SingleHeader.Text = "Stations which sell";
             this.SingleHeader.Width = 1024;
             // 
             // CommodityStatDialog

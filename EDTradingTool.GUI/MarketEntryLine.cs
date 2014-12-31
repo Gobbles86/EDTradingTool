@@ -38,6 +38,14 @@ namespace EDTradingTool.GUI
                    BuyFromStationPrice.Value > 0 && Supply.Value > 0;
         }
 
+        public bool IsEmpty()
+        {
+            return SellToStationPrice.Value == 0 &&
+                   BuyFromStationPrice.Value == 0 &&
+                   Demand.Value == 0 &&
+                   Supply.Value == 0;
+        }
+
         public Entity.MarketEntry CreateMarketEntry()
         {
             return new Entity.MarketEntry()
