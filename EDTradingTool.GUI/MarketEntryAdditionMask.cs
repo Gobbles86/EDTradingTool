@@ -132,6 +132,8 @@ namespace EDTradingTool.GUI
             _layout.Controls.Add(new Label() { Text = String.Empty, Dock = DockStyle.Fill }, 0, numberOfRows);
 
             this.ResumeDrawing();
+
+            SpaceStationComboBox_SelectedIndexChanged(null, null);
         }
 
         private void SetupInitialLayout()
