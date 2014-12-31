@@ -43,5 +43,17 @@ namespace EDTradingTool.Entity
             if (SpaceStation != null) parents.Add(SpaceStation);
             return parents;
         }
+
+        public override bool Equals(object other)
+        {
+            if (!this.GetType().IsAssignableFrom(other.GetType())) return false;
+
+            var otherEntry = (Entity.MarketEntry)other;
+
+            return this.SellToStationPrice.Equals(otherEntry.SellToStationPrice) &&
+                   this.BuyFromStationPrice.Equals(otherEntry.BuyFromStationPrice) &&
+                   this.Supply.Equals(otherEntry.Supply) &&
+                   this.Demand.Equals(otherEntry.Demand);
+        }
     }
 }

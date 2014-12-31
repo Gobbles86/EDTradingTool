@@ -216,6 +216,10 @@ namespace EDTradingTool.GUI
             {
                 var tempEntry = marketEntryLine.CreateMarketEntry();
                 var marketEntry = potentialMatches.First();
+
+                // skip if nothing must be updated
+                if (tempEntry.Equals(marketEntry)) return;
+
                 marketEntry.SellToStationPrice = tempEntry.SellToStationPrice;
                 marketEntry.BuyFromStationPrice = tempEntry.BuyFromStationPrice;
                 marketEntry.Demand = tempEntry.Demand;
