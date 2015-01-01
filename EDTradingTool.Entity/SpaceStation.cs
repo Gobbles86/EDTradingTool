@@ -27,9 +27,13 @@ namespace EDTradingTool.Entity
         [Reference]
         public Federation Federation { get; set; }
 
+        [Reference]
+        public List<JumpConnection> JumpConnections { get; set; }
+
         public SpaceStation()
         {
             MarketEntries = new List<MarketEntry>();
+            JumpConnections = new List<JumpConnection>();
         }
 
         public override IEnumerable<Core.IEntity> Children()

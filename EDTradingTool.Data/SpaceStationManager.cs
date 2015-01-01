@@ -21,6 +21,7 @@ namespace EDTradingTool.Data
         };
 
         private Core.AbstractEntityManager<Entity.MarketEntry> _marketEntryManager;
+        private Core.AbstractEntityManager<Entity.JumpConnection> _jumpConnectionManager;
 
         public SpaceStationManager(Core.IEntityAccess entityAccess, Core.AbstractEntityManager<Entity.MarketEntry> marketEntryManager)
             : base(entityAccess)
@@ -85,6 +86,10 @@ namespace EDTradingTool.Data
             while (spaceStation.MarketEntries.Count > 0)
             {
                 _marketEntryManager.RemoveObject(spaceStation.MarketEntries.First());
+            }
+            while (spaceStation.JumpConnections.Count > 0)
+            {
+                _jumpConnectionManager.RemoveObject(spaceStation.JumpConnections.First());
             }
 
             base.RemoveObject(spaceStation);

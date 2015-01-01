@@ -28,6 +28,7 @@ namespace EDTradingTool.Data
             typeof(Entity.SolarSystem),
             typeof(Entity.Federation),
             typeof(Entity.SpaceStation),
+            typeof(Entity.JumpConnection),
             typeof(Entity.CommodityGroup),
             typeof(Entity.CommodityType),
             typeof(Entity.MarketEntry)
