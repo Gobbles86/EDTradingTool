@@ -28,6 +28,7 @@ namespace EDTradingTool.GUI
         public void OnInitialObjectsLoaded(List<T> objects)
         {
             Items.Clear();
+            Items.Add(String.Empty);
             foreach(var dataSet in objects)
             {
                 OnDataSetAdded(dataSet, null);

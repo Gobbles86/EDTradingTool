@@ -119,7 +119,7 @@ namespace EDTradingTool.GUI
             if (_entityTextBox.Text.Length == 0) return;
             foreach (var parentComboBox in _parentComboBoxDict.Values)
             {
-                if (parentComboBox.SelectedItem == null) return;
+                if (parentComboBox.SelectedItem == null || String.IsNullOrEmpty(parentComboBox.SelectedItem.ToString())) return;
             }
 
             var dataSet = new T()

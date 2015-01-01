@@ -53,7 +53,7 @@ namespace EDTradingTool.GUI
                 marketEntryLine.Clear();
             }
 
-            var currentSpaceStation = (Entity.SpaceStation)_spaceStationComboBox.SelectedItem;
+            var currentSpaceStation = _spaceStationComboBox.SelectedItem as Entity.SpaceStation;
 
             foreach (var commodityType in _marketEntryLines.Keys)
             {
@@ -190,7 +190,7 @@ namespace EDTradingTool.GUI
         void AddButton_Click(object sender, EventArgs e)
         {
             // Check if everything has been entered.
-            if (_spaceStationComboBox.SelectedItem == null) return;
+            if (_spaceStationComboBox.SelectedItem == null || _spaceStationComboBox.SelectedIndex == 0) return;
             
             var marketEntryManager = _entityHandler.GetEntityManager<Entity.MarketEntry>();
 

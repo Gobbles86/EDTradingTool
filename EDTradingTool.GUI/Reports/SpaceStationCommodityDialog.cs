@@ -23,6 +23,9 @@ namespace EDTradingTool.GUI.Reports
         {
             InitializeComponent();
 
+            // Local Station column is not used here
+            this.ProfitView.ProfitListView.Columns.Remove(this.ProfitView.LocalStationColumn);
+
             var remoteSpaceStationComboBox = new EntityComboBox<Entity.SpaceStation>()
             {
                 Dock = DockStyle.Fill
@@ -37,18 +40,19 @@ namespace EDTradingTool.GUI.Reports
 
             _localStation = localStation;
 
-            UpdateLabelText(localStation, null);
+            // Simulate a selection
+            RemoteSpaceStationComboBox_SelectedIndexChanged(remoteSpaceStationComboBox, null);
         }
 
         private void RemoteSpaceStationComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.ProfitListView.ClearObjects();
+            this.ProfitView.ProfitListView.ClearObjects();
 
-            var remoteStation = (Entity.SpaceStation)((ComboBox)sender).SelectedItem;
+            var remoteStation = ((ComboBox)sender).SelectedItem as Entity.SpaceStation;
             
             UpdateLabelText(_localStation, remoteStation);
 
-            this.ProfitListView.AddObjects(
+            this.ProfitView.ProfitListView.AddObjects(
                 ProfitCalculator.CreateProfitList(_localStation, remoteStation)
                 );
         }
