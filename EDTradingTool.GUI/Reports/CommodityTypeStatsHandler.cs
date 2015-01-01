@@ -15,10 +15,10 @@ namespace EDTradingTool.GUI.Reports
     {
         public void OnCommodityTypeDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            var entityTreeNode = (EntityTreeNode)e.Node;
+            var entityTreeNode = e.Node as EntityTreeNode;
 
             // Handle only Commodity Types
-            if (entityTreeNode.DataSet == null || entityTreeNode.DataSet.GetType() != typeof(Entity.CommodityType)) return;
+            if (entityTreeNode == null || entityTreeNode.DataSet == null || entityTreeNode.DataSet.GetType() != typeof(Entity.CommodityType)) return;
 
             var commodityType = (Entity.CommodityType)entityTreeNode.DataSet;
 

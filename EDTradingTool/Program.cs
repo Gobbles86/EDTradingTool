@@ -55,7 +55,9 @@ namespace EDTradingTool
             
             // Create a GUI
             var mainForm = new GUI.MainForm(
-                new GUI.Reports.CommodityTypeStatsHandler(), new GUI.Reports.SpaceStationStatsHandler(controller)
+                new GUI.Reports.CommodityTypeStatsHandler(), 
+                new GUI.Reports.SpaceStationStatsHandler(controller),
+                new GUI.Reports.CommodityGroupStatsHandler(controller)
                 );
             mainForm.Initialize(controller);
             controller.Initialize(entityAccess);

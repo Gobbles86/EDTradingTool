@@ -18,10 +18,10 @@ namespace EDTradingTool.GUI.Reports
 
         public void OnTreeNodeDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            var entityTreeNode = (EntityTreeNode)e.Node;
+            var entityTreeNode = e.Node as EntityTreeNode;
 
             // Handle only Space Station Nodes
-            if (entityTreeNode.DataSet == null || entityTreeNode.DataSet.GetType() != typeof(Entity.SpaceStation)) return;
+            if (entityTreeNode == null || entityTreeNode.DataSet == null || entityTreeNode.DataSet.GetType() != typeof(Entity.SpaceStation)) return;
 
             new SpaceStationCommodityDialog((Entity.SpaceStation)entityTreeNode.DataSet, _entityHandler).Show();
         }

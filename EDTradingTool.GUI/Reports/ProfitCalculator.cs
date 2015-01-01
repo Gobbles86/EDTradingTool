@@ -51,7 +51,7 @@ namespace EDTradingTool.GUI.Reports
             return profitList;
         }
 
-        public static List<ProfitEntry> CreateGlobalProfitList(List<Entity.CommodityGroup> commodityGroups)
+        public static List<ProfitEntry> CreateGlobalProfitList(IEnumerable<Entity.CommodityGroup> commodityGroups)
         {
             var profitList = new List<ProfitEntry>();
 
@@ -111,8 +111,9 @@ namespace EDTradingTool.GUI.Reports
         public static Entity.MarketEntry FindBestMarketEntry(Entity.CommodityType commodityType, bool findSeller)
         {
             Func<Entity.MarketEntry, int?> sortFunction = entry => findSeller ? entry.BuyFromStationPrice : entry.SellToStationPrice;
+            Func<Entity.MarketEntry, bool> hasValueFunction = entry => findSeller ? entry.BuyFromStationPrice.HasValue : entry.SellToStationPrice.HasValue;
 
-            var results = commodityType.MarketEntries.OrderBy(sortFunction);
+            var results = commodityType.MarketEntries.Where(hasValueFunction).OrderBy(sortFunction);
 
             if (results.Count() == 0) return null;
 
@@ -140,6 +141,7 @@ namespace EDTradingTool.GUI.Reports
             if (profitEntry.BuyFromMarketPrice.HasValue && profitEntry.SellToMarketPrice.HasValue)
             {
                 profitEntry.Profit = profitEntry.SellToMarketPrice - profitEntry.BuyFromMarketPrice;
+                profitEntry.ProfitPerInvestment = (int)((double)profitEntry.Profit / (double)profitEntry.BuyFromMarketPrice * 100.0);
             }
 
             return profitEntry;

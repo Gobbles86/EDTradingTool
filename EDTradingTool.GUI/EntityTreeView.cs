@@ -22,9 +22,9 @@ namespace EDTradingTool.GUI
         {
             InitializeComponent();
 
-            SolarSystemNode = new TreeNode() { Text = "Solar Systems" };
-            FederationNode = new TreeNode() { Text = "Federations" };
-            CommodityGroupNode = new TreeNode() { Text = "Commodity Groups" };
+            SolarSystemNode = new TreeNode() { Text = "Solar Systems", Tag = typeof(Entity.SolarSystem).ToString() };
+            FederationNode = new TreeNode() { Text = "Federations", Tag = typeof(Entity.Federation).ToString() };
+            CommodityGroupNode = new TreeNode() { Text = "Commodity Groups", Tag = typeof(Entity.CommodityGroup).ToString() };
 
             this.TreeView.Nodes.AddRange(new TreeNode[] {
                 SolarSystemNode, FederationNode, CommodityGroupNode

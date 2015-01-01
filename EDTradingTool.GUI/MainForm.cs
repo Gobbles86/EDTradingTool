@@ -15,12 +15,17 @@ namespace EDTradingTool.GUI
     {
         private Core.IEntityHandler _entityHandler;
 
-        public MainForm(Reports.CommodityTypeStatsHandler commodityTypeStatsHandler, Reports.SpaceStationStatsHandler spaceStationStatsHandler)
+        public MainForm(
+            Reports.CommodityTypeStatsHandler commodityTypeStatsHandler, 
+            Reports.SpaceStationStatsHandler spaceStationStatsHandler,
+            Reports.CommodityGroupStatsHandler commodityGroupStatsHandler
+            )
         {
             InitializeComponent();
 
             EntityTreeView.TreeView.NodeMouseDoubleClick += commodityTypeStatsHandler.OnCommodityTypeDoubleClick;
             EntityTreeView.TreeView.NodeMouseDoubleClick += spaceStationStatsHandler.OnTreeNodeDoubleClick;
+            EntityTreeView.TreeView.NodeMouseDoubleClick += commodityGroupStatsHandler.OnCommodityGroupNodeDoubleClick;
 
             var layoutName = "Layout";
 

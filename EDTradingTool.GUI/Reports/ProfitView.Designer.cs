@@ -40,6 +40,7 @@
             this.DemandColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.LocalStationColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.RemoteStationColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.ProfitPerInvestmentColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             ((System.ComponentModel.ISupportInitialize)(this.ProfitListView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,6 +57,7 @@
             this.ProfitListView.AllColumns.Add(this.DemandColumn);
             this.ProfitListView.AllColumns.Add(this.LastSellPriceUpdateColumn);
             this.ProfitListView.AllColumns.Add(this.ProfitColumn);
+            this.ProfitListView.AllColumns.Add(this.ProfitPerInvestmentColumn);
             this.ProfitListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.CommodityGroupColumn,
             this.CommodityTypeColumn,
@@ -67,8 +69,10 @@
             this.SellToMarketPriceColumn,
             this.DemandColumn,
             this.LastSellPriceUpdateColumn,
-            this.ProfitColumn});
+            this.ProfitColumn,
+            this.ProfitPerInvestmentColumn});
             this.ProfitListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ProfitListView.FullRowSelect = true;
             this.ProfitListView.Location = new System.Drawing.Point(0, 0);
             this.ProfitListView.Name = "ProfitListView";
             this.ProfitListView.SelectColumnsOnRightClickBehaviour = BrightIdeasSoftware.ObjectListView.ColumnSelectBehaviour.Submenu;
@@ -140,9 +144,13 @@
             // RemoteStationColumn
             // 
             this.RemoteStationColumn.AspectName = "RemoteStation";
-            this.RemoteStationColumn.DisplayIndex = 5;
             this.RemoteStationColumn.Text = "Remote Station";
             this.RemoteStationColumn.Width = 97;
+            // 
+            // ProfitPerInvestmentColumn
+            // 
+            this.ProfitPerInvestmentColumn.AspectName = "ProfitPerInvestment";
+            this.ProfitPerInvestmentColumn.Text = "Profit Per Investment (%)";
             // 
             // ProfitView
             // 
@@ -170,5 +178,6 @@
         public BrightIdeasSoftware.ObjectListView ProfitListView;
         public BrightIdeasSoftware.OLVColumn LocalStationColumn;
         public BrightIdeasSoftware.OLVColumn RemoteStationColumn;
+        private BrightIdeasSoftware.OLVColumn ProfitPerInvestmentColumn;
     }
 }

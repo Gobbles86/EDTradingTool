@@ -22,5 +22,6 @@ namespace EDTradingTool.GUI.Reports
         public DateTime LastSellPriceUpdate { get; set; }
 
         public int? Profit { get; set; }
+        public int? ProfitPerInvestment { get; set; }
     }
 }
