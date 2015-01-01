@@ -84,6 +84,7 @@
     <Compile Include="MarketEntryLine.Designer.cs">
       <DependentUpon>MarketEntryLine.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\ProfitCalculator.cs" />
     <Compile Include="Reports\ProfitEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EntityTreeNode.cs" />

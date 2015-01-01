@@ -48,7 +48,9 @@ namespace EDTradingTool.GUI.Reports
             
             UpdateLabelText(_localStation, remoteStation);
 
-            FillProfitList(BuildLookupHash(_localStation), BuildLookupHash(remoteStation));
+            this.ProfitListView.AddObjects(
+                ProfitCalculator.CreateProfitList(_localStation, remoteStation)
+                );
         }
 
         private void UpdateLabelText(Entity.SpaceStation localStation, Entity.SpaceStation remoteStation)
@@ -66,65 +68,6 @@ namespace EDTradingTool.GUI.Reports
                     localStation.Name, remoteStation.Name
                     );
             }
-        }
-
-        private Dictionary<Entity.CommodityType, Entity.MarketEntry> BuildLookupHash(Entity.SpaceStation spaceStation)
-        {
-            var lookupHash = new Dictionary<Entity.CommodityType, Entity.MarketEntry>();
-
-            if( spaceStation != null )
-            {
-                foreach (var marketEntry in spaceStation.MarketEntries)
-                {
-                    lookupHash.Add(marketEntry.CommodityType, marketEntry);
-                }
-            }
-
-            return lookupHash;
-        }
-
-        private void FillProfitList(
-            Dictionary<Entity.CommodityType, Entity.MarketEntry> localLookupHash,
-            Dictionary<Entity.CommodityType, Entity.MarketEntry> remoteLookupHash
-            )
-        {
-            // Retrieve only those commodity types for which both stations have an entry defined.
-            var allCommodityTypes = localLookupHash.Keys.Intersect(remoteLookupHash.Keys);
-
-            var orderedCommodityGroups = allCommodityTypes.Select(x => x.CommodityGroup)
-                                                          .Distinct()
-                                                          .OrderBy(y => y.Name);
-
-            foreach (var commodityGroup in orderedCommodityGroups)
-            {
-                var orderedCommodityTypes = commodityGroup.CommodityTypes.Intersect(allCommodityTypes)
-                                                                         .OrderBy(x => x.Name);
-                
-                foreach (var commodityType in orderedCommodityTypes)
-                {
-                    AddProfitLine(commodityType, localLookupHash[commodityType], remoteLookupHash[commodityType]);
-                }
-            }
-        }
-
-        private void AddProfitLine(Entity.CommodityType commodityType, Entity.MarketEntry localMarketEntry, Entity.MarketEntry remoteMarketEntry)
-        {
-            var profitEntry = new ProfitEntry()
-            {
-                GroupName = commodityType.CommodityGroup.Name,
-                TypeName = commodityType.Name,
-                BuyFromMarketPrice = localMarketEntry.BuyFromStationPrice,
-                SellToMarketPrice = remoteMarketEntry.SellToStationPrice,
-                LastBuyPriceUpdate = localMarketEntry.LastUpdate,
-                LastSellPriceUpdate = remoteMarketEntry.LastUpdate
-            };
-
-            if (profitEntry.BuyFromMarketPrice.HasValue && profitEntry.SellToMarketPrice.HasValue)
-            {
-                profitEntry.Profit = profitEntry.SellToMarketPrice - profitEntry.BuyFromMarketPrice;
-            }
-
-            this.ProfitListView.AddObject(profitEntry);
         }
     }
 }
