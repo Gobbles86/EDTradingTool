@@ -1,4 +1,4 @@
-﻿namespace EDTradingTool.GUI
+﻿namespace EDTradingTool.GUI.Reports
 {
     partial class SpaceStationCommodityDialog
     {

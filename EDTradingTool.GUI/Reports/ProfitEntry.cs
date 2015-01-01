@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EDTradingTool.GUI
+namespace EDTradingTool.GUI.Reports
 {
     public class ProfitEntry
     {

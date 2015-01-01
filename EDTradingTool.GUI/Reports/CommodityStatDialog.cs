@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace EDTradingTool.GUI
+namespace EDTradingTool.GUI.Reports
 {
     public partial class CommodityStatDialog : Form
     {

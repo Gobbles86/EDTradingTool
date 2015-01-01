@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace EDTradingTool.GUI
+namespace EDTradingTool.GUI.Reports
 {
     /// <summary>
     /// This class is responsible for displaying detailed information about a Commodity Type when a node is double clicked.

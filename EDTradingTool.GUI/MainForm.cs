@@ -15,7 +15,7 @@ namespace EDTradingTool.GUI
     {
         private Core.IEntityHandler _entityHandler;
 
-        public MainForm(CommodityTypeStatsHandler commodityTypeStatsHandler, SpaceStationStatsHandler spaceStationStatsHandler)
+        public MainForm(Reports.CommodityTypeStatsHandler commodityTypeStatsHandler, Reports.SpaceStationStatsHandler spaceStationStatsHandler)
         {
             InitializeComponent();
 
