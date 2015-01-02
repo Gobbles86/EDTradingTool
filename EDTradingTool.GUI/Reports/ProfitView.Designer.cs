@@ -40,6 +40,8 @@
             this.DemandColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.LocalStationColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.RemoteStationColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.LocalSystemColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.RemoteSystemColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.ProfitPerInvestmentColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             ((System.ComponentModel.ISupportInitialize)(this.ProfitListView)).BeginInit();
             this.SuspendLayout();
@@ -49,10 +51,12 @@
             this.ProfitListView.AllColumns.Add(this.CommodityGroupColumn);
             this.ProfitListView.AllColumns.Add(this.CommodityTypeColumn);
             this.ProfitListView.AllColumns.Add(this.LocalStationColumn);
+            this.ProfitListView.AllColumns.Add(this.LocalSystemColumn);
             this.ProfitListView.AllColumns.Add(this.BuyFromMarketPriceColumn);
             this.ProfitListView.AllColumns.Add(this.SupplyColumn);
             this.ProfitListView.AllColumns.Add(this.LastBuyPriceUpdateColumn);
             this.ProfitListView.AllColumns.Add(this.RemoteStationColumn);
+            this.ProfitListView.AllColumns.Add(this.RemoteSystemColumn);
             this.ProfitListView.AllColumns.Add(this.SellToMarketPriceColumn);
             this.ProfitListView.AllColumns.Add(this.DemandColumn);
             this.ProfitListView.AllColumns.Add(this.LastSellPriceUpdateColumn);
@@ -62,10 +66,12 @@
             this.CommodityGroupColumn,
             this.CommodityTypeColumn,
             this.LocalStationColumn,
+            this.LocalSystemColumn,
             this.BuyFromMarketPriceColumn,
             this.SupplyColumn,
             this.LastBuyPriceUpdateColumn,
             this.RemoteStationColumn,
+            this.RemoteSystemColumn,
             this.SellToMarketPriceColumn,
             this.DemandColumn,
             this.LastSellPriceUpdateColumn,
@@ -141,11 +147,23 @@
             this.LocalStationColumn.Text = "Local Station";
             this.LocalStationColumn.Width = 82;
             // 
+            // LocalSystemColumn
+            // 
+            this.LocalSystemColumn.AspectName = "LocalSystem";
+            this.LocalSystemColumn.Text = "Local System";
+            this.LocalSystemColumn.Width = 82;
+            // 
             // RemoteStationColumn
             // 
             this.RemoteStationColumn.AspectName = "RemoteStation";
             this.RemoteStationColumn.Text = "Remote Station";
             this.RemoteStationColumn.Width = 97;
+            // 
+            // RemoteSystemColumn
+            // 
+            this.RemoteSystemColumn.AspectName = "RemoteSystem";
+            this.RemoteSystemColumn.Text = "Remote System";
+            this.RemoteSystemColumn.Width = 82;
             // 
             // ProfitPerInvestmentColumn
             // 
@@ -178,6 +196,8 @@
         public BrightIdeasSoftware.ObjectListView ProfitListView;
         public BrightIdeasSoftware.OLVColumn LocalStationColumn;
         public BrightIdeasSoftware.OLVColumn RemoteStationColumn;
+        public BrightIdeasSoftware.OLVColumn LocalSystemColumn;
+        public BrightIdeasSoftware.OLVColumn RemoteSystemColumn;
         private BrightIdeasSoftware.OLVColumn ProfitPerInvestmentColumn;
     }
 }

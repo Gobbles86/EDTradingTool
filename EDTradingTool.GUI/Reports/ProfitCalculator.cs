@@ -28,8 +28,16 @@ namespace EDTradingTool.GUI.Reports
             Dictionary<Entity.CommodityType, Entity.MarketEntry> remoteLookupHash
             )
         {
-            // Retrieve only those commodity types for which both stations have an entry defined.
-            var allCommodityTypes = localLookupHash.Keys.Intersect(remoteLookupHash.Keys);
+            // Retrieve only those commodity types for which the first station sells and the second station buys
+            var localCommoditiesForSale =
+                localLookupHash.Where(keyValuePair => keyValuePair.Value.BuyFromStationPrice.HasValue && keyValuePair.Value.BuyFromStationPrice > 0)
+                .Select(keyValuePair => keyValuePair.Key);
+
+            var remotelyBoughtCommodities = 
+                remoteLookupHash.Where(keyValuePair => keyValuePair.Value.SellToStationPrice.HasValue && keyValuePair.Value.SellToStationPrice > 0)
+                .Select(keyValuePair => keyValuePair.Key);
+
+            var allCommodityTypes = localCommoditiesForSale.Intersect(remotelyBoughtCommodities);
 
             var orderedCommodityGroups = allCommodityTypes.Select(x => x.CommodityGroup)
                                                           .Distinct()
@@ -130,6 +138,8 @@ namespace EDTradingTool.GUI.Reports
                 TypeName = commodityType.Name,
                 LocalStation = localMarketEntry.SpaceStation,
                 RemoteStation = remoteMarketEntry.SpaceStation,
+                LocalSystem = localMarketEntry.SpaceStation.SolarSystem,
+                RemoteSystem = remoteMarketEntry.SpaceStation.SolarSystem,
                 BuyFromMarketPrice = localMarketEntry.BuyFromStationPrice,
                 SellToMarketPrice = remoteMarketEntry.SellToStationPrice,                
                 Supply = localMarketEntry.Supply,

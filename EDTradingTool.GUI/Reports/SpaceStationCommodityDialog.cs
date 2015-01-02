@@ -25,6 +25,7 @@ namespace EDTradingTool.GUI.Reports
 
             // Local Station column is not used here
             this.ProfitView.ProfitListView.Columns.Remove(this.ProfitView.LocalStationColumn);
+            this.ProfitView.ProfitListView.Columns.Remove(this.ProfitView.LocalSystemColumn);
 
             var remoteSpaceStationComboBox = new EntityComboBox<Entity.SpaceStation>()
             {

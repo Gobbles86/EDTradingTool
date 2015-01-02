@@ -12,11 +12,13 @@ namespace EDTradingTool.GUI.Reports
         public String TypeName { get; set; }
 
         public Entity.SpaceStation LocalStation { get; set; }
+        public Entity.SolarSystem LocalSystem { get; set; }
         public int? BuyFromMarketPrice { get; set; }
         public int? Supply { get; set; }
         public DateTime LastBuyPriceUpdate { get; set; }
 
         public Entity.SpaceStation RemoteStation { get; set; }
+        public Entity.SolarSystem RemoteSystem { get; set; }
         public int? SellToMarketPrice { get; set; }
         public int? Demand { get; set; }
         public DateTime LastSellPriceUpdate { get; set; }
