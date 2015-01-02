@@ -46,7 +46,7 @@ namespace EDTradingTool.GUI.Reports
         private String GetPriceLine(int? price, DateTime lastUpdate, Entity.SpaceStation spaceStation)
         {
             var spaceStationNameAndLocation = String.Format(
-                "{0} ({1} / {2})", spaceStation.Name, spaceStation.SolarSystem.Name
+                "{0} ({1})", spaceStation.Name, spaceStation.SolarSystem.Name
                 );
 
             return String.Format(
