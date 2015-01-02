@@ -1,4 +1,4 @@
-﻿namespace EDTradingTool.GUI
+﻿namespace EDTradingTool.GUI.Input
 {
     partial class MarketEntryAdditionMask
     {

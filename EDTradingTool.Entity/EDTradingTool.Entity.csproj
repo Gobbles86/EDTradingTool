@@ -64,7 +64,6 @@
     <Compile Include="JumpConnection.cs" />
     <Compile Include="MarketEntry.cs" />
     <Compile Include="CommodityType.cs" />
-    <Compile Include="Federation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpaceStation.cs" />
     <Compile Include="SolarSystem.cs" />

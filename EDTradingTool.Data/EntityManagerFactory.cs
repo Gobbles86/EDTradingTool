@@ -16,7 +16,6 @@ namespace EDTradingTool.Data
         public EntityManagerFactory(Core.IEntityAccess entityAccess)
         {
             var marketEntryManager = new MarketEntryManager(entityAccess);
-            var federationManager = new FederationManager(entityAccess);
 
             var commodityTypeManager = new CommodityTypeManager(entityAccess, marketEntryManager);
             var commodityGroupManager = new CommodityGroupManager(entityAccess, commodityTypeManager);
@@ -25,7 +24,6 @@ namespace EDTradingTool.Data
             var solarSystemManager = new SolarSystemManager(entityAccess, spaceStationManager);
 
             _entityManagerStore.Add(marketEntryManager);
-            _entityManagerStore.Add(federationManager);
             _entityManagerStore.Add(commodityTypeManager);
             _entityManagerStore.Add(commodityGroupManager);
             _entityManagerStore.Add(spaceStationManager);

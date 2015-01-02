@@ -63,7 +63,7 @@
     <Compile Include="EntityAccess.cs" />
     <Compile Include="EntityManagerStore.cs" />
     <Compile Include="EntityManagerFactory.cs" />
-    <Compile Include="FederationManager.cs" />
+    <Compile Include="JumpConnectionManager.cs" />
     <Compile Include="MarketEntryManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SolarSystemManager.cs" />

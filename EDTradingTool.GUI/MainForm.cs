@@ -47,12 +47,11 @@ namespace EDTradingTool.GUI
 
             // Add the entity addition masks
             AddAdditionMask<Entity.SolarSystem>(SolarSystemPage, "Solar System");
-            AddAdditionMask<Entity.Federation>(FederationPage, "Federation");
             AddAdditionMask<Entity.SpaceStation>(
                 SpaceStationPage, 
                 "Space Station",
-                new List<Type>() { typeof(Entity.Federation), typeof(Entity.SolarSystem) },
-                new List<string>() { "Federation", "Solar System" }
+                new List<Type>() { typeof(Entity.SolarSystem) },
+                new List<string>() { "Solar System" }
                 );
             AddAdditionMask<Entity.CommodityGroup>(CommodityGroupPage, "Commodity Group");
             AddAdditionMask<Entity.CommodityType>(
@@ -62,7 +61,7 @@ namespace EDTradingTool.GUI
                 new List<string>() { "Commodity Group" }
                 );
 
-            var marketEntryAdditionMask = new MarketEntryAdditionMask();
+            var marketEntryAdditionMask = new Input.MarketEntryAdditionMask();
             MarketEntryPage.Controls[layoutName].Controls.Add(marketEntryAdditionMask);
 
             // Simulate a tab index change to apply the Accept Button Logic
@@ -72,7 +71,7 @@ namespace EDTradingTool.GUI
         private void AddAdditionMask<T>(TabPage tabPage, String readableEntityName, List<Type> parentTypes = null, List<string> parentReadableTypeNames = null)
             where T : Entity.EntityWithIdAndName, new()
         {
-            var entityAdditionMask = new EntityAdditionMask<T>(readableEntityName, parentTypes, parentReadableTypeNames);
+            var entityAdditionMask = new Input.EntityAdditionMask<T>(readableEntityName, parentTypes, parentReadableTypeNames);
             tabPage.Controls["Layout"].Controls.Add(entityAdditionMask);
         }
 

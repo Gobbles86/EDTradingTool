@@ -13,7 +13,6 @@ namespace EDTradingTool.GUI
     public partial class EntityTreeView : UserControl, IRequiresEntityHandler
     {
         protected TreeNode SolarSystemNode { get; set; }
-        protected TreeNode FederationNode { get; set; }
         protected TreeNode CommodityGroupNode { get; set; }
 
         private Core.IEntityHandler _entityHandler;
@@ -23,11 +22,10 @@ namespace EDTradingTool.GUI
             InitializeComponent();
 
             SolarSystemNode = new TreeNode() { Text = "Solar Systems", Tag = typeof(Entity.SolarSystem).ToString() };
-            FederationNode = new TreeNode() { Text = "Federations", Tag = typeof(Entity.Federation).ToString() };
             CommodityGroupNode = new TreeNode() { Text = "Commodity Groups", Tag = typeof(Entity.CommodityGroup).ToString() };
 
             this.TreeView.Nodes.AddRange(new TreeNode[] {
-                SolarSystemNode, FederationNode, CommodityGroupNode
+                SolarSystemNode, CommodityGroupNode
             });
             this.TreeView.Sort();
 
@@ -40,7 +38,6 @@ namespace EDTradingTool.GUI
             
             var treeNodeStore = new EntityTreeNodeStore();
             entityHandler.RegisterEntityWatcher(new EntityWatcher<Entity.SolarSystem>(this.TreeView, treeNodeStore, SolarSystemNode));
-            entityHandler.RegisterEntityWatcher(new EntityWatcher<Entity.Federation>(this.TreeView, treeNodeStore, FederationNode));
             entityHandler.RegisterEntityWatcher(new EntityWatcher<Entity.SpaceStation>(this.TreeView, treeNodeStore));
             entityHandler.RegisterEntityWatcher(new EntityWatcher<Entity.CommodityGroup>(this.TreeView, treeNodeStore, CommodityGroupNode));
             entityHandler.RegisterEntityWatcher(new EntityWatcher<Entity.CommodityType>(this.TreeView, treeNodeStore));

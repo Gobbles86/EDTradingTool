@@ -16,7 +16,6 @@ namespace EDTradingTool.Data
         /// </summary>
         private static readonly Type[] RelatedTypes = new Type[]
         {
-            typeof(Entity.Federation),
             typeof(Entity.SolarSystem)
         };
 
@@ -30,18 +29,16 @@ namespace EDTradingTool.Data
         }
 
         /// <summary>
-        /// Adds the space station to the database and links it with the given Federation and Solar System.
+        /// Adds the space station to the database and links it with the given Solar System.
         /// </summary>
         /// <param name="spaceStation">The space station to add.</param>
-        /// <param name="parentObjects">The related Federation and Solar System to link to (in that order).</param>
+        /// <param name="parentObjects">The related Solar System to link to.</param>
         public override void AddObject(Entity.SpaceStation spaceStation, params Core.IEntity[] parentObjects)
         {
             ValidateParentObjects(parentObjects, RelatedTypes);
 
-            var federation = (Entity.Federation)parentObjects[0];
-            var solarSystem = (Entity.SolarSystem)parentObjects[1];
+            var solarSystem = (Entity.SolarSystem)parentObjects[0];
 
-            spaceStation.FederationId = federation.Id;
             spaceStation.SolarSystemId = solarSystem.Id;
 
             try
@@ -50,20 +47,17 @@ namespace EDTradingTool.Data
             }
             catch
             {
-                spaceStation.Federation = null;
                 spaceStation.SolarSystemId = null;
                 throw;
             }
 
-            // In case of success, link the space station with the federation and solar system.
-            spaceStation.Federation = federation;
+            // In case of success, link the space station with the solar system.
             spaceStation.SolarSystem = solarSystem;
-            federation.SpaceStations.Add(spaceStation);
             solarSystem.SpaceStations.Add(spaceStation);
         }
 
         /// <summary>
-        /// Removes the given space station and also removes it from its solar system and federation.
+        /// Removes the given space station and also removes it from its solar system.
         /// </summary>
         /// <param name="spaceStation">The space station to remove.</param>
         public override void RemoveObject(Entity.SpaceStation spaceStation)
@@ -74,12 +68,6 @@ namespace EDTradingTool.Data
                 spaceStation.SolarSystem.SpaceStations.Remove(spaceStation);
                 spaceStation.SolarSystem = null;
                 spaceStation.SolarSystemId = null;
-            }
-            if (spaceStation.Federation != null)
-            {
-                spaceStation.Federation.SpaceStations.Remove(spaceStation);
-                spaceStation.Federation = null;
-                spaceStation.FederationId = null;
             }
 
             // Let the child handler delete all child data sets.

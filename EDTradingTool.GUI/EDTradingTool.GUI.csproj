@@ -44,6 +44,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Input\JumpConnectionAdditionDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Input\JumpConnectionAdditionDialog.Designer.cs">
+      <DependentUpon>JumpConnectionAdditionDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Input\JumpConnectionMask.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Input\JumpConnectionMask.Designer.cs">
+      <DependentUpon>JumpConnectionMask.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\CommodityGroupStatsHandler.cs" />
     <Compile Include="Reports\CommodityStatDialog.cs">
       <SubType>Form</SubType>
@@ -52,7 +64,7 @@
       <DependentUpon>CommodityStatDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\CommodityTypeStatsHandler.cs" />
-    <Compile Include="EntityAdditionMask.cs">
+    <Compile Include="Input\EntityAdditionMask.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="EntityTreeNodeStore.cs" />
@@ -73,16 +85,16 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MarketEntryAdditionMask.cs">
+    <Compile Include="Input\MarketEntryAdditionMask.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MarketEntryAdditionMask.Designer.cs">
+    <Compile Include="Input\MarketEntryAdditionMask.Designer.cs">
       <DependentUpon>MarketEntryAdditionMask.cs</DependentUpon>
     </Compile>
-    <Compile Include="MarketEntryLine.cs">
+    <Compile Include="Input\MarketEntryLine.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MarketEntryLine.Designer.cs">
+    <Compile Include="Input\MarketEntryLine.Designer.cs">
       <DependentUpon>MarketEntryLine.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\GlobalProfitDialog.cs">
@@ -124,10 +136,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Input\JumpConnectionAdditionDialog.resx">
+      <DependentUpon>JumpConnectionAdditionDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Input\JumpConnectionMask.resx">
+      <DependentUpon>JumpConnectionMask.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\CommodityStatDialog.resx">
       <DependentUpon>CommodityStatDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="EntityAdditionMask.resx">
+    <EmbeddedResource Include="Input\EntityAdditionMask.resx">
       <DependentUpon>EntityAdditionMask.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EntityTreeView.resx">
@@ -136,10 +154,10 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MarketEntryAdditionMask.resx">
+    <EmbeddedResource Include="Input\MarketEntryAdditionMask.resx">
       <DependentUpon>MarketEntryAdditionMask.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MarketEntryLine.resx">
+    <EmbeddedResource Include="Input\MarketEntryLine.resx">
       <DependentUpon>MarketEntryLine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\GlobalProfitDialog.resx">

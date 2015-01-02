@@ -24,7 +24,6 @@ namespace EDTradingTool
         {
             FillDictionary(
                 _entityAccess.GetAll<Entity.SolarSystem>(),
-                _entityAccess.GetAll<Entity.Federation>(),
                 _entityAccess.GetAll<Entity.SpaceStation>(),
                 _entityAccess.GetAll<Entity.CommodityGroup>(),
                 _entityAccess.GetAll<Entity.CommodityType>(),
@@ -53,7 +52,6 @@ namespace EDTradingTool
         {
             var spaceStationDictionary = EntityDictionary[typeof(Entity.SpaceStation)];
             var solarSystemDictionary = EntityDictionary[typeof(Entity.SolarSystem)];
-            var federationDictionary = EntityDictionary[typeof(Entity.Federation)];
 
             foreach (Entity.SpaceStation spaceStation in spaceStationDictionary.Values)
             {
@@ -62,12 +60,6 @@ namespace EDTradingTool
                     var solarSystem = (Entity.SolarSystem)GetDataSet(spaceStation.SolarSystemId.Value, solarSystemDictionary);
                     solarSystem.SpaceStations.Add(spaceStation);
                     spaceStation.SolarSystem = solarSystem;
-                }
-                if (spaceStation.FederationId.HasValue)
-                {
-                    var federation = (Entity.Federation)GetDataSet(spaceStation.FederationId.Value, federationDictionary);
-                    federation.SpaceStations.Add(spaceStation);
-                    spaceStation.Federation = federation;
                 }
             }
         }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Common;
 
-namespace EDTradingTool.GUI
+namespace EDTradingTool.GUI.Input
 {
     public partial class MarketEntryAdditionMask : UserControl, 
         Core.IEntityWatcher<Entity.CommodityType>,

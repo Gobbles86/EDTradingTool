@@ -26,7 +26,6 @@ namespace EDTradingTool.Data
         private static readonly List<Type> _handledTypes = new List<Type>()
         {
             typeof(Entity.SolarSystem),
-            typeof(Entity.Federation),
             typeof(Entity.SpaceStation),
             typeof(Entity.JumpConnection),
             typeof(Entity.CommodityGroup),

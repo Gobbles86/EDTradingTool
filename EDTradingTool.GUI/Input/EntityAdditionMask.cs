@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace EDTradingTool.GUI
+namespace EDTradingTool.GUI.Input
 {
     /// <summary>
     /// This is a generic class for input masks which allow the addition (i.e. creation) of a data set.

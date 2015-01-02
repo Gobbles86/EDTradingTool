@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace EDTradingTool.GUI
+namespace EDTradingTool.GUI.Input
 {
     public partial class MarketEntryLine : UserControl
     {

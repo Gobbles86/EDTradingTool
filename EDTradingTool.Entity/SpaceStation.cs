@@ -14,18 +14,12 @@ namespace EDTradingTool.Entity
     {
         [ForeignKey(typeof(SolarSystem), OnDelete = "SET NULL")]
         public long? SolarSystemId { get; set; }
-
-        [ForeignKey(typeof(Federation), OnDelete = "SET NULL")]
-        public long? FederationId { get; set; }
         
         [Reference]
         public List<MarketEntry> MarketEntries { get; set; }
 
         [Reference]
         public SolarSystem SolarSystem { get; set; }
-
-        [Reference]
-        public Federation Federation { get; set; }
 
         [Reference]
         public List<JumpConnection> JumpConnections { get; set; }
@@ -44,7 +38,6 @@ namespace EDTradingTool.Entity
         public override IEnumerable<Core.IEntity> Parents()
         {
             var parents = new List<Core.IEntity>();
-            if (Federation != null) parents.Add(Federation);
             if (SolarSystem != null) parents.Add(SolarSystem);
             return parents;
         }
