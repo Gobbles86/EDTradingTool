@@ -35,7 +35,6 @@
             this.EntityTreeView = new EDTradingTool.GUI.EntityTreeView();
             this.CommodityGroupPage = new System.Windows.Forms.TabPage();
             this.CommodityTypePage = new System.Windows.Forms.TabPage();
-            this.JumpConnectionPage = new System.Windows.Forms.TabPage();
             this.SolarSystemPage = new System.Windows.Forms.TabPage();
             this.SpaceStationPage = new System.Windows.Forms.TabPage();
             this.MarketEntryPage = new System.Windows.Forms.TabPage();
@@ -98,16 +97,6 @@
             this.CommodityTypePage.Text = "Commodity Types";
             this.CommodityTypePage.UseVisualStyleBackColor = true;
             // 
-            // JumpConnectionPage
-            // 
-            this.JumpConnectionPage.Location = new System.Drawing.Point(4, 22);
-            this.JumpConnectionPage.Name = "JumpConnectionPage";
-            this.JumpConnectionPage.Padding = new System.Windows.Forms.Padding(3);
-            this.JumpConnectionPage.Size = new System.Drawing.Size(546, 352);
-            this.JumpConnectionPage.TabIndex = 6;
-            this.JumpConnectionPage.Text = "Jump Connections";
-            this.JumpConnectionPage.UseVisualStyleBackColor = true;
-            // 
             // SolarSystemPage
             // 
             this.SolarSystemPage.Location = new System.Drawing.Point(4, 22);
@@ -146,7 +135,6 @@
             this.TabControl.Controls.Add(this.MarketEntryPage);
             this.TabControl.Controls.Add(this.SpaceStationPage);
             this.TabControl.Controls.Add(this.SolarSystemPage);
-            this.TabControl.Controls.Add(this.JumpConnectionPage);
             this.TabControl.Controls.Add(this.CommodityTypePage);
             this.TabControl.Controls.Add(this.CommodityGroupPage);
             this.TabControl.Location = new System.Drawing.Point(218, 12);
@@ -179,7 +167,6 @@
         private System.Windows.Forms.ToolStripMenuItem DeleteToolStripMenuItem;
         private System.Windows.Forms.TabPage CommodityGroupPage;
         private System.Windows.Forms.TabPage CommodityTypePage;
-        private System.Windows.Forms.TabPage JumpConnectionPage;
         private System.Windows.Forms.TabPage SolarSystemPage;
         private System.Windows.Forms.TabPage SpaceStationPage;
         private System.Windows.Forms.TabPage MarketEntryPage;

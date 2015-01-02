@@ -20,12 +20,15 @@ namespace EDTradingTool.Data
             var commodityTypeManager = new CommodityTypeManager(entityAccess, marketEntryManager);
             var commodityGroupManager = new CommodityGroupManager(entityAccess, commodityTypeManager);
 
-            var spaceStationManager = new SpaceStationManager(entityAccess, marketEntryManager);
+            var jumpConnectionManager = new JumpConnectionManager(entityAccess);
+            var spaceStationManager = new SpaceStationManager(entityAccess, marketEntryManager, jumpConnectionManager);
             var solarSystemManager = new SolarSystemManager(entityAccess, spaceStationManager);
+
 
             _entityManagerStore.Add(marketEntryManager);
             _entityManagerStore.Add(commodityTypeManager);
             _entityManagerStore.Add(commodityGroupManager);
+            _entityManagerStore.Add(jumpConnectionManager);
             _entityManagerStore.Add(spaceStationManager);
             _entityManagerStore.Add(solarSystemManager);
         }

@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.SpaceStationComboBoxPanel = new System.Windows.Forms.Panel();
-            this.objectListView1 = new BrightIdeasSoftware.ObjectListView();
-            this.RemoveButton = new System.Windows.Forms.Button();
-            this.AddButton = new System.Windows.Forms.Button();
+            this.ListView = new BrightIdeasSoftware.ObjectListView();
             this.SpaceStationName = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.JumpRangeColumn = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
-            ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).BeginInit();
+            this.RemoveButton = new System.Windows.Forms.Button();
+            this.AddButton = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.ListView)).BeginInit();
             this.SuspendLayout();
             // 
             // SpaceStationComboBoxPanel
@@ -42,47 +42,28 @@
             this.SpaceStationComboBoxPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SpaceStationComboBoxPanel.Location = new System.Drawing.Point(3, 3);
-            this.SpaceStationComboBoxPanel.MinimumSize = new System.Drawing.Size(500, 25);
+            this.SpaceStationComboBoxPanel.MinimumSize = new System.Drawing.Size(100, 25);
             this.SpaceStationComboBoxPanel.Name = "SpaceStationComboBoxPanel";
-            this.SpaceStationComboBoxPanel.Size = new System.Drawing.Size(643, 25);
+            this.SpaceStationComboBoxPanel.Size = new System.Drawing.Size(100, 25);
             this.SpaceStationComboBoxPanel.TabIndex = 0;
             // 
-            // objectListView1
+            // ListView
             // 
-            this.objectListView1.AllColumns.Add(this.SpaceStationName);
-            this.objectListView1.AllColumns.Add(this.JumpRangeColumn);
-            this.objectListView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ListView.AllColumns.Add(this.SpaceStationName);
+            this.ListView.AllColumns.Add(this.JumpRangeColumn);
+            this.ListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.objectListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.ListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.SpaceStationName,
             this.JumpRangeColumn});
-            this.objectListView1.Location = new System.Drawing.Point(3, 34);
-            this.objectListView1.Name = "objectListView1";
-            this.objectListView1.Size = new System.Drawing.Size(643, 308);
-            this.objectListView1.TabIndex = 1;
-            this.objectListView1.UseCompatibleStateImageBehavior = false;
-            this.objectListView1.View = System.Windows.Forms.View.Details;
-            // 
-            // RemoveButton
-            // 
-            this.RemoveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.RemoveButton.Location = new System.Drawing.Point(571, 348);
-            this.RemoveButton.Name = "RemoveButton";
-            this.RemoveButton.Size = new System.Drawing.Size(75, 23);
-            this.RemoveButton.TabIndex = 2;
-            this.RemoveButton.Text = "Remove";
-            this.RemoveButton.UseVisualStyleBackColor = true;
-            // 
-            // AddButton
-            // 
-            this.AddButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddButton.Location = new System.Drawing.Point(490, 348);
-            this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(75, 23);
-            this.AddButton.TabIndex = 3;
-            this.AddButton.Text = "Add";
-            this.AddButton.UseVisualStyleBackColor = true;
+            this.ListView.Location = new System.Drawing.Point(3, 34);
+            this.ListView.MinimumSize = new System.Drawing.Size(350, 250);
+            this.ListView.Name = "ListView";
+            this.ListView.Size = new System.Drawing.Size(453, 259);
+            this.ListView.TabIndex = 1;
+            this.ListView.UseCompatibleStateImageBehavior = false;
+            this.ListView.View = System.Windows.Forms.View.Details;
             // 
             // SpaceStationName
             // 
@@ -96,17 +77,40 @@
             this.JumpRangeColumn.Text = "Jump Range";
             this.JumpRangeColumn.Width = 100;
             // 
+            // RemoveButton
+            // 
+            this.RemoveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.RemoveButton.Location = new System.Drawing.Point(381, 299);
+            this.RemoveButton.MinimumSize = new System.Drawing.Size(75, 23);
+            this.RemoveButton.Name = "RemoveButton";
+            this.RemoveButton.Size = new System.Drawing.Size(75, 23);
+            this.RemoveButton.TabIndex = 2;
+            this.RemoveButton.Text = "Remove";
+            this.RemoveButton.UseVisualStyleBackColor = true;
+            // 
+            // AddButton
+            // 
+            this.AddButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.AddButton.Location = new System.Drawing.Point(300, 299);
+            this.AddButton.MinimumSize = new System.Drawing.Size(75, 23);
+            this.AddButton.Name = "AddButton";
+            this.AddButton.Size = new System.Drawing.Size(75, 23);
+            this.AddButton.TabIndex = 3;
+            this.AddButton.Text = "Add";
+            this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
+            // 
             // JumpConnectionMask
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.RemoveButton);
-            this.Controls.Add(this.objectListView1);
+            this.Controls.Add(this.ListView);
             this.Controls.Add(this.SpaceStationComboBoxPanel);
             this.Name = "JumpConnectionMask";
-            this.Size = new System.Drawing.Size(649, 374);
-            ((System.ComponentModel.ISupportInitialize)(this.objectListView1)).EndInit();
+            this.Size = new System.Drawing.Size(459, 325);
+            ((System.ComponentModel.ISupportInitialize)(this.ListView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -114,7 +118,7 @@
         #endregion
 
         private System.Windows.Forms.Panel SpaceStationComboBoxPanel;
-        private BrightIdeasSoftware.ObjectListView objectListView1;
+        private BrightIdeasSoftware.ObjectListView ListView;
         private System.Windows.Forms.Button RemoveButton;
         private System.Windows.Forms.Button AddButton;
         private BrightIdeasSoftware.OLVColumn SpaceStationName;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,8 @@ namespace EDTradingTool.GUI
         {
             this.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.DropDownStyle = ComboBoxStyle.DropDownList;
+            var thisAsComboBox = this as ComboBox;
+            MinimumSize = new Size(100, 0);
         }
 
         public void Initialize(Core.IEntityHandler entityHandler)

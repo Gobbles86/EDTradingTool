@@ -33,7 +33,7 @@
             this.SpaceStation1Label = new System.Windows.Forms.Label();
             this.SpaceStation2Label = new System.Windows.Forms.Label();
             this.JumpRangeLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.SpaceStation1TextBox = new System.Windows.Forms.TextBox();
             this.OKButton = new System.Windows.Forms.Button();
             this.JumpRangeTextBox = new Common.NumericTextBox(this.components);
             this.TableLayout.SuspendLayout();
@@ -47,7 +47,7 @@
             this.TableLayout.Controls.Add(this.SpaceStation1Label, 0, 0);
             this.TableLayout.Controls.Add(this.SpaceStation2Label, 0, 1);
             this.TableLayout.Controls.Add(this.JumpRangeLabel, 0, 2);
-            this.TableLayout.Controls.Add(this.textBox1, 1, 0);
+            this.TableLayout.Controls.Add(this.SpaceStation1TextBox, 1, 0);
             this.TableLayout.Controls.Add(this.OKButton, 1, 3);
             this.TableLayout.Controls.Add(this.JumpRangeTextBox, 1, 2);
             this.TableLayout.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -91,14 +91,14 @@
             this.JumpRangeLabel.TabIndex = 2;
             this.JumpRangeLabel.Text = "Jump Range";
             // 
-            // textBox1
+            // SpaceStation1TextBox
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(92, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(331, 20);
-            this.textBox1.TabIndex = 3;
+            this.SpaceStation1TextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SpaceStation1TextBox.Enabled = false;
+            this.SpaceStation1TextBox.Location = new System.Drawing.Point(92, 3);
+            this.SpaceStation1TextBox.Name = "SpaceStation1TextBox";
+            this.SpaceStation1TextBox.Size = new System.Drawing.Size(331, 20);
+            this.SpaceStation1TextBox.TabIndex = 3;
             // 
             // OKButton
             // 
@@ -109,6 +109,7 @@
             this.OKButton.TabIndex = 5;
             this.OKButton.Text = "OK";
             this.OKButton.UseVisualStyleBackColor = true;
+            this.OKButton.Click += new System.EventHandler(this.OKButton_Click);
             // 
             // JumpRangeTextBox
             // 
@@ -159,6 +160,7 @@
             // 
             // JumpConnectionAdditionDialog
             // 
+            this.AcceptButton = this.OKButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(426, 108);
@@ -181,7 +183,7 @@
         private System.Windows.Forms.Label SpaceStation1Label;
         private System.Windows.Forms.Label SpaceStation2Label;
         private System.Windows.Forms.Label JumpRangeLabel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox SpaceStation1TextBox;
         private System.Windows.Forms.Button OKButton;
         private Common.NumericTextBox JumpRangeTextBox;
     }

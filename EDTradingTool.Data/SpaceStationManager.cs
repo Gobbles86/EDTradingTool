@@ -22,10 +22,15 @@ namespace EDTradingTool.Data
         private Core.AbstractEntityManager<Entity.MarketEntry> _marketEntryManager;
         private Core.AbstractEntityManager<Entity.JumpConnection> _jumpConnectionManager;
 
-        public SpaceStationManager(Core.IEntityAccess entityAccess, Core.AbstractEntityManager<Entity.MarketEntry> marketEntryManager)
+        public SpaceStationManager(
+            Core.IEntityAccess entityAccess, 
+            Core.AbstractEntityManager<Entity.MarketEntry> marketEntryManager,
+            Core.AbstractEntityManager<Entity.JumpConnection> jumpConnectionManager
+            )
             : base(entityAccess)
         {
             _marketEntryManager = marketEntryManager;
+            _jumpConnectionManager = jumpConnectionManager;
         }
 
         /// <summary>

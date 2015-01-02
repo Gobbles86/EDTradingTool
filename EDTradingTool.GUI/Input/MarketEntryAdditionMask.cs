@@ -20,13 +20,17 @@ namespace EDTradingTool.GUI.Input
         private HashSet<Entity.CommodityGroup> _commodityGroups = new HashSet<Entity.CommodityGroup>();
         private Dictionary<Entity.CommodityType, MarketEntryLine> _marketEntryLines = new Dictionary<Entity.CommodityType, MarketEntryLine>();
         
-        private TableLayoutPanel _layout = new TableLayoutPanel() { Dock = DockStyle.Fill };
+        private TableLayoutPanel _layout = new TableLayoutPanel() { Dock = DockStyle.Fill};
         private EntityComboBox<Entity.SpaceStation> _spaceStationComboBox = new EntityComboBox<Entity.SpaceStation>() 
         {
-            Dock = DockStyle.Fill,
-            MaximumSize = new Size(500, 20)
+            Dock = DockStyle.Fill
         };
-        private Button _addButton = new Button() { Text = "Add", Anchor = AnchorStyles.Top | AnchorStyles.Right };
+        private Button _addButton = new Button() 
+        {
+            Text = "Add", 
+            Anchor = AnchorStyles.Top | AnchorStyles.Right, 
+            MinimumSize = new Size(75, 23)
+        };
 
         public MarketEntryAdditionMask()
         {
@@ -133,6 +137,11 @@ namespace EDTradingTool.GUI.Input
 
             this.ResumeDrawing();
 
+            if (Parent != null && Parent.Parent as TabPage != null)
+            {
+                (Parent.Parent as TabPage).AutoScrollMinSize = Common.SubcontrolSizeCalculator.GetMinimumControlSize(Parent.Parent);
+            }
+
             SpaceStationComboBox_SelectedIndexChanged(null, null);
         }
 
@@ -141,7 +150,13 @@ namespace EDTradingTool.GUI.Input
             this.Controls.Add(_layout);
 
             _layout.Controls.Add(
-                new Label() { Text = "Space Station", Dock = DockStyle.Fill, TextAlign = ContentAlignment.MiddleLeft }, 0, 0
+                new Label() { 
+                    Name = "SpaceStationLabel",
+                    Text = "Space Station", 
+                    Dock = DockStyle.Fill, 
+                    TextAlign = ContentAlignment.MiddleLeft,
+                    MinimumSize = new Size(50, 25)
+                }, 0, 0
                 );
             _layout.Controls.Add(_spaceStationComboBox, 1, 0);
         }
@@ -177,7 +192,8 @@ namespace EDTradingTool.GUI.Input
                 Text = commodityType.Name, 
                 TextAlign = ContentAlignment.MiddleLeft, 
                 Dock = DockStyle.Fill,
-                AutoSize = true
+                AutoSize = true,
+                MinimumSize = new Size(50, 25)
             };
             var marketEntryLine = new MarketEntryLine(commodityType) { Dock = DockStyle.Fill };
 

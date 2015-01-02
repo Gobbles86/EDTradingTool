@@ -36,43 +36,83 @@ namespace EDTradingTool.GUI
                 {
                     Dock = DockStyle.Fill,
                     Name = layoutName,
-                    Visible = true
+                    Visible = true,
+                    MinimumSize = new Size(400, 300)
                 };
 
                 tabPage.AutoScroll = true;
-                // TODO TEMP WORKAROUND
-                tabPage.AutoScrollMinSize = new Size(5000, 5000);
                 tabPage.Controls.Add(layout);
             }
 
             // Add the entity addition masks
-            AddAdditionMask<Entity.SolarSystem>(SolarSystemPage, "Solar System");
+            AddAdditionMask<Entity.SolarSystem>(SolarSystemPage, layoutName, "Solar System");
             AddAdditionMask<Entity.SpaceStation>(
                 SpaceStationPage, 
+                layoutName, 
                 "Space Station",
                 new List<Type>() { typeof(Entity.SolarSystem) },
                 new List<string>() { "Solar System" }
                 );
-            AddAdditionMask<Entity.CommodityGroup>(CommodityGroupPage, "Commodity Group");
+            AddAdditionMask<Entity.CommodityGroup>(CommodityGroupPage, layoutName, "Commodity Group");
             AddAdditionMask<Entity.CommodityType>(
                 CommodityTypePage,
+                layoutName, 
                 "Commodity Type",
                 new List<Type>() { typeof(Entity.CommodityGroup) },
                 new List<string>() { "Commodity Group" }
                 );
 
-            var marketEntryAdditionMask = new Input.MarketEntryAdditionMask();
-            MarketEntryPage.Controls[layoutName].Controls.Add(marketEntryAdditionMask);
+            AddMarketEntryAdditionMask(layoutName);
+
+            AddJumpConnectionMask(layoutName);
 
             // Simulate a tab index change to apply the Accept Button Logic
             TabControl_SelectedIndexChanged(this, null);
+
+            this.Shown += MainForm_Shown;
         }
 
-        private void AddAdditionMask<T>(TabPage tabPage, String readableEntityName, List<Type> parentTypes = null, List<string> parentReadableTypeNames = null)
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            foreach (TabPage tabPage in TabControl.TabPages)
+            {
+                tabPage.AutoScrollMinSize = Common.SubcontrolSizeCalculator.GetMinimumControlSize(tabPage);
+            }
+        }
+
+        private void AddMarketEntryAdditionMask(string layoutName)
+        {
+            var marketEntryAdditionMask = new Input.MarketEntryAdditionMask();
+            marketEntryAdditionMask.Dock = DockStyle.Fill;
+            var layout = MarketEntryPage.Controls[layoutName] as TableLayoutPanel;
+            layout.Controls.Add(marketEntryAdditionMask, 0, layout.RowCount);
+            layout.RowCount++;
+        }
+
+        private void AddAdditionMask<T>(TabPage tabPage, string layoutName, String readableEntityName, List<Type> parentTypes = null, List<string> parentReadableTypeNames = null)
             where T : Entity.EntityWithIdAndName, new()
         {
             var entityAdditionMask = new Input.EntityAdditionMask<T>(readableEntityName, parentTypes, parentReadableTypeNames);
-            tabPage.Controls["Layout"].Controls.Add(entityAdditionMask);
+            var layout = tabPage.Controls[layoutName] as TableLayoutPanel;
+            layout.Controls.Add(entityAdditionMask, 0, layout.RowCount);
+            layout.RowCount++;
+            // Add a place holder label
+            layout.Controls.Add(new Label() { Text = string.Empty, Dock = DockStyle.Fill }, 0, layout.RowCount);
+            layout.RowCount++;
+        }
+
+        private void AddJumpConnectionMask(string layoutName)
+        {
+            var jumpConnectionMask = new Input.JumpConnectionMask() { Dock = DockStyle.Fill };
+            var jumpConnectionGroupBox = new GroupBox()
+            {
+                Text = "Jump Connections",
+                Dock = DockStyle.Fill
+            };
+            jumpConnectionGroupBox.Controls.Add(jumpConnectionMask);
+            var tableLayout = SpaceStationPage.Controls[layoutName] as TableLayoutPanel;
+            tableLayout.Controls.Add(jumpConnectionGroupBox, 0, tableLayout.RowCount);
+            tableLayout.RowCount++;
         }
 
         public void Initialize(Core.IEntityHandler entityHandler)
@@ -126,6 +166,7 @@ namespace EDTradingTool.GUI
 
         private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
+            TabControl.SelectedTab.AutoScrollMinSize = Common.SubcontrolSizeCalculator.GetMinimumControlSize(TabControl.SelectedTab);
             var button = FindButton(TabControl.SelectedTab);
 
             if (button != null)

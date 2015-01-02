@@ -30,12 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             this.TableLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.LastUpdateLabel = new System.Windows.Forms.Label();
             this.SellToStationPrice = new Common.NumericTextBox(this.components);
             this.BuyFromStationPrice = new Common.NumericTextBox(this.components);
             this.Demand = new Common.NumericTextBox(this.components);
             this.Supply = new Common.NumericTextBox(this.components);
             this.GalacticAverage = new Common.NumericTextBox(this.components);
+            this.LastUpdateLabel = new System.Windows.Forms.Label();
             this.HighestBuyerLabel = new System.Windows.Forms.Label();
             this.TableLayout.SuspendLayout();
             this.SuspendLayout();
@@ -62,18 +62,8 @@
             this.TableLayout.Name = "TableLayout";
             this.TableLayout.RowCount = 1;
             this.TableLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.TableLayout.Size = new System.Drawing.Size(886, 25);
+            this.TableLayout.Size = new System.Drawing.Size(583, 25);
             this.TableLayout.TabIndex = 0;
-            // 
-            // LastUpdateLabel
-            // 
-            this.LastUpdateLabel.AutoSize = true;
-            this.LastUpdateLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LastUpdateLabel.Location = new System.Drawing.Point(323, 0);
-            this.LastUpdateLabel.Name = "LastUpdateLabel";
-            this.LastUpdateLabel.Size = new System.Drawing.Size(65, 25);
-            this.LastUpdateLabel.TabIndex = 5;
-            this.LastUpdateLabel.Text = "Last Update";
             // 
             // SellToStationPrice
             // 
@@ -320,12 +310,24 @@
             0,
             0});
             // 
+            // LastUpdateLabel
+            // 
+            this.LastUpdateLabel.AutoSize = true;
+            this.LastUpdateLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LastUpdateLabel.Location = new System.Drawing.Point(323, 0);
+            this.LastUpdateLabel.MinimumSize = new System.Drawing.Size(1, 20);
+            this.LastUpdateLabel.Name = "LastUpdateLabel";
+            this.LastUpdateLabel.Size = new System.Drawing.Size(65, 25);
+            this.LastUpdateLabel.TabIndex = 5;
+            this.LastUpdateLabel.Text = "Last Update";
+            // 
             // HighestBuyerLabel
             // 
             this.HighestBuyerLabel.AutoSize = true;
             this.HighestBuyerLabel.Location = new System.Drawing.Point(394, 0);
+            this.HighestBuyerLabel.MinimumSize = new System.Drawing.Size(1, 20);
             this.HighestBuyerLabel.Name = "HighestBuyerLabel";
-            this.HighestBuyerLabel.Size = new System.Drawing.Size(73, 13);
+            this.HighestBuyerLabel.Size = new System.Drawing.Size(73, 20);
             this.HighestBuyerLabel.TabIndex = 6;
             this.HighestBuyerLabel.Text = "Highest Buyer";
             // 
@@ -335,9 +337,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.TableLayout);
             this.MaximumSize = new System.Drawing.Size(16777215, 25);
-            this.MinimumSize = new System.Drawing.Size(0, 25);
+            this.MinimumSize = new System.Drawing.Size(100, 25);
             this.Name = "MarketEntryLine";
-            this.Size = new System.Drawing.Size(886, 25);
+            this.Size = new System.Drawing.Size(583, 25);
             this.TableLayout.ResumeLayout(false);
             this.TableLayout.PerformLayout();
             this.ResumeLayout(false);

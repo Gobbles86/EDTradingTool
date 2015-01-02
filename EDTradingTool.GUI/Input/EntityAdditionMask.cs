@@ -17,7 +17,7 @@ namespace EDTradingTool.GUI.Input
     public class EntityAdditionMask<T> : UserControl, IRequiresEntityHandler where T : Entity.EntityWithIdAndName, new()
     {
         private TableLayoutPanel _tableLayoutPanel = new TableLayoutPanel();
-        private TextBox _entityTextBox = new TextBox();
+        private TextBox _entityTextBox = new TextBox() { MinimumSize = new Size(100, 20) };
 
         /// <summary>
         /// The list of parent types. This is stored separately to presever the order.
@@ -28,6 +28,7 @@ namespace EDTradingTool.GUI.Input
         /// </summary>
         private Dictionary<Type, ComboBox> _parentComboBoxDict = new Dictionary<Type, ComboBox>();
         private Core.IEntityHandler _entityHandler;
+        private GroupBox GroupBox;
 
         private int _numberOfRows = 0;
 
@@ -36,13 +37,17 @@ namespace EDTradingTool.GUI.Input
         {
             InitializeComponent();
 
+            this.GroupBox.Text = String.Format(this.GroupBox.Text, readableEntityName);
+
             this.Dock = DockStyle.Fill;
             this._tableLayoutPanel.Dock = DockStyle.Fill;
-            this.Controls.Add(_tableLayoutPanel);
+            GroupBox.Controls.Add(_tableLayoutPanel);
 
             InitTextBox(readableEntityName);
             InitComboBoxes(parentTypes, parentReadableTypeNames);
             InitAddButton(readableEntityName);
+
+            this.MinimumSize = GroupBox.MinimumSize;
         }
 
         public void Initialize(Core.IEntityHandler entityHandler)
@@ -58,6 +63,7 @@ namespace EDTradingTool.GUI.Input
                 Dock = DockStyle.Fill,
                 Text = readableEntityName,
                 TextAlign = ContentAlignment.MiddleLeft,
+                MinimumSize = new Size(50, 25)
             };
             _entityTextBox.Dock = DockStyle.Fill;
 
@@ -82,12 +88,14 @@ namespace EDTradingTool.GUI.Input
                     Name = parentType.ToString() + "Label",
                     Dock = DockStyle.Fill,
                     Text = readableName,
-                    TextAlign = ContentAlignment.MiddleLeft
+                    TextAlign = ContentAlignment.MiddleLeft,
+                    MinimumSize = new Size(50, 25)
                 };
                 _tableLayoutPanel.Controls.Add(label, 0, _numberOfRows);
 
                 var entityComboBoxType = typeof(EntityComboBox<>);
                 var comboBox = (ComboBox)Activator.CreateInstance(entityComboBoxType.MakeGenericType(new Type[] { parentType }));
+                comboBox.MinimumSize = new Size(100, 25);
                 comboBox.Name = parentType.ToString() + "ComboBox";
                 comboBox.Dock = DockStyle.Fill;
 
@@ -105,7 +113,8 @@ namespace EDTradingTool.GUI.Input
                 Name = "AddButton",
                 Text = "Add " + readableEntityName,
                 Anchor = AnchorStyles.Top | AnchorStyles.Right,
-                AutoSize = true
+                AutoSize = true,
+                MinimumSize = new Size(50, 25)
             };
 
             _tableLayoutPanel.Controls.Add(addButton, 1, _numberOfRows);
@@ -156,10 +165,22 @@ namespace EDTradingTool.GUI.Input
 
         private void InitializeComponent()
         {
+            this.GroupBox = new System.Windows.Forms.GroupBox();
             this.SuspendLayout();
+            // 
+            // GroupBox
+            // 
+            this.GroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GroupBox.Location = new System.Drawing.Point(0, 0);
+            this.GroupBox.Name = "GroupBox";
+            this.GroupBox.Size = new System.Drawing.Size(300, 25);
+            this.GroupBox.TabIndex = 0;
+            this.GroupBox.TabStop = false;
+            this.GroupBox.Text = "New {0}";
             // 
             // EntityAdditionMask
             // 
+            this.Controls.Add(this.GroupBox);
             this.Name = "EntityAdditionMask";
             this.Size = new System.Drawing.Size(300, 25);
             this.ResumeLayout(false);

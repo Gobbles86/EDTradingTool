@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SubcontrolSizeCalculator.cs" />
     <Compile Include="MathsEvaluator.cs" />
     <Compile Include="NumericTextBox.cs">
       <SubType>Component</SubType>
