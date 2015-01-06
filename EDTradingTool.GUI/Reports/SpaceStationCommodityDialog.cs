@@ -19,7 +19,7 @@ namespace EDTradingTool.GUI.Reports
 
         private bool _switch = false;
 
-        public Reports.ProfitEntry MostRecentlySelectedEntry;
+        public Calculation.ProfitEntry MostRecentlySelectedEntry;
 
         /// <summary>
         /// This form displays the profits one can make between two stations.
@@ -67,7 +67,7 @@ namespace EDTradingTool.GUI.Reports
 
         void ProfitListView_DoubleClick(object sender, EventArgs e)
         {
-            MostRecentlySelectedEntry = this.ProfitView.ProfitListView.SelectedItem.RowObject as ProfitEntry;
+            MostRecentlySelectedEntry = this.ProfitView.ProfitListView.SelectedItem.RowObject as Calculation.ProfitEntry;
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
         }
@@ -80,14 +80,14 @@ namespace EDTradingTool.GUI.Reports
 
             _switch = false;
 
-            var profitList = ProfitCalculator.CreateProfitList(_localStation, remoteStation);
+            var profitList = Calculation.ProfitCalculator.CreateProfitList(_localStation, remoteStation);
             if (_maximumCommodityPrice > 0)
             {
                 profitList = profitList.Where(entry => (UInt64)entry.BuyFromMarketPrice.Value < _maximumCommodityPrice).ToList();
             }
             this.ProfitView.ProfitListView.ClearObjects();
             this.ProfitView.ProfitListView.AddObjects(
-                ProfitCalculator.CreateProfitList(_localStation, remoteStation)
+                Calculation.ProfitCalculator.CreateProfitList(_localStation, remoteStation)
                 );
         }
 
@@ -117,13 +117,13 @@ namespace EDTradingTool.GUI.Reports
             if (_switch == false)
             {
                 this.ProfitView.ProfitListView.AddObjects(
-                    ProfitCalculator.CreateProfitList(remoteStation, _localStation)
+                    Calculation.ProfitCalculator.CreateProfitList(remoteStation, _localStation)
                     );
             }
             else
             {
                 this.ProfitView.ProfitListView.AddObjects(
-                    ProfitCalculator.CreateProfitList(_localStation, remoteStation)
+                    Calculation.ProfitCalculator.CreateProfitList(_localStation, remoteStation)
                     );
             }
 

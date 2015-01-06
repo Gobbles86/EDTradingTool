@@ -103,8 +103,6 @@
     <Compile Include="Reports\GlobalProfitDialog.Designer.cs">
       <DependentUpon>GlobalProfitDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\ProfitCalculator.cs" />
-    <Compile Include="Reports\ProfitEntry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EntityTreeNode.cs" />
     <Compile Include="Reports\ProfitView.cs">
@@ -142,6 +140,10 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{09e23edb-1532-41df-9fda-c49973a2983b}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EDTradingTool.Calculation\EDTradingTool.Calculation.csproj">
+      <Project>{5fb5e79a-0331-4e25-941d-0497b022c75a}</Project>
+      <Name>EDTradingTool.Calculation</Name>
     </ProjectReference>
     <ProjectReference Include="..\EDTradingTool.Core\EDTradingTool.Core.csproj">
       <Project>{f927af5d-08db-4a9b-a2b2-aada1d5ea723}</Project>

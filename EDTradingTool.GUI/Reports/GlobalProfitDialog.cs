@@ -17,7 +17,7 @@ namespace EDTradingTool.GUI.Reports
             InitializeComponent();
 
             this.ProfitView.ProfitListView.AddObjects(
-                ProfitCalculator.CreateGlobalProfitList(commodityGroups)
+                Calculation.ProfitCalculator.CreateGlobalProfitList(commodityGroups)
                 );
         }
     }

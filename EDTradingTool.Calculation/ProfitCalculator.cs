@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EDTradingTool.GUI.Reports
+namespace EDTradingTool.Calculation
 {
     /// <summary>
     /// This class is used for calculating profit which can be made on trades.
@@ -155,6 +155,106 @@ namespace EDTradingTool.GUI.Reports
 
             return findSeller ? results.First() : results.Last();
         }
+
+        /// <summary>
+        /// Retrieves the best profit which can be made when buying at supplierStation and selling at demanderStation, respecting a maximumCostPerUnit.
+        /// </summary>
+        /// <param name="supplierStation">The name of the station which sells stuff.</param>
+        /// <param name="demanderStation">The name of the station which buys stuff.</param>
+        /// <param name="maximumCostPerUnit">The maximum cost per unit.</param>
+        /// <returns>The best profit entry, or null if no such entry exists.</returns>
+        public static ProfitEntry FindBestProfitEntry(Entity.SpaceStation supplierStation, Entity.SpaceStation demanderStation, int maximumCostPerUnit)
+        {
+            var profits = CreateProfitList(supplierStation, demanderStation)
+                          .Where(entry => entry.BuyFromMarketPrice.Value <= maximumCostPerUnit && entry.Profit.Value > 0)
+                          .OrderByDescending(entry => entry.Profit)
+                          .ThenByDescending(entry => entry.ProfitPerInvestment);
+
+            if (profits.Count() == 0) return null;
+
+            return profits.First();
+        }
+
+        /// <summary>
+        /// Retrieves the best profits for a round trip between two stations.
+        /// </summary>
+        /// <param name="allStations">The list of all space stations.</param>
+        /// <param name="maximumCostPerUnit">The maximum cost per unit.</param>
+        /// <returns>A list with two profit entries (one for each direction).</returns>
+        public static List<ProfitEntry> FindBestRoundTrip(List<Entity.SpaceStation> allStations, int maximumCostPerUnit)
+        {
+            int highestProfit = 0;
+            ProfitEntry profitEntry1 = null;
+            ProfitEntry profitEntry2 = null;
+
+            foreach (var spaceStation1 in allStations)
+            {
+                foreach (var spaceStation2 in allStations)
+                {
+                    var bestProfitEntry1 = Calculation.ProfitCalculator.FindBestProfitEntry(spaceStation1, spaceStation2, maximumCostPerUnit);
+                    var bestProfitEntry2 = Calculation.ProfitCalculator.FindBestProfitEntry(spaceStation2, spaceStation1, maximumCostPerUnit);
+
+                    if (bestProfitEntry1 == null || bestProfitEntry2 == null) continue;
+
+                    var totalProfit = (bestProfitEntry1.Profit.Value + bestProfitEntry2.Profit.Value);
+
+                    if (totalProfit > highestProfit)
+                    {
+                        highestProfit = totalProfit;
+                        profitEntry1 = bestProfitEntry1;
+                        profitEntry2 = bestProfitEntry2;
+                    }
+                }
+            }
+
+            if (profitEntry1 == null || profitEntry2 == null) return null;
+
+            return new List<ProfitEntry>() { profitEntry1, profitEntry2 };
+        }
+
+        /// <summary>
+        /// Retrieves the best profits for a round trip between two stations.
+        /// </summary>
+        /// <param name="allStations">The list of all space stations.</param>
+        /// <param name="maximumCostPerUnit">The maximum cost per unit.</param>
+        /// <returns>A list with two profit entries (one for each direction).</returns>
+        public static List<ProfitEntry> FindBestRoundTripForThreeStations(List<Entity.SpaceStation> allStations, int maximumCostPerUnit)
+        {
+            int highestProfit = 0;
+            ProfitEntry profitEntry1 = null;
+            ProfitEntry profitEntry2 = null;
+            ProfitEntry profitEntry3 = null;
+
+            foreach (var spaceStation1 in allStations)
+            {
+                foreach (var spaceStation2 in allStations)
+                {
+                    foreach (var spaceStation3 in allStations)
+                    {
+                        var bestProfitEntry1 = Calculation.ProfitCalculator.FindBestProfitEntry(spaceStation1, spaceStation2, maximumCostPerUnit);
+                        var bestProfitEntry2 = Calculation.ProfitCalculator.FindBestProfitEntry(spaceStation2, spaceStation3, maximumCostPerUnit);
+                        var bestProfitEntry3 = Calculation.ProfitCalculator.FindBestProfitEntry(spaceStation3, spaceStation1, maximumCostPerUnit);
+
+                        if (bestProfitEntry1 == null || bestProfitEntry2 == null || bestProfitEntry3 == null) continue;
+
+                        var totalProfit = (bestProfitEntry1.Profit.Value + bestProfitEntry2.Profit.Value + bestProfitEntry3.Profit.Value);
+
+                        if (totalProfit > highestProfit)
+                        {
+                            highestProfit = totalProfit;
+                            profitEntry1 = bestProfitEntry1;
+                            profitEntry2 = bestProfitEntry2;
+                            profitEntry3 = bestProfitEntry3;
+                        }
+                    }
+                }
+            }
+
+            if (profitEntry1 == null || profitEntry2 == null || profitEntry3 == null) return null;
+
+            return new List<ProfitEntry>() { profitEntry1, profitEntry2, profitEntry3 };
+        }
+
 
         public static ProfitEntry CreateProfitEntry(
             Entity.CommodityType commodityType, Entity.MarketEntry localMarketEntry, Entity.MarketEntry remoteMarketEntry
