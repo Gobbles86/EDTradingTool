@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.MenuStrip = new System.Windows.Forms.MenuStrip();
-            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addQuestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TradeRouteView = new BrightIdeasSoftware.ObjectListView();
+            this.AddTradeEntryMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AddQuestEntryMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RemoveEntryMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TradeRouteView)).BeginInit();
             this.SuspendLayout();
@@ -41,40 +41,22 @@
             // MenuStrip
             // 
             this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addToolStripMenuItem});
+            this.AddToolStripMenuItem});
             this.MenuStrip.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip.Name = "MenuStrip";
             this.MenuStrip.Size = new System.Drawing.Size(793, 24);
             this.MenuStrip.TabIndex = 1;
             this.MenuStrip.Text = "menuStrip1";
             // 
-            // addToolStripMenuItem
+            // AddToolStripMenuItem
             // 
-            this.addToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addEntryToolStripMenuItem,
-            this.addQuestToolStripMenuItem,
-            this.deleteEntryToolStripMenuItem});
-            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
-            this.addToolStripMenuItem.Text = "Route";
-            // 
-            // addEntryToolStripMenuItem
-            // 
-            this.addEntryToolStripMenuItem.Name = "addEntryToolStripMenuItem";
-            this.addEntryToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
-            this.addEntryToolStripMenuItem.Text = "Add Entry";
-            // 
-            // addQuestToolStripMenuItem
-            // 
-            this.addQuestToolStripMenuItem.Name = "addQuestToolStripMenuItem";
-            this.addQuestToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
-            this.addQuestToolStripMenuItem.Text = "Add Quest";
-            // 
-            // deleteEntryToolStripMenuItem
-            // 
-            this.deleteEntryToolStripMenuItem.Name = "deleteEntryToolStripMenuItem";
-            this.deleteEntryToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
-            this.deleteEntryToolStripMenuItem.Text = "Delete Entry";
+            this.AddToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AddTradeEntryMenuItem,
+            this.AddQuestEntryMenuItem,
+            this.RemoveEntryMenuItem});
+            this.AddToolStripMenuItem.Name = "AddToolStripMenuItem";
+            this.AddToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.AddToolStripMenuItem.Text = "Route";
             // 
             // TradeRouteView
             // 
@@ -87,6 +69,27 @@
             this.TradeRouteView.TabIndex = 2;
             this.TradeRouteView.UseCompatibleStateImageBehavior = false;
             this.TradeRouteView.View = System.Windows.Forms.View.Details;
+            // 
+            // AddTradeEntryMenuItem
+            // 
+            this.AddTradeEntryMenuItem.Name = "AddTradeEntryMenuItem";
+            this.AddTradeEntryMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.AddTradeEntryMenuItem.Text = "Add Trade Entry";
+            this.AddTradeEntryMenuItem.Click += new System.EventHandler(this.AddTradeEntryMenuItem_Click);
+            // 
+            // AddQuestEntryMenuItem
+            // 
+            this.AddQuestEntryMenuItem.Name = "AddQuestEntryMenuItem";
+            this.AddQuestEntryMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.AddQuestEntryMenuItem.Text = "Add Quest Entry";
+            this.AddQuestEntryMenuItem.Click += new System.EventHandler(this.AddQuestEntryMenuItem_Click);
+            // 
+            // RemoveEntryMenuItem
+            // 
+            this.RemoveEntryMenuItem.Name = "RemoveEntryMenuItem";
+            this.RemoveEntryMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.RemoveEntryMenuItem.Text = "Remove Entry";
+            this.RemoveEntryMenuItem.Click += new System.EventHandler(this.RemoveEntryMenuItem_Click);
             // 
             // TradeRouteDialog
             // 
@@ -109,10 +112,10 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip MenuStrip;
-        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addEntryToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteEntryToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem addQuestToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AddToolStripMenuItem;
         private BrightIdeasSoftware.ObjectListView TradeRouteView;
+        private System.Windows.Forms.ToolStripMenuItem AddTradeEntryMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AddQuestEntryMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RemoveEntryMenuItem;
     }
 }

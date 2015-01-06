@@ -13,15 +13,15 @@ namespace EDTradingTool.GUI.RoutePlanner
     public class TradeRouteEntry
     {
         [OLVColumn("System", Width = 80)]
-        public String SolarSystem { get; set; }
+        public Entity.SolarSystem SolarSystem { get; set; }
 
         [OLVColumn("Station", Width = 100)]
-        public String SpaceStation { get; set; }
+        public Entity.SpaceStation SpaceStation { get; set; }
 
         [OLVColumn("Commodity", Width = 150)]
-        public String Commodity { get; set; }
+        public Entity.CommodityType Commodity { get; set; }
 
-        [OLVColumn("Quantity", Width = 40)]
+        [OLVColumn("#", Width = 40)]
         public byte Quantity { get; set; }
 
         [OLVColumn("Action", Width = 50)]
@@ -37,6 +37,6 @@ namespace EDTradingTool.GUI.RoutePlanner
         public Int64 TotalProfit { get; set; }
 
         [OLVColumn("Balance", Width = 100)]
-        public Int64 Balance { get; set; }
+        public UInt64 Balance { get; set; }
     }
 }

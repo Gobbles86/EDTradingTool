@@ -201,7 +201,9 @@ namespace EDTradingTool.GUI
 
         private void PlanNewTradeRouteItem_Click(object sender, EventArgs e)
         {
-            new RoutePlanner.RoutePlanner().StartRoutePlanning();
+            new RoutePlanner.RoutePlanner().StartRoutePlanning(
+                _entityHandler, new RoutePlanner.BalanceManager()
+                );
         }
     }
 }

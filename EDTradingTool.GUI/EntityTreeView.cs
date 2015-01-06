@@ -44,6 +44,11 @@ namespace EDTradingTool.GUI
             //entityHandler.RegisterEntityWatcher(new EntityWatcher<Entity.MarketEntry>(this.TreeView, treeNodeStore));
         }
 
+        public void Unregister(Core.IEntityHandler entityHandler)
+        {
+            // No need to cleanup as the tree view will live until the very end.
+        }
+
         /// <summary>
         /// Retrieves the root node of the given tree node.
         /// </summary>

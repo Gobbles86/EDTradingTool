@@ -91,13 +91,13 @@
             // 
             // CommodityGroupColumn
             // 
-            this.CommodityGroupColumn.AspectName = "GroupName";
+            this.CommodityGroupColumn.AspectName = "CommodityGroup";
             this.CommodityGroupColumn.Text = "Commodity Group";
             this.CommodityGroupColumn.Width = 97;
             // 
             // CommodityTypeColumn
             // 
-            this.CommodityTypeColumn.AspectName = "TypeName";
+            this.CommodityTypeColumn.AspectName = "CommodityType";
             this.CommodityTypeColumn.Text = "Commodity Type";
             this.CommodityTypeColumn.Width = 93;
             // 

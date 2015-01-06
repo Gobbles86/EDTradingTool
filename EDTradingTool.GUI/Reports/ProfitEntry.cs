@@ -8,8 +8,8 @@ namespace EDTradingTool.GUI.Reports
 {
     public class ProfitEntry
     {
-        public String GroupName { get; set; }
-        public String TypeName { get; set; }
+        public Entity.CommodityGroup CommodityGroup { get; set; }
+        public Entity.CommodityType CommodityType { get; set; }
 
         public Entity.SpaceStation LocalStation { get; set; }
         public Entity.SolarSystem LocalSystem { get; set; }

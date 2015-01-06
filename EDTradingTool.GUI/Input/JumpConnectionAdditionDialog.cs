@@ -61,6 +61,11 @@ namespace EDTradingTool.GUI.Input
             SpaceStation2ComboBox.Initialize(entityHandler);
         }
 
+        public void Unregister(Core.IEntityHandler entityHandler)
+        {
+            SpaceStation2ComboBox.Unregister(entityHandler);
+        }
+
         /// <summary>
         /// Enables or disables the OK Button dependent on the current input.
         /// </summary>

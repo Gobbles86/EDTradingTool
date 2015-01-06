@@ -16,5 +16,11 @@ namespace EDTradingTool.GUI
         /// </summary>
         /// <param name="entityHandler">The handler for entities.</param>
         void Initialize(Core.IEntityHandler entityHandler);
+
+        /// <summary>
+        /// Removes the connection to the entity handler which was supplied upon initialization.
+        /// </summary>
+        /// <param name="entityHandler">The handler for entities.</param>
+        void Unregister(Core.IEntityHandler entityHandler);
     }
 }

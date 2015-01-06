@@ -81,6 +81,10 @@ namespace EDTradingTool.GUI.Input
             _entityHandler = entityHandler;
             _entityHandler.RegisterEntityWatcher<Entity.CommodityType>(this);
         }
+        public void Unregister(Core.IEntityHandler entityHandler)
+        {
+            _entityHandler.UnregisterEntityWatcher<Entity.CommodityType>(this);
+        }
 
         public void OnInitialObjectsLoaded(List<Entity.CommodityType> objects)
         {

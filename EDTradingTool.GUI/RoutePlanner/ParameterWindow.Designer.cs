@@ -40,6 +40,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.CargoSpaceTextBox = new Common.NumericTextBox(this.components);
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.SpaceStationComboBoxPanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SecurityBufferBar)).BeginInit();
             this.SuspendLayout();
@@ -55,20 +57,22 @@
             this.tableLayoutPanel1.Controls.Add(this.BalanceTextBox, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.SecurityBufferBar, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.OkButton, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.OkButton, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.CargoSpaceTextBox, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.SpaceStationComboBoxPanel, 1, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 5;
+            this.tableLayoutPanel1.RowCount = 6;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(661, 151);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(661, 166);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // RebuyCostTextBox
@@ -200,7 +204,7 @@
             this.SecurityBufferBar.MinimumSize = new System.Drawing.Size(0, 30);
             this.SecurityBufferBar.Name = "SecurityBufferBar";
             this.SecurityBufferBar.Size = new System.Drawing.Size(573, 30);
-            this.SecurityBufferBar.TabIndex = 5;
+            this.SecurityBufferBar.TabIndex = 4;
             this.SecurityBufferBar.TickFrequency = 5;
             this.ToolTip.SetToolTip(this.SecurityBufferBar, "The percentage of money which shall be kept as a security buffer");
             // 
@@ -217,10 +221,10 @@
             // OkButton
             // 
             this.OkButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.OkButton.Location = new System.Drawing.Point(583, 125);
+            this.OkButton.Location = new System.Drawing.Point(583, 140);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(75, 23);
-            this.OkButton.TabIndex = 5;
+            this.OkButton.TabIndex = 6;
             this.OkButton.Text = "OK";
             this.OkButton.UseVisualStyleBackColor = true;
             this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
@@ -284,12 +288,31 @@
             0,
             0});
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Location = new System.Drawing.Point(3, 110);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(76, 25);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Space Station";
+            // 
+            // SpaceStationComboBoxPanel
+            // 
+            this.SpaceStationComboBoxPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SpaceStationComboBoxPanel.Location = new System.Drawing.Point(82, 110);
+            this.SpaceStationComboBoxPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.SpaceStationComboBoxPanel.Name = "SpaceStationComboBoxPanel";
+            this.SpaceStationComboBoxPanel.Size = new System.Drawing.Size(579, 25);
+            this.SpaceStationComboBoxPanel.TabIndex = 7;
+            // 
             // ParameterWindow
             // 
             this.AcceptButton = this.OkButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(661, 151);
+            this.ClientSize = new System.Drawing.Size(661, 166);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -316,5 +339,7 @@
         private System.Windows.Forms.Button OkButton;
         private System.Windows.Forms.Label label5;
         private Common.NumericTextBox CargoSpaceTextBox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel SpaceStationComboBoxPanel;
     }
 }

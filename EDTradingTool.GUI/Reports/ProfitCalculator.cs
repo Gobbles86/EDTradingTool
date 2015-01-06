@@ -162,8 +162,8 @@ namespace EDTradingTool.GUI.Reports
         {
             var profitEntry = new ProfitEntry()
             {
-                GroupName = commodityType.CommodityGroup.Name,
-                TypeName = commodityType.Name,
+                CommodityGroup = commodityType.CommodityGroup,
+                CommodityType = commodityType,
                 LocalStation = localMarketEntry.SpaceStation,
                 RemoteStation = remoteMarketEntry.SpaceStation,
                 LocalSystem = localMarketEntry.SpaceStation.SolarSystem,

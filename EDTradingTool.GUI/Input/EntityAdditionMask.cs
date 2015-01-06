@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace EDTradingTool.GUI.Input
 {
@@ -53,6 +54,11 @@ namespace EDTradingTool.GUI.Input
         public void Initialize(Core.IEntityHandler entityHandler)
         {
             _entityHandler = entityHandler;
+        }
+        public void Unregister(Core.IEntityHandler entityHandler)
+        {
+            // The mask will probably live until the end so no unregistering is performed here.
+            _entityHandler = null;
         }
 
         protected void InitTextBox(String readableEntityName)

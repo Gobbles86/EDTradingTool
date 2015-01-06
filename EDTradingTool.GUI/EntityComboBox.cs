@@ -19,12 +19,18 @@ namespace EDTradingTool.GUI
         {
             this.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.MaxDropDownItems = 25;
             MinimumSize = new Size(100, 0);
         }
 
         public void Initialize(Core.IEntityHandler entityHandler)
         {
             entityHandler.RegisterEntityWatcher(this);
+        }
+
+        public void Unregister(Core.IEntityHandler entityHandler)
+        {
+            entityHandler.UnregisterEntityWatcher(this);
         }
 
         public void OnInitialObjectsLoaded(List<T> objects)

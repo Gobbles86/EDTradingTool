@@ -120,6 +120,7 @@
       <DependentUpon>SpaceStationCommodityDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\SpaceStationStatsHandler.cs" />
+    <Compile Include="RoutePlanner\BalanceManager.cs" />
     <Compile Include="RoutePlanner\ParameterWindow.cs">
       <SubType>Form</SubType>
     </Compile>

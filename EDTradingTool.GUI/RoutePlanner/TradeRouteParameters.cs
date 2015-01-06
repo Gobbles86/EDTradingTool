@@ -15,5 +15,6 @@ namespace EDTradingTool.GUI.RoutePlanner
         public UInt64 RebuyCost { get; set; }
         public byte CargoSpace { get; set; }
         public byte SecurityBufferPercent { get; set; }
+        public Entity.SpaceStation SpaceStation { get; set; }
     }
 }

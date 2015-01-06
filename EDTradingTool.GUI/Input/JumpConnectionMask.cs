@@ -29,7 +29,12 @@ namespace EDTradingTool.GUI.Input
         public void Initialize(Core.IEntityHandler entityHandler)
         {
             _entityHandler = entityHandler;
-        }        
+        }
+
+        public void Unregister(Core.IEntityHandler entityHandler)
+        {
+            _entityHandler = null;
+        }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
@@ -44,6 +49,7 @@ namespace EDTradingTool.GUI.Input
                 );
             
             additionDialog.ShowDialog();
+            additionDialog.Unregister(_entityHandler);
 
             var spaceStation2 = additionDialog.SpaceStation2;
             var jumpRange = additionDialog.JumpRange;
