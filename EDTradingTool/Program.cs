@@ -98,7 +98,7 @@ namespace EDTradingTool
                 (profitEntry1.Profit + profitEntry2.Profit) / 2.0, availableAmount
                 ));
 
-            if (profitEntriesForThree == null) return;
+            //if (profitEntriesForThree == null) return;
 
             //profitEntry1 = profitEntriesForThree[0];
             //profitEntry2 = profitEntriesForThree[1];
