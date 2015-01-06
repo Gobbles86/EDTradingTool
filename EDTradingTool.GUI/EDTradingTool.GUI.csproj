@@ -120,6 +120,22 @@
       <DependentUpon>SpaceStationCommodityDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\SpaceStationStatsHandler.cs" />
+    <Compile Include="RoutePlanner\ParameterWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RoutePlanner\ParameterWindow.Designer.cs">
+      <DependentUpon>ParameterWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RoutePlanner\RoutePlanner.cs" />
+    <Compile Include="RoutePlanner\TradeAction.cs" />
+    <Compile Include="RoutePlanner\TradeRouteDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RoutePlanner\TradeRouteDialog.Designer.cs">
+      <DependentUpon>TradeRouteDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RoutePlanner\TradeRouteEntry.cs" />
+    <Compile Include="RoutePlanner\TradeRouteParameters.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
@@ -169,10 +185,17 @@
     <EmbeddedResource Include="Reports\SpaceStationCommodityDialog.resx">
       <DependentUpon>SpaceStationCommodityDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RoutePlanner\ParameterWindow.resx">
+      <DependentUpon>ParameterWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RoutePlanner\TradeRouteDialog.resx">
+      <DependentUpon>TradeRouteDialog.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

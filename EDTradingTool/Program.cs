@@ -35,7 +35,9 @@ namespace EDTradingTool
 
         private static void RunMain()
         {
-            // TEMP TEST
+            var splashScreen = new SplashScreen();
+            splashScreen.Show();
+
             OrmLiteConfig.DialectProvider = SqliteDialect.Provider;
             OrmLiteConfig.DialectProvider.NamingStrategy = new OrmLiteNamingStrategyBase();
 
@@ -62,9 +64,7 @@ namespace EDTradingTool
             mainForm.Initialize(controller);
             controller.Initialize(entityAccess);
 
-            // Create a couple of dummy entries
-
-            // Example: Print all output from market entry only
+            splashScreen.Hide();
             Application.Run(mainForm);
         }
     }

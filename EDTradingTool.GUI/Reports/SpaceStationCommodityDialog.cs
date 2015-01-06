@@ -13,46 +13,56 @@ namespace EDTradingTool.GUI.Reports
     public partial class SpaceStationCommodityDialog : Form
     {
         private Entity.SpaceStation _localStation;
+        private EntityComboBox<Entity.SpaceStation> _remoteSpaceStationComboBox = new EntityComboBox<Entity.SpaceStation>() { Dock = DockStyle.Fill };
+
+        private bool _switch = false;
+
+        public Reports.ProfitEntry MostRecentlySelectedEntry;
 
         /// <summary>
         /// This form displays the profits one can make between two stations.
         /// </summary>
         /// <param name="localStation">The local station.</param>
         /// <param name="entityHandler">The entity handler to use.</param>
-        public SpaceStationCommodityDialog(Entity.SpaceStation localStation, Core.IEntityHandler entityHandler)
+        public SpaceStationCommodityDialog(Entity.SpaceStation localStation, Core.IEntityHandler entityHandler, bool hideSwitchButton = false)
         {
             InitializeComponent();
-
-            // Local Station column is not used here
-            this.ProfitView.ProfitListView.Columns.Remove(this.ProfitView.LocalStationColumn);
-            this.ProfitView.ProfitListView.Columns.Remove(this.ProfitView.LocalSystemColumn);
-
-            var remoteSpaceStationComboBox = new EntityComboBox<Entity.SpaceStation>()
+            if (hideSwitchButton)
             {
-                Dock = DockStyle.Fill
-            };
-            remoteSpaceStationComboBox.Initialize(entityHandler);
+                this.SwitchButton.Hide();
+                this.ProfitView.Height += this.SwitchButton.Height;
+            }
+
+            _remoteSpaceStationComboBox.Initialize(entityHandler);
             // Fill the space station manually - OnInitialObjectsLoaded won't be called since the application is fully initialized already
-            remoteSpaceStationComboBox.OnInitialObjectsLoaded(entityHandler.GetEntityManager<Entity.SpaceStation>().GetAll());
+            _remoteSpaceStationComboBox.OnInitialObjectsLoaded(entityHandler.GetEntityManager<Entity.SpaceStation>().GetAll());
             // Pretend the local station was removed.
-            remoteSpaceStationComboBox.OnDataSetRemoved(localStation);
-            remoteSpaceStationComboBox.SelectedIndexChanged += RemoteSpaceStationComboBox_SelectedIndexChanged;
-            ComboBoxPanel.Controls.Add(remoteSpaceStationComboBox);
+            _remoteSpaceStationComboBox.OnDataSetRemoved(localStation);
+            _remoteSpaceStationComboBox.SelectedIndexChanged += RemoteSpaceStationComboBox_SelectedIndexChanged;
+            ComboBoxPanel.Controls.Add(_remoteSpaceStationComboBox);
 
             _localStation = localStation;
 
+            MostRecentlySelectedEntry = null;
+            this.ProfitView.ProfitListView.DoubleClick += ProfitListView_DoubleClick;
+
             // Simulate a selection
-            RemoteSpaceStationComboBox_SelectedIndexChanged(remoteSpaceStationComboBox, null);
+            RemoteSpaceStationComboBox_SelectedIndexChanged(_remoteSpaceStationComboBox, null);
+        }
+
+        void ProfitListView_DoubleClick(object sender, EventArgs e)
+        {
+            MostRecentlySelectedEntry = this.ProfitView.ProfitListView.SelectedItem.RowObject as ProfitEntry;
         }
 
         private void RemoteSpaceStationComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.ProfitView.ProfitListView.ClearObjects();
-
-            var remoteStation = ((ComboBox)sender).SelectedItem as Entity.SpaceStation;
+            var remoteStation = _remoteSpaceStationComboBox.SelectedItem as Entity.SpaceStation;
             
             UpdateLabelText(_localStation, remoteStation);
 
+            _switch = false;
+            this.ProfitView.ProfitListView.ClearObjects();
             this.ProfitView.ProfitListView.AddObjects(
                 ProfitCalculator.CreateProfitList(_localStation, remoteStation)
                 );
@@ -73,6 +83,28 @@ namespace EDTradingTool.GUI.Reports
                     localStation.Name, remoteStation.Name
                     );
             }
+        }
+
+        private void SwitchButton_Click(object sender, EventArgs e)
+        {
+            var remoteStation = _remoteSpaceStationComboBox.SelectedItem as Entity.SpaceStation;
+
+            this.ProfitView.ProfitListView.ClearObjects();
+
+            if (_switch == false)
+            {
+                this.ProfitView.ProfitListView.AddObjects(
+                    ProfitCalculator.CreateProfitList(remoteStation, _localStation)
+                    );
+            }
+            else
+            {
+                this.ProfitView.ProfitListView.AddObjects(
+                    ProfitCalculator.CreateProfitList(_localStation, remoteStation)
+                    );
+            }
+
+            _switch = !_switch;
         }
     }
 }

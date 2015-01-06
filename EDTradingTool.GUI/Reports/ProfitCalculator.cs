@@ -15,7 +15,11 @@ namespace EDTradingTool.GUI.Reports
         {
             if (remoteStation == null)
             {
-                return CreateProfitListForStation(localStation);
+                return CreateProfitListForTradesFromStation(localStation);
+            }
+            if (localStation == null)
+            {
+                return CreateProfitListForTradesToStation(remoteStation);
             }
             else
             {
@@ -85,7 +89,7 @@ namespace EDTradingTool.GUI.Reports
             return profitList;
         }
         
-        public static List<ProfitEntry> CreateProfitListForStation(Entity.SpaceStation localStation)
+        public static List<ProfitEntry> CreateProfitListForTradesFromStation(Entity.SpaceStation localStation)
         {
             var profitList = new List<ProfitEntry>();
 
@@ -105,6 +109,30 @@ namespace EDTradingTool.GUI.Reports
                 if (bestBuyPriceEntry.SellToStationPrice.Value <= marketEntry.BuyFromStationPrice) continue;
 
                 profitList.Add(CreateProfitEntry(marketEntry.CommodityType, marketEntry, bestBuyPriceEntry));
+            }
+            return profitList;
+        }
+
+        public static List<ProfitEntry> CreateProfitListForTradesToStation(Entity.SpaceStation localStation)
+        {
+            var profitList = new List<ProfitEntry>();
+
+            // Retrieve all Commodity Types which are bought at the curren station
+            // Sort them first by Commodity Group, then by Commodity Type
+            var marketBuyEntries = localStation.MarketEntries.Where(entry => entry.SellToStationPrice.HasValue && entry.SellToStationPrice != 0)
+                                                             .OrderBy(entry => entry.CommodityType.CommodityGroup.Name)
+                                                             .ThenBy(entry => entry.CommodityType.Name);
+
+            foreach (var marketEntry in marketBuyEntries)
+            {
+                var bestSellPriceEntry = FindBestMarketEntry(marketEntry.CommodityType, findSeller: true);
+
+                // Skip if no best buyer could be retrieved or if the retrieved price was invalid or lower than the local station's sell price
+                if (bestSellPriceEntry == null) continue;
+                if (!bestSellPriceEntry.BuyFromStationPrice.HasValue || bestSellPriceEntry.BuyFromStationPrice.Value == 0) continue;
+                if (bestSellPriceEntry.BuyFromStationPrice.Value >= marketEntry.SellToStationPrice) continue;
+
+                profitList.Add(CreateProfitEntry(marketEntry.CommodityType, bestSellPriceEntry, marketEntry));
             }
             return profitList;
         }

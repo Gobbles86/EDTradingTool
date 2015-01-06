@@ -198,5 +198,10 @@ namespace EDTradingTool.GUI
             // Else: No button in this path, return one level (or completely)
             return null;
         }
+
+        private void PlanNewTradeRouteItem_Click(object sender, EventArgs e)
+        {
+            new RoutePlanner.RoutePlanner().StartRoutePlanning();
+        }
     }
 }
